@@ -1,1 +1,1 @@
-export { default as useHook } from "./useHook"
+export { default as useDebounce } from "./useDebounce"
