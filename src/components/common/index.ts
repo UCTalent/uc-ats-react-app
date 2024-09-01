@@ -1,4 +1,5 @@
 export * from "./buttons"
+export { default as ModalWithHeader } from "./ModalWithHeader"
 export { default as WrappedSEO } from "./WrappedSEO"
 export { default as AppContainer } from "./AppContainer"
 export { default as JobCard } from "./JobCard"

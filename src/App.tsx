@@ -1,21 +1,18 @@
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom"
-import "./App.css"
-import { RecoilRoot } from "recoil"
+import { Route, Routes } from "react-router-dom"
 import { ApolloWrapper } from "libs/apolloProvider"
+import { ModalProvider } from "components/providers"
 import TheHomePage from "pages/Home"
 import NotFound from "pages/NotFound"
+import "./App.css"
 
 const App = () => {
   return (
     <ApolloWrapper>
-      <RecoilRoot>
-        <Router>
-          <Routes>
-            <Route path="/" element={<TheHomePage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-      </RecoilRoot>
+      <Routes>
+        <Route path="/" element={<TheHomePage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <ModalProvider />
     </ApolloWrapper>
   )
 }

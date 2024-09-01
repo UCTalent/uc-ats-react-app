@@ -12,7 +12,7 @@
       "libs/*": ["src/libs/*"],
       "store/*": ["src/store/*"],
       "constants/*": ["src/constants/*"],
-      "hooks/*": ["src/hooks", "src/hooks/*"]
+      "hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["src"]
