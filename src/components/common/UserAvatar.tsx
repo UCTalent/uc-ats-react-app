@@ -17,7 +17,10 @@ const UserAvatar: React.FC<IProps> = ({ sx }) => {
         sx={{ width: 48, height: 48 }}
       />
       <Stack>
-        <Stack flexDirection="row" sx={{ alignItems: "center", gap: "4px" }}>
+        <Stack
+          flexDirection="row"
+          sx={{ justifyContent: "space-between", alignItems: "center", gap: "4px" }}
+        >
           <Typography variant="body1" sx={{ fontSize: "14px", fontWeight: 600 }}>
             Le Quang Duy
           </Typography>

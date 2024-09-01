@@ -12,7 +12,16 @@ import { IconBell } from "assets/icons"
 const TheAppHeader = () => {
   const { palette } = useTheme()
   return (
-    <Box sx={{ borderBottom: "1px solid", borderBottomColor: palette.border.outlined }}>
+    <Box
+      sx={{
+        position: "sticky",
+        top: 0,
+        borderBottom: "1px solid",
+        borderBottomColor: palette.border.outlined,
+        bgcolor: palette.background.default,
+        zIndex: 20,
+      }}
+    >
       <AppContainer>
         <Stack
           direction="row"

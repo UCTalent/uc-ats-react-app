@@ -1,9 +1,9 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import { useTheme } from "@mui/material"
-import { WrappedSEO } from "components/common/WrappedSEO"
-import { TheAppHeader } from "components/sections/common"
-import { AppContainer } from "components/common"
+import { WrappedSEO, AppContainer } from "components/common"
+import { TheAppHeader, TheNavigateAsideBar } from "components/sections"
+import { TopBarWithTitle, TheJobsList } from "components/sections/home"
 
 const TheHomePage = () => {
   const { palette } = useTheme()
@@ -11,32 +11,32 @@ const TheHomePage = () => {
   return (
     <>
       <WrappedSEO title="Home page" />
-      <Stack sx={{ height: "100vh", overflow: "hidden" }}>
+      <Stack sx={{ height: "100vh", overflow: "auto" }}>
         <TheAppHeader />
         <Box sx={{ flexGrow: 1 }}>
-          <AppContainer>
+          <AppContainer sx={{ minHeight: "100%" }}>
             <Stack
               direction="row"
               sx={{
-                height: "100%",
+                minHeight: "100%",
                 borderWidth: "0 1px",
                 borderStyle: "solid",
                 borderColor: palette.border.outlined,
               }}
             >
-              <Box
-                sx={{
-                  minWidth: 304,
-                  borderRight: "1px solid",
-                  borderRightColor: palette.border.outlined,
-                }}
-              >
-                1
-              </Box>
+              <TheNavigateAsideBar />
               <Stack sx={{ flexGrow: 1 }}>
-                <Box sx={{ height: 40, position: "sticky", top: 0, bgcolor: "#F8F7FF" }}>3</Box>
-                <Box sx={{ flexGrow: 1 }}>2</Box>
-                <Box sx={{ height: 40, position: "sticky", bottom: 0, bgcolor: "#F8F7FF" }}>3</Box>
+                <TopBarWithTitle />
+                <TheJobsList />
+                <Box
+                  sx={{
+                    minHeight: 40,
+                    px: "28px",
+                    position: "sticky",
+                    bottom: 0,
+                    bgcolor: palette.background.accent,
+                  }}
+                ></Box>
               </Stack>
             </Stack>
           </AppContainer>

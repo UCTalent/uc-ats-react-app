@@ -29,13 +29,14 @@ export const createTheme = (mode = "light") => {
         shades: isLightMode ? "rgba(248, 247, 255, 0.12)" : "rgba(248, 247, 255, 0.12)",
         lime: isLightMode ? "#C9FF33" : "#C9FF33",
         limeHover: isLightMode ? "#B7E731" : "#B7E731",
+        accent: isLightMode ? "#F8F7FF" : "#F8F7FF",
       },
       primary: {
-        main: isLightMode ? "#121619" : "#F8F7FF",
+        main: isLightMode ? "#6933FF" : "#6933FF",
         shades: isLightMode ? "rgba(18, 22, 25, 0.04)" : "rgba(248, 247, 255, 0.04)",
       },
       secondary: {
-        main: isLightMode ? "#6933FF" : "#6933FF",
+        main: isLightMode ? "#121619" : "#F8F7FF",
       },
       text: {
         primary: isLightMode ? "#121619" : "#DFDEE6",
