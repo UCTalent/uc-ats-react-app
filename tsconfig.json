@@ -2,6 +2,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "esModuleInterop": true,
     "paths": {
       "components/*": ["./src/components/*"],
       "pages/*": ["./src/pages/*"],
@@ -12,7 +13,8 @@
       "libs/*": ["src/libs/*"],
       "store/*": ["src/store/*"],
       "constants/*": ["src/constants/*"],
-      "hooks/*": ["src/hooks/*"]
+      "hooks/*": ["src/hooks/*"],
+      "types/*": ["src/types/*"]
     }
   },
   "include": ["src"]

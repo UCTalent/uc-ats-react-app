@@ -35,11 +35,13 @@ const ModalWithHeader: React.FC<IProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        // height: "100%",
       }}
     >
       <Box
         sx={{
           position: "relative",
+          maxHeight: "90vh",
           borderRadius: "16px",
           border: `1px solid ${palette.border.outlined}`,
           pb: "16px",
@@ -47,13 +49,10 @@ const ModalWithHeader: React.FC<IProps> = ({
           "&:focus": {
             outline: "none",
           },
-          overflow: "hidden",
           ...wrapperSx,
         }}
       >
-        <Stack
-          sx={{ px: "24px", py: "16px", pr: "56px", mb: "16px", bgcolor: "rgba(18, 22, 25, 0.02)" }}
-        >
+        <Stack sx={{ px: "24px", py: "16px", pr: "56px", bgcolor: "rgba(18, 22, 25, 0.02)" }}>
           <Typography sx={{ fontSize: "24px", fontWeight: 600 }}>{title}</Typography>
           <Typography variant="body2" sx={{ whiteSpace: "pre-wrap" }}>
             {description}

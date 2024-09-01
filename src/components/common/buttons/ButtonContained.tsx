@@ -10,6 +10,7 @@ const ButtonContained: React.FC<IProps> = ({ children, startIconSrc, sx, ...prop
 
   return (
     <MuiButton
+      variant="contained"
       sx={{
         height: "48px",
         px: "22px",
@@ -18,9 +19,6 @@ const ButtonContained: React.FC<IProps> = ({ children, startIconSrc, sx, ...prop
         color: palette.white,
         textTransform: "none",
         fontWeight: 600,
-        "&:hover": {
-          bgcolor: palette.primary.main,
-        },
         ...sx,
       }}
       {...props}
