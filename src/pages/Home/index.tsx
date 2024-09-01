@@ -1,9 +1,8 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import { useTheme } from "@mui/material"
-import { WrappedSEO } from "components/common/WrappedSEO"
-import { TheAppHeader } from "components/sections/common"
-import { AppContainer } from "components/common"
+import { WrappedSEO, AppContainer } from "components/common"
+import { TheAppHeader, TheNavigateAsideBar } from "components/sections"
 
 const TheHomePage = () => {
   const { palette } = useTheme()
@@ -24,15 +23,7 @@ const TheHomePage = () => {
                 borderColor: palette.border.outlined,
               }}
             >
-              <Box
-                sx={{
-                  minWidth: 304,
-                  borderRight: "1px solid",
-                  borderRightColor: palette.border.outlined,
-                }}
-              >
-                1
-              </Box>
+              <TheNavigateAsideBar />
               <Stack sx={{ flexGrow: 1 }}>
                 <Box sx={{ height: 40, position: "sticky", top: 0, bgcolor: "#F8F7FF" }}>3</Box>
                 <Box sx={{ flexGrow: 1 }}>2</Box>

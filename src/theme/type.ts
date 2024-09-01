@@ -3,6 +3,19 @@
 import { PaletteColor } from "@mui/material/styles"
 
 declare module "@mui/material/styles" {
+  interface TypeBackground {
+    active: string
+  }
+
+  interface TypeText {
+    accent: string
+  }
+
+  interface PaletteOptions {
+    background?: Partial<TypeBackground>
+    text?: Partial<TypeText>
+  }
+
   interface Palette {
     surface?: PaletteColor
     tertiary: string

@@ -6,7 +6,7 @@ type SEOProps = {
   lang?: string
 }
 
-export const WrappedSEO: React.FC<SEOProps> = ({ title, description = "", lang = "en" }) => {
+const WrappedSEO: React.FC<SEOProps> = ({ title, description = "", lang = "en" }) => {
   return (
     <Helmet
       htmlAttributes={{ lang }}
@@ -29,3 +29,5 @@ export const WrappedSEO: React.FC<SEOProps> = ({ title, description = "", lang =
     />
   )
 }
+
+export default WrappedSEO

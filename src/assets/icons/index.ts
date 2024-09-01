@@ -1,2 +1,5 @@
 export { default as IconChevronDown } from "./chevron-down.svg"
 export { default as IconBell } from "./bell.svg"
+export { default as IconJob } from "./job.svg"
+export { default as IconPeople } from "./people.svg"
+export { default as IconStoreBox } from "./store-box.svg"
