@@ -4,7 +4,7 @@ import { PaletteColor } from "@mui/material/styles"
 
 declare module "@mui/material/styles" {
   interface TypeBackground {
-    active: string
+    accent: string
   }
 
   interface TypeText {
@@ -35,6 +35,7 @@ declare module "@mui/material/styles" {
       divider: string
       otherOutlined: string
     }
+    white: string
   }
 
   interface PaletteOptions {
@@ -56,6 +57,7 @@ declare module "@mui/material/styles" {
       divider?: string
       otherOutlined?: string
     }
+    white: string
   }
 
   interface Theme {
