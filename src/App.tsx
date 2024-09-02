@@ -1,16 +1,17 @@
-import { Route, Routes } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { ApolloWrapper } from "libs/apolloProvider"
 import { ModalProvider } from "components/providers"
-import TheHomePage from "pages/Home"
-import NotFound from "pages/NotFound"
+import { ROUTES } from "./routes"
+import RouteElement from "routes/RouteElement"
 import "./App.css"
 
 const App = () => {
   return (
     <ApolloWrapper>
       <Routes>
-        <Route path="/" element={<TheHomePage />} />
-        <Route path="*" element={<NotFound />} />
+        {ROUTES.map((route) => (
+          <Route key={route.path} path={route.path} element={<RouteElement route={route} />} />
+        ))}
       </Routes>
       <ModalProvider />
     </ApolloWrapper>
