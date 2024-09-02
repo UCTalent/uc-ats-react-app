@@ -1,16 +1,22 @@
 import Stack from "@mui/material/Stack"
+import { useNavigate } from "react-router-dom"
+import { useTheme } from "@mui/material"
 import { useMemo } from "react"
 import { ButtonOutlined, JobCard, CalendarBox } from "components/common"
+import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TheJobsList = () => {
+  const navigate = useNavigate()
+  const { palette } = useTheme()
+
   const statusFilterElements = useMemo(() => {
     const statusList = [
-      { name: "Active", action: () => {} },
-      { name: "Closed", action: () => {} },
-      { name: "Pending", action: () => {} },
+      { name: "Total", action: () => {} },
+      { name: "Hired", action: () => {} },
+      { name: "Dropped", action: () => {} },
     ]
     return (
-      <Stack flexDirection="row" gap="18px">
+      <Stack flexDirection="row" gap="18px" sx={{ px: "28px" }}>
         {statusList.map((status) => (
           <ButtonOutlined key={status.name} customColor="black">
             {status.name}
@@ -21,14 +27,23 @@ const TheJobsList = () => {
   }, [])
 
   return (
-    <Stack sx={{ flexGrow: 1, px: "28px", py: "24px", gap: "24px" }}>
+    <Stack sx={{ flexGrow: 1, py: "24px", gap: "24px" }}>
       {statusFilterElements}
       <Stack gap="24px">
         {Array.from({ length: 12 }).map((item, index) => (
           <Stack
             key={index}
             flexDirection="row"
-            sx={{ alignItems: "center", justifyContent: "space-between", py: "18px" }}
+            sx={{
+              alignItems: "center",
+              justifyContent: "space-between",
+              px: "28px",
+              py: "18px",
+              cursor: "pointer",
+              transitionDuration: "0.1s",
+              "&:hover": { backgroundColor: palette.background.accent },
+            }}
+            onClick={() => navigate(PAGE_MAP.JOB_DETAILS(index.toString()))}
           >
             <JobCard />
             <Stack flexDirection="row" gap="10px">
