@@ -1,20 +1,28 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import FormControl from "@mui/material/FormControl"
-import { NumericFormat } from "react-number-format"
+import { NumericFormat, NumericFormatProps } from "react-number-format"
 import { useState, useEffect } from "react"
-import TextField from "@mui/material/TextField"
+import { useController, type Control, type FieldValues, type Path } from "react-hook-form"
+import TextField, { TextFieldProps } from "@mui/material/TextField"
 import useDebounce from "hooks/useDebounce"
-import { type InputProps } from "@mui/material"
 
-type TProps = InputProps & {
+type TypeProps<T extends FieldValues> = {
+  control: Control<T>
+  name: Path<T>
   label: string
-  value: number | string
-  onDebounceChange?: (value: number) => void
-}
+} & Omit<TextFieldProps, "inputRef"> &
+  Omit<NumericFormatProps, "onChange" | "customInput">
 
-const NumberFormatField: React.FC<TProps> = (props) => {
-  const { onDebounceChange, value, label, ...restProps } = props || {}
+const NumberFormatField = <T extends FieldValues>({
+  control,
+  name,
+  label,
+  ...restProps
+}: TypeProps<T>) => {
+  const {
+    field: { onChange, onBlur, value, ref },
+    fieldState: { invalid, error },
+  } = useController({ name, control })
+
   const [inputValue, setInputValue] = useState<string>(value.toString())
   const debouncedValue = useDebounce(inputValue)
 
@@ -23,20 +31,23 @@ const NumberFormatField: React.FC<TProps> = (props) => {
   }, [value])
 
   useEffect(() => {
-    if (!onDebounceChange) return
-    const parseNumber = parseFloat(debouncedValue.replace(/,/g, "")) || 0
-    onDebounceChange(parseNumber)
-  }, [debouncedValue])
+    const parseNumber = parseFloat(debouncedValue.replace(/,/g, ""))
+    onChange(parseNumber)
+  }, [debouncedValue, onChange])
 
   return (
     <FormControl fullWidth>
       <NumericFormat
+        {...restProps}
+        inputRef={ref}
         label={label}
-        value={inputValue}
+        value={value === 0 ? "" : value}
         thousandSeparator
-        onChange={(e) => setInputValue(e.target.value)}
         customInput={TextField}
-        InputProps={restProps}
+        error={invalid}
+        helperText={error ? error.message : restProps.helperText}
+        onChange={(e) => setInputValue(e.target.value)}
+        onBlur={onBlur}
       />
     </FormControl>
   )

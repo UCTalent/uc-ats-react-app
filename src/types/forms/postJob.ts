@@ -5,8 +5,8 @@ export interface TypePostJobForm {
   remote: boolean
   headcount: string
   contractDetail: string
-  minimumSalary: string
-  maximumSalary: string
+  minimumSalary: number
+  maximumSalary: number
   currency: string
   frequency: string
   jobDescription: string

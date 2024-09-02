@@ -8,8 +8,15 @@ export const schemaPostJobForm = yup.object().shape({
   remote: yup.boolean().required(messageRules.required("Remote")),
   headcount: yup.string().required(messageRules.required("Headcount")),
   contractDetail: yup.string().required(messageRules.required("Contract Detail")),
-  minimumSalary: yup.string().required(messageRules.required("Minimum Salary")),
-  maximumSalary: yup.string().required(messageRules.required("Maximum Salary")),
+  minimumSalary: yup
+    .number()
+    .required(messageRules.required("Minimum Salary"))
+    .positive("Minimum Salary must be greater than 0"),
+  maximumSalary: yup
+    .number()
+    .required(messageRules.required("Maximum Salary"))
+    .positive("Maximum Salary must be greater than 0")
+    .moreThan(yup.ref("minimumSalary"), "Maximum Salary must be greater than Minimum Salary"),
   currency: yup.string().required(messageRules.required("Currency")),
   frequency: yup.string().required(messageRules.required("Frequency")),
   jobDescription: yup.string().required(messageRules.required("Job Description")),

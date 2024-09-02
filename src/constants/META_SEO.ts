@@ -10,13 +10,7 @@ const HOME: IMetaSEO = {
   description: "Home page description",
 }
 
-const POST_JOB: IMetaSEO = {
-  title: "Create Job",
-  description: "Create Job description",
-}
-
 export const META_SEO: Record<string, IMetaSEO> = {
   DEFAULT,
   HOME,
-  POST_JOB,
 }
