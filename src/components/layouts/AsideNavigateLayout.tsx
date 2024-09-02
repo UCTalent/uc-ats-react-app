@@ -1,5 +1,6 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
+import useScrollToTop from "hooks/useScrollToTop"
 import { useTheme } from "@mui/material"
 import { AppContainer } from "components/common"
 import { TheAppHeader, TheNavigateAsideBar } from "components/sections"
@@ -11,9 +12,10 @@ interface TypeProps {
 
 const AsideNavigateLayout: React.FC<TypeProps> = ({ children }) => {
   const { palette } = useTheme()
+  const { containerRef } = useScrollToTop()
 
   return (
-    <Stack sx={{ height: "100vh", overflow: "auto" }}>
+    <Stack ref={containerRef} sx={{ height: "100vh", overflow: "auto" }}>
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>
