@@ -14,7 +14,10 @@
       "store/*": ["src/store/*"],
       "constants/*": ["src/constants/*"],
       "hooks/*": ["src/hooks/*"],
-      "types/*": ["src/types/*"]
+      "types/*": ["src/types/*"],
+      "services/*": ["src/services/*"],
+      "routes/*": ["src/routes/*"],
+      "data/*": ["src/data/*"]
     }
   },
   "include": ["src"]

@@ -10,7 +10,7 @@ type RichTextFieldProps = {
   minHeight?: number
 }
 
-const RichTextEditor = ({ placeholder, minHeight = 240, ...props }: RichTextFieldProps) => {
+const RichTextEditor = ({ placeholder, minHeight = 200, ...props }: RichTextFieldProps) => {
   const { palette } = useTheme()
   const handleChange = (value: string) => {
     console.log(value)
@@ -46,8 +46,12 @@ const RichTextEditor = ({ placeholder, minHeight = 240, ...props }: RichTextFiel
       fullWidth
       sx={{
         "& .ql-toolbar.ql-snow": {
+          height: "44px",
           borderRadius: "8px 8px 0 0",
           borderColor: palette.border.outlined,
+        },
+        "& .ql-toolbar.ql-snow .ql-formats .ql-active": {
+          color: palette.primary.main,
         },
         "& .ql-container.ql-snow": {
           borderRadius: "0 0 8px 8px",

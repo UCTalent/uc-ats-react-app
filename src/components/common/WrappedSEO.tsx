@@ -1,12 +1,9 @@
 import { Helmet } from "react-helmet"
+import type { IMetaSEO } from "types/common"
 
-type SEOProps = {
-  title: string
-  description?: string
-  lang?: string
-}
+type TypeProps = IMetaSEO
 
-const WrappedSEO: React.FC<SEOProps> = ({ title, description = "", lang = "en" }) => {
+const WrappedSEO: React.FC<TypeProps> = ({ title, description = "", lang = "en" }) => {
   return (
     <Helmet
       htmlAttributes={{ lang }}

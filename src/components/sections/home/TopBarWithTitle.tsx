@@ -2,15 +2,16 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import { useTheme } from "@mui/material"
 import { ButtonContained } from "components/common"
-import { useModalAtom } from "hooks/atoms"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
+import { UCT_LINK_PAGE } from "constants/UCT_WEB"
+import { openLinkInNewTab } from "utils/common"
 import { IconPlus } from "assets/icons"
-import { MODAL_ID } from "constants/MODAL_ID"
 
 const TopBarWithTitle = () => {
   const { palette } = useTheme()
-  const { pushModal } = useModalAtom()
-
+  const onClickPostJob = () => {
+    openLinkInNewTab(UCT_LINK_PAGE.POST_JOB)
+  }
   return (
     <Stack
       flexDirection="row"
@@ -29,7 +30,7 @@ const TopBarWithTitle = () => {
       <ButtonContained
         startIconSrc={IconPlus}
         sx={{ height: "36px", px: "16px" }}
-        onClick={() => pushModal(MODAL_ID.POST_JOB)}
+        onClick={onClickPostJob}
       >
         Post A Job
       </ButtonContained>

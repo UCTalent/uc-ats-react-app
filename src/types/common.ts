@@ -1,3 +1,9 @@
+export interface IMetaSEO {
+  title: string
+  description?: string
+  lang?: string
+}
+
 export interface IBaseOption {
   value: number | string
   name: number | string

@@ -18,6 +18,9 @@ export default defineConfig({
       constants: path.resolve(__dirname, "./src/constants"),
       hooks: path.resolve(__dirname, "./src/hooks"),
       types: path.resolve(__dirname, "./src/types"),
+      services: path.resolve(__dirname, "./src/services"),
+      routes: path.resolve(__dirname, "./src/routes"),
+      data: path.resolve(__dirname, "./src/data"),
     },
   },
 })
