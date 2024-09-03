@@ -4,6 +4,7 @@ import Avatar from "@mui/material/Avatar"
 import Typography from "@mui/material/Typography"
 import Chip from "@mui/material/Chip"
 import { useTheme } from "@mui/material"
+import { DotDivider } from "components/common"
 import { IconLocation, IconJobType } from "assets/icons"
 
 const JobCard = () => {
@@ -45,14 +46,7 @@ const JobCard = () => {
             <img src={IconLocation} alt="location" width="20px" height="20px" />
             <Box component="span">New York, USA</Box>
           </Stack>
-          <Box
-            sx={{
-              width: "4px",
-              height: "4px",
-              borderRadius: "50%",
-              bgcolor: palette.text.secondary,
-            }}
-          ></Box>
+          <DotDivider />
           <Stack flexDirection="row" sx={{ alignItems: "center", gap: "6px" }}>
             <img src={IconJobType} alt="job type" width="20px" height="20px" />
             <Box component="span">Full-time</Box>

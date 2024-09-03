@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton"
 import Divider from "@mui/material/Divider"
 import { useTheme } from "@mui/material"
 import { Link } from "react-router-dom"
-import { AppContainer, UserAvatar } from "components/common"
+import { AppContainer, UserAvatarWithChevron } from "components/common"
 import { APP_HEADER_HEIGHT, APP_HEADER_LOGO_WIDTH } from "constants/STYLE"
 import { LogoUctText } from "assets/logos"
 import { IconBell } from "assets/icons"
@@ -38,7 +38,7 @@ const TheAppHeader = () => {
               orientation="vertical"
               sx={{ height: "16px", marginRight: "20px", marginLeft: "4px" }}
             />
-            <UserAvatar sx={{ cursor: "pointer" }} />
+            <UserAvatarWithChevron sx={{ cursor: "pointer" }} />
           </Stack>
         </Stack>
       </AppContainer>
