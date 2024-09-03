@@ -25,7 +25,6 @@ const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
               <TabMenuHorizontal />
               {children}
             </Stack>
-            <Stack sx={{ minHeight: "32px" }}></Stack>
           </Stack>
         </AppContainer>
       </Box>

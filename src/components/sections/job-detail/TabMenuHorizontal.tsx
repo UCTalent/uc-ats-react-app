@@ -48,7 +48,7 @@ const TabMenuHorizontal = () => {
   }
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", mb: "16px" }}>
       <Box sx={{ borderBottom: 1, borderColor: "border.outlined" }}>
         <Tabs
           value={value}
