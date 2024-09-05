@@ -21,6 +21,8 @@ export default defineConfig({
       services: path.resolve(__dirname, "./src/services"),
       routes: path.resolve(__dirname, "./src/routes"),
       data: path.resolve(__dirname, "./src/data"),
+      layouts: path.resolve(__dirname, "./src/layouts"),
+      theme: path.resolve(__dirname, "./src/theme"),
     },
   },
 })

@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
-import { useTheme, type SxProps } from "@mui/material"
+import { type SxProps } from "@mui/material"
 import { IconClose } from "assets/icons"
 import { type ReactNode } from "react"
 
@@ -24,7 +24,6 @@ const ModalWithHeader: React.FC<IProps> = ({
   open,
   onClose,
 }) => {
-  const { palette } = useTheme()
   return (
     <Modal
       open={open}
@@ -35,7 +34,6 @@ const ModalWithHeader: React.FC<IProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        // height: "100%",
       }}
     >
       <Box
@@ -43,7 +41,8 @@ const ModalWithHeader: React.FC<IProps> = ({
           position: "relative",
           maxHeight: "90vh",
           borderRadius: "16px",
-          border: `1px solid ${palette.border.outlined}`,
+          border: "1px solid",
+          borderColor: "border.outlined",
           pb: "16px",
           bgcolor: "white",
           "&:focus": {

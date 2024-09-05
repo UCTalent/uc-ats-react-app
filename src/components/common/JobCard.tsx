@@ -3,13 +3,10 @@ import Box from "@mui/material/Box"
 import Avatar from "@mui/material/Avatar"
 import Typography from "@mui/material/Typography"
 import Chip from "@mui/material/Chip"
-import { useTheme } from "@mui/material"
 import { DotDivider } from "components/common"
 import { IconLocation, IconJobType } from "assets/icons"
 
 const JobCard = () => {
-  const { palette } = useTheme()
-
   return (
     <Stack flexDirection="row" sx={{ alignItems: "center", gap: "27px" }}>
       <Avatar
@@ -23,7 +20,7 @@ const JobCard = () => {
             <Box component="span" sx={{ fontSize: "20px" }}>
               Product Lead
             </Box>
-            <Box component="span" sx={{ color: palette.text.secondary }}>
+            <Box component="span" sx={{ color: "text.secondary" }}>
               , Rogo
             </Box>
           </Typography>
@@ -40,7 +37,7 @@ const JobCard = () => {
         </Stack>
         <Stack
           flexDirection="row"
-          sx={{ alignItems: "center", gap: "10px", color: palette.text.secondary }}
+          sx={{ alignItems: "center", gap: "10px", color: "text.secondary" }}
         >
           <Stack flexDirection="row" sx={{ alignItems: "center", gap: "6px" }}>
             <img src={IconLocation} alt="location" width="20px" height="20px" />

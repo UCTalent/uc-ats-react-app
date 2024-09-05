@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { FormControl, useTheme } from "@mui/material"
+import { FormControl } from "@mui/material"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 
@@ -11,7 +11,6 @@ type RichTextFieldProps = {
 }
 
 const RichTextEditor = ({ placeholder, minHeight = 200, ...props }: RichTextFieldProps) => {
-  const { palette } = useTheme()
   const handleChange = (value: string) => {
     console.log(value)
   }
@@ -48,14 +47,14 @@ const RichTextEditor = ({ placeholder, minHeight = 200, ...props }: RichTextFiel
         "& .ql-toolbar.ql-snow": {
           height: "44px",
           borderRadius: "8px 8px 0 0",
-          borderColor: palette.border.outlined,
+          borderColor: "border.outlined",
         },
         "& .ql-toolbar.ql-snow .ql-formats .ql-active": {
-          color: palette.primary.main,
+          color: "primary.main",
         },
         "& .ql-container.ql-snow": {
           borderRadius: "0 0 8px 8px",
-          borderColor: palette.border.outlined,
+          borderColor: "border.outlined",
         },
         "& .ql-editor": {
           minHeight: `${minHeight}px`,

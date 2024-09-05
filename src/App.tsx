@@ -3,7 +3,6 @@ import { ApolloWrapper } from "libs/apolloProvider"
 import { ModalProvider } from "components/providers"
 import { ROUTES } from "./routes"
 import RouteElement from "routes/RouteElement"
-import "./App.css"
 
 const App = () => {
   return (

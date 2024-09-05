@@ -1,7 +1,11 @@
+// Pages
 import TheHomePage from "pages/TheHomePage"
 import TheJobDetailPage from "pages/TheJobDetailPage"
-import NotFound from "pages/NotFound"
-import { AsideNavigateLayout, JobDetailLayout } from "components/layouts"
+import TheNotFoundPage from "pages/TheNotFoundPage"
+// Layouts
+import AsideNavigateLayout from "layouts/AsideNavigateLayout"
+import JobDetailLayout from "layouts/JobDetailLayout"
+// Others
 import { PAGE_MAP } from "constants/PAGE_MAP"
 import { META_SEO } from "constants/META_SEO"
 import type { TypeRoute } from "routes/type"
@@ -14,5 +18,5 @@ export const ROUTES: TypeRoute[] = [
     layout: JobDetailLayout,
     meta: META_SEO.DEFAULT,
   },
-  { path: "*", component: NotFound, meta: META_SEO.DEFAULT },
+  { path: "*", component: TheNotFoundPage, meta: META_SEO.DEFAULT },
 ]
