@@ -1,13 +1,11 @@
 import MuiButton from "@mui/material/Button"
-import { useTheme, type ButtonProps } from "@mui/material"
+import { type ButtonProps } from "@mui/material"
 
 interface IProps extends ButtonProps {
   startIconSrc?: string
 }
 
 const ButtonContained: React.FC<IProps> = ({ children, startIconSrc, sx, ...props }) => {
-  const { palette } = useTheme()
-
   return (
     <MuiButton
       variant="contained"
@@ -15,8 +13,8 @@ const ButtonContained: React.FC<IProps> = ({ children, startIconSrc, sx, ...prop
         height: "48px",
         px: "22px",
         borderRadius: "999px",
-        bgcolor: palette.primary.main,
-        color: palette.white,
+        bgcolor: "primary.main",
+        color: "white",
         textTransform: "none",
         fontWeight: 600,
         ...sx,

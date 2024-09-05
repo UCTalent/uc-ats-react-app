@@ -1,13 +1,11 @@
 import Stack from "@mui/material/Stack"
 import { useNavigate } from "react-router-dom"
-import { useTheme } from "@mui/material"
 import { useMemo } from "react"
 import { ButtonOutlined, JobCard, CalendarBox } from "components/common"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TheJobsList = () => {
   const navigate = useNavigate()
-  const { palette } = useTheme()
 
   const statusFilterElements = useMemo(() => {
     const statusList = [
@@ -41,7 +39,7 @@ const TheJobsList = () => {
               py: "18px",
               cursor: "pointer",
               transitionDuration: "0.1s",
-              "&:hover": { backgroundColor: palette.background.accent },
+              "&:hover": { backgroundColor: "background.accent" },
             }}
             onClick={() => navigate(PAGE_MAP.JOB_DETAILS(index.toString()))}
           >

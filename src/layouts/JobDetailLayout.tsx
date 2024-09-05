@@ -1,6 +1,5 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
-// import { useTheme } from "@mui/material"
 import { AppContainer, Breadcrumbs } from "components/common"
 import { TheAppHeader } from "components/sections"
 import { type ReactNode } from "react"
@@ -11,8 +10,6 @@ interface TypeProps {
 }
 
 const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
-  // const { palette } = useTheme()
-
   return (
     <Stack sx={{ height: "100vh", overflow: "auto" }}>
       <TheAppHeader />

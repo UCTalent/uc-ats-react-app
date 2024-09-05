@@ -1,5 +1,5 @@
 import MuiButton from "@mui/material/Button"
-import { useTheme, type ButtonProps } from "@mui/material"
+import { type ButtonProps } from "@mui/material"
 import { useMemo } from "react"
 
 interface IProps extends ButtonProps {
@@ -8,12 +8,7 @@ interface IProps extends ButtonProps {
 }
 
 const ButtonOutlined: React.FC<IProps> = ({ children, startIconSrc, customColor, ...props }) => {
-  const { palette } = useTheme()
-
-  const finalColor = useMemo(
-    () => customColor || palette.primary.main,
-    [customColor, palette.primary.main]
-  )
+  const finalColor = useMemo(() => customColor || "primary.main", [customColor])
 
   return (
     <MuiButton

@@ -4,8 +4,8 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
-      "components/*": ["./src/components/*"],
-      "pages/*": ["./src/pages/*"],
+      "components/*": ["src/components/*"],
+      "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
       "forms/*": ["src/forms/*"],
       "providers/*": ["src/providers/*"],
@@ -17,7 +17,8 @@
       "types/*": ["src/types/*"],
       "services/*": ["src/services/*"],
       "routes/*": ["src/routes/*"],
-      "data/*": ["src/data/*"]
+      "data/*": ["src/data/*"],
+      "layouts/*": ["src/layouts/*"]
     }
   },
   "include": ["src"]

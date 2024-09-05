@@ -2,7 +2,6 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import Divider from "@mui/material/Divider"
-import { useTheme } from "@mui/material"
 import { Link } from "react-router-dom"
 import { AppContainer, UserAvatarWithChevron } from "components/common"
 import { APP_HEADER_HEIGHT, APP_HEADER_LOGO_WIDTH } from "constants/STYLE"
@@ -10,15 +9,14 @@ import { LogoUctText } from "assets/logos"
 import { IconBell } from "assets/icons"
 
 const TheAppHeader = () => {
-  const { palette } = useTheme()
   return (
     <Box
       sx={{
         position: "sticky",
         top: 0,
         borderBottom: "1px solid",
-        borderBottomColor: palette.border.outlined,
-        bgcolor: palette.background.default,
+        borderBottomColor: "border.outlined",
+        bgcolor: "background.default",
         zIndex: 20,
       }}
     >
