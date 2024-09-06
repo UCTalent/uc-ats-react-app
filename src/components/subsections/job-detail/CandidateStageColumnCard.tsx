@@ -3,7 +3,11 @@ import Typography from "@mui/material/Typography"
 import { IconSVG, UserAvatar, BeautifulColorTag } from "components/common"
 import { IconThunder, IconThreeDotsVertical } from "assets/icons"
 
-const CandidateStageColumnCard = () => {
+interface TypeProps {
+  id: number
+}
+
+const CandidateStageColumnCard: React.FC<TypeProps> = () => {
   return (
     <Stack
       sx={{

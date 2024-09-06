@@ -23,6 +23,7 @@ export default defineConfig({
       data: path.resolve(__dirname, "./src/data"),
       layouts: path.resolve(__dirname, "./src/layouts"),
       theme: path.resolve(__dirname, "./src/theme"),
+      modules: path.resolve(__dirname, "./src/modules"),
     },
   },
 })
