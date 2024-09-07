@@ -5,18 +5,27 @@ import { type SxProps } from "@mui/material"
 
 interface IProps {
   children: ReactNode
+  width?: number
   sx?: SxProps
 }
 
-const AppContainer: React.FC<IProps> = forwardRef(({ children, sx }, ref) => {
-  return (
-    <Box
-      ref={ref}
-      sx={{ height: "100%", width: "100%", maxWidth: APP_CONTAINER_WIDTH, margin: "0 auto", ...sx }}
-    >
-      {children}
-    </Box>
-  )
-})
+const AppContainer: React.FC<IProps> = forwardRef(
+  ({ children, width = APP_CONTAINER_WIDTH, sx }, ref) => {
+    return (
+      <Box
+        ref={ref}
+        sx={{
+          height: "100%",
+          width: "100%",
+          maxWidth: width,
+          margin: "0 auto",
+          ...sx,
+        }}
+      >
+        {children}
+      </Box>
+    )
+  }
+)
 
 export default AppContainer
