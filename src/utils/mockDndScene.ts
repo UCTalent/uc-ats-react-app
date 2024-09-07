@@ -1,7 +1,12 @@
 import { IDndScene } from "types/dnd"
 
-// Mock data for column names
-const columnNames = ["Column 1", "Column 2", "Column 3", "Column 4"]
+export const CANDIDATE_PROCESS = [
+  { id: "new-application", name: "New Application", colors: ["#FF3D00", "#FFECE5"] },
+  { id: "screening", name: "Screening", colors: ["#5B20FF", "#EFE9FF"] },
+  { id: "interview", name: "Interview", colors: ["#2586CB", "#E5F4FF"] },
+  { id: "hired", name: "Hired", colors: ["#E072A4", "#FFE5F1"] },
+  { id: "failed", name: "Failed", colors: ["#000", "#999"] },
+]
 
 // Function to pick a random color (you can define this function as needed)
 const pickColor = () => {
@@ -26,22 +31,272 @@ export const mockDndScene: IDndScene<string> = {
   props: {
     orientation: "horizontal",
   },
-  children: generateItems(4, (i) => ({
-    id: `column${i}`,
-    type: "container",
-    name: columnNames[i], // Use columnNames[i] safely, assuming it exists
-    props: {
-      orientation: "vertical",
-      className: "card-container",
-    },
-    children: generateItems(Math.floor(Math.random() * 10) + 5, (j) => ({
-      type: "draggable",
-      id: `${i}${j}`,
+  children: [
+    {
+      id: CANDIDATE_PROCESS[0].id,
+      type: "container",
+      name: CANDIDATE_PROCESS[0].name,
       props: {
-        className: "card",
-        style: { backgroundColor: pickColor() }, // Use pickColor to assign random colors
+        orientation: "vertical",
       },
-      data: lorem.slice(0, Math.floor(Math.random() * 150) + 30), // Slice lorem text
-    })),
-  })),
+      children: [
+        {
+          type: "draggable",
+          id: "00",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "01",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "02",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "03",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "04",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+      ],
+    },
+    {
+      id: CANDIDATE_PROCESS[1].id,
+      type: "container",
+      name: CANDIDATE_PROCESS[1].name,
+      props: {
+        orientation: "vertical",
+      },
+      children: [
+        {
+          type: "draggable",
+          id: "10",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "11",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "12",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "13",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "14",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "15",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+      ],
+    },
+    {
+      id: CANDIDATE_PROCESS[2].id,
+      type: "container",
+      name: CANDIDATE_PROCESS[2].name,
+      props: {
+        orientation: "vertical",
+      },
+      children: [
+        {
+          type: "draggable",
+          id: "20",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "21",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "22",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "23",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "24",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+      ],
+    },
+    {
+      id: CANDIDATE_PROCESS[3].id,
+      type: "container",
+      name: CANDIDATE_PROCESS[3].name,
+      props: {
+        orientation: "vertical",
+      },
+      children: [
+        {
+          type: "draggable",
+          id: "30",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "31",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "32",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "33",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+      ],
+    },
+    {
+      id: CANDIDATE_PROCESS[4].id,
+      type: "container",
+      name: CANDIDATE_PROCESS[4].name,
+      props: {
+        orientation: "vertical",
+      },
+      children: [
+        {
+          type: "draggable",
+          id: "40",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "41",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "42",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+        {
+          type: "draggable",
+          id: "43",
+          props: {
+            className: "card",
+            style: { backgroundColor: pickColor() },
+          },
+          data: lorem.slice(0, Math.floor(Math.random() * 150) + 30),
+        },
+      ],
+    },
+  ],
 }

@@ -1,32 +1,52 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { applyDrag } from "services/dnd"
-import type { IDndScene } from "types/dnd"
-import { type DropResult } from "react-smooth-dnd"
+import type { IDndScene, IDndSceneCard } from "types/dnd"
+import { DragStartParams, type DropResult } from "react-smooth-dnd"
 
 const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const [scene, setScene] = useState<IDndScene<ICardData>>(initialScene)
+  const [payload, setPayload] = useState<IDndSceneCard<ICardData> | null>(null)
 
-  const onCardDrop = (columnId: string, dropResult: DropResult) => {
-    console.log(dropResult)
+  const onCardDragStart = useCallback((e: DragStartParams): void => {
+    setPayload(e.payload.data)
+  }, [])
 
-    if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-      const updatedScene = { ...scene }
-      const column = updatedScene.children.find((p) => p.id === columnId)
-      const columnIndex = updatedScene.children.indexOf(column)
+  const onCardDragEnd = useCallback((): void => {
+    setPayload(null)
+  }, [])
 
-      const newColumn = { ...column }
-      newColumn.children = applyDrag(newColumn.children, dropResult)
-      updatedScene.children.splice(columnIndex, 1, newColumn)
+  const onCardDrop = useCallback(
+    (columnId: string, dropResult: DropResult): void => {
+      if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+        const updatedScene = { ...scene }
+        const column = updatedScene.children.find((p) => p.id === columnId)
+        const columnIndex = updatedScene.children.indexOf(column)
 
-      setScene(updatedScene)
-    }
+        const newColumn = { ...column }
+        newColumn.children = applyDrag(newColumn.children, dropResult)
+        updatedScene.children.splice(columnIndex, 1, newColumn)
+
+        setScene(updatedScene)
+      }
+    },
+    [scene]
+  )
+
+  const getCardPayload = useCallback(
+    (columnId: string, index: number): IDndSceneCard<ICardData> => {
+      return scene.children.filter((p) => p.id === columnId)[0].children[index]
+    },
+    [scene.children]
+  )
+
+  return {
+    dataToRender: scene,
+    payload,
+    onCardDrop,
+    onCardDragStart,
+    onCardDragEnd,
+    getCardPayload,
   }
-
-  const getCardPayload = (columnId: string, index: number) => {
-    return scene.children.filter((p) => p.id === columnId)[0].children[index]
-  }
-
-  return { dataToRender: scene, onCardDrop, getCardPayload }
 }
 
 export default useDndKanbanBoard

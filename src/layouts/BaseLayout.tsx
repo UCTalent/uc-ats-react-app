@@ -10,7 +10,7 @@ interface TypeProps {
 
 const BaseLayout: React.FC<TypeProps> = ({ children }) => {
   return (
-    <Stack sx={{ height: "100vh", overflow: "auto" }}>
+    <Stack sx={{ height: "100vh", overflow: "scroll" }}>
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>{children}</AppContainer>

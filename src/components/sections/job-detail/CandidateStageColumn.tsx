@@ -4,9 +4,12 @@ import Stack from "@mui/material/Stack"
 
 interface TypeProps {
   children: ReactNode
+  name: string
+  colors: string[]
 }
 
-const CandidateStageColumn: React.FC<TypeProps> = ({ children }) => {
+const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) => {
+  const [color, bgcolor] = colors
   return (
     <Stack
       sx={{
@@ -20,7 +23,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children }) => {
       }}
     >
       <Chip
-        label="New Application"
+        label={name}
         size="small"
         sx={{
           width: "fit-content",
@@ -28,8 +31,8 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children }) => {
           mb: "12px",
           px: "10px",
           fontWeight: 600,
-          color: "#FF6E40",
-          bgcolor: "#FFF9F2",
+          color,
+          bgcolor,
         }}
       />
       <Stack gap="24px" sx={{ flexGrow: 1 }}>

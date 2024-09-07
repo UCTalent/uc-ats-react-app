@@ -3,7 +3,11 @@ import Box from "@mui/material/Box"
 import { AppContainer, Breadcrumbs } from "components/common"
 import { TheAppHeader } from "components/sections"
 import { type ReactNode } from "react"
-import { TitleOverview, TabMenuHorizontal } from "components/sections/job-detail"
+import {
+  TitleOverview,
+  TabMenuHorizontal,
+  CandidateBoardToolBar,
+} from "components/sections/job-detail"
 
 interface TypeProps {
   children: ReactNode
@@ -11,7 +15,7 @@ interface TypeProps {
 
 const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
   return (
-    <Stack sx={{ height: "100vh", overflow: "auto" }}>
+    <Stack sx={{ height: "100vh", overflow: "scroll" }}>
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>
@@ -19,7 +23,18 @@ const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
             <Breadcrumbs />
             <TitleOverview />
             <Stack sx={{ flexGrow: 1, pt: "16px" }}>
-              <TabMenuHorizontal />
+              <Stack
+                flexDirection="row"
+                sx={{
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: 1,
+                  borderColor: "border.outlined",
+                }}
+              >
+                <TabMenuHorizontal />
+                <CandidateBoardToolBar />
+              </Stack>
               {children}
             </Stack>
           </Stack>

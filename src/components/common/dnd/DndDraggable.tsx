@@ -9,7 +9,7 @@ interface TypeProps {
 }
 
 const DndDraggable: React.FC<TypeProps> = ({ children, sx }) => {
-  return <SmoothDraggable render={() => <Box sx={sx}>{children}</Box>}/>
+  return <SmoothDraggable render={() => <Box sx={sx}>{children}</Box>} />
 }
 
 export default DndDraggable

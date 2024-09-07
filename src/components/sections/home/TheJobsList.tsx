@@ -41,7 +41,7 @@ const TheJobsList = () => {
               transitionDuration: "0.1s",
               "&:hover": { backgroundColor: "background.accent" },
             }}
-            onClick={() => navigate(PAGE_MAP.JOB_DETAILS(index.toString()))}
+            onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE(index.toString()))}
           >
             <JobCard />
             <Stack flexDirection="row" gap="10px">
