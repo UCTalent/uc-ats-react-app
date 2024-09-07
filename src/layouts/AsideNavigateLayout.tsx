@@ -13,7 +13,7 @@ const AsideNavigateLayout: React.FC<TypeProps> = ({ children }) => {
   const { containerRef } = useScrollToTop()
 
   return (
-    <Stack ref={containerRef} sx={{ height: "100vh", overflow: "auto" }}>
+    <Stack ref={containerRef} sx={{ height: "100vh", overflow: "scroll" }}>
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>

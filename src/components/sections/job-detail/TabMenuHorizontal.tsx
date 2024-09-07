@@ -1,66 +1,83 @@
-import { useMemo, useState } from "react"
+import { useCallback, useMemo } from "react"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
-import Box from "@mui/material/Box"
 import Stack from "@mui/material/Stack"
 import { IconCandidates, IconInfo, IconNote } from "assets/icons"
 import { IconSVG } from "components/common"
-
-const a11yProps = (index: number) => {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-    sx: { textTransform: "none" },
-  }
-}
+import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TabMenuHorizontal = () => {
-  const [value, setValue] = useState(0)
+  const { id: jobId } = useParams()
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
 
-  const tabMenuElements = useMemo(() => {
-    const menu = [
-      { id: "candidates", icon: IconCandidates, text: "Candidates" },
-      { id: "info", icon: IconInfo, text: "Info" },
-      { id: "notes", icon: IconNote, text: "Notes" },
-    ]
-    return menu.map((item, index) => (
-      <Tab
-        key={item.id}
-        label={
-          <Stack flexDirection="row" alignItems="center" gap="4px">
-            <IconSVG
-              src={item.icon}
-              alt={item.text}
-              width={20}
-              height={20}
-              style={{ filter: index === value && "brightness(0) contrast(100%)" }}
-            />{" "}
-            {item.text}
-          </Stack>
-        }
-        {...a11yProps(index)}
-      />
-    ))
-  }, [value])
+  const menu = useMemo(
+    () => [
+      {
+        id: "candidates",
+        icon: IconCandidates,
+        title: "Candidates",
+        path: PAGE_MAP.JOB_CANDIDATE(jobId),
+        index: 0,
+      },
+      {
+        id: "info",
+        icon: IconInfo,
+        title: "Info",
+        path: PAGE_MAP.JOB_DETAIL(jobId),
+        index: 1,
+      },
+      {
+        id: "notes",
+        icon: IconNote,
+        title: "Notes",
+        path: PAGE_MAP.JOB_NOTE(jobId),
+        index: 2,
+      },
+    ],
+    [jobId]
+  )
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+  const activeTabIndex = useMemo(() => {
+    const tab = menu.find((item) => pathname.includes(item.id))
+    return tab ? tab.index : 0
+  }, [pathname, menu])
+
+  const handleChange = useCallback(
+    (event: React.SyntheticEvent, newValue: number) => {
+      navigate(menu[newValue].path)
+    },
+    [navigate, menu]
+  )
 
   return (
-    <Box sx={{ width: "100%", mb: "16px" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "border.outlined" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          textColor="secondary"
-          indicatorColor="secondary"
-        >
-          {tabMenuElements}
-        </Tabs>
-      </Box>
-    </Box>
+    <Tabs
+      value={activeTabIndex}
+      onChange={handleChange}
+      textColor="secondary"
+      indicatorColor="secondary"
+    >
+      {menu.map((item, index) => (
+        <Tab
+          key={item.id}
+          label={
+            <Stack flexDirection="row" alignItems="center" gap="4px">
+              <IconSVG
+                src={item.icon}
+                alt={item.title}
+                width={20}
+                height={20}
+                style={{ filter: index === activeTabIndex && "brightness(0) contrast(100%)" }}
+              />
+              {item.title}
+            </Stack>
+          }
+          id={`simple-tab-${index}`}
+          aria-controls={`simple-tabpanel-${index}`}
+        />
+      ))}
+    </Tabs>
   )
 }
 
