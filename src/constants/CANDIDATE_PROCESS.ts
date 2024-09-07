@@ -2,10 +2,10 @@ export const CANDIDATE_PROCESS = [
   { id: 1, name: "New Application", colors: ["#FF3D00", "#FFECE5"] },
   { id: 2, name: "Screening", colors: ["#5B20FF", "#EFE9FF"] },
   { id: 3, name: "Interview", colors: ["#2586CB", "#E5F4FF"] },
-  { id: 4, name: "Offer", colors: ["#E072A4", "#FFE5F1"] },
+  // { id: 4, name: "Offer", colors: ["#E072A4", "#FFE5F1"] },
   { id: 5, name: "On-boarding", colors: ["#E072A4", "#FFE5F1"] },
-  { id: 6, name: "Probation", colors: ["#E072A4", "#FFE5F1"] },
-  { id: 7, name: "Closed", colors: ["#E072A4", "#FFE5F1"] },
+  // { id: 6, name: "Probation", colors: ["#E072A4", "#FFE5F1"] },
+  // { id: 7, name: "Closed", colors: ["#E072A4", "#FFE5F1"] },
 ]
 
 export const MOCK_CANDIDATE_CARD_DATA = {
@@ -18,14 +18,12 @@ export const MOCK_CANDIDATE_CARD_DATA = {
     { id: "stds", title: "A" },
     { id: "b5", title: "B" },
     { id: "fgf", title: "C" },
+    { id: "fgfsdfsd", title: "D" },
   ],
   3: [
     { id: "al", title: "A" },
     { id: "bl", title: "B" },
     { id: "lc", title: "C" },
-    { id: "dl", title: "D" },
-    { id: "el", title: "E" },
-    { id: "fl", title: "F" },
   ],
   4: [
     { id: "d1", title: "D1" },

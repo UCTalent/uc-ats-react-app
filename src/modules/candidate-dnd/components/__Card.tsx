@@ -6,9 +6,11 @@ interface TypeProps {
   children: ReactNode
   id: number
   columnId: number
+  cardIndex: number
+  cardsLength: number
 }
 
-const Card: React.FC<TypeProps> = ({ children, id }) => {
+const Card: React.FC<TypeProps> = ({ children, id, cardIndex, cardsLength, columnId }) => {
   const {
     setNodeRef,
     // setActivatorNodeRef,
@@ -22,7 +24,7 @@ const Card: React.FC<TypeProps> = ({ children, id }) => {
     attributes,
   } = useSortable({
     id,
-    data: { id, type: "card" },
+    data: { id, type: "card", cardIndex, cardsLength, columnId },
   })
 
   const dndKitCardStyles = {

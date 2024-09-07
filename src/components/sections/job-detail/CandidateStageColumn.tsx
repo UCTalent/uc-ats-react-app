@@ -40,8 +40,14 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ title, colors, id }) => {
         <button style={{ height: "fit-content" }}>Dnd</button>
       </Stack>
       <Stack gap="24px" sx={{ flexGrow: 1 }}>
-        {MOCK_CANDIDATE_CARD_DATA[id].map((item) => (
-          <CardDndWrapper key={item.id} id={item.id} columnId={id}>
+        {MOCK_CANDIDATE_CARD_DATA[id].map((item, index) => (
+          <CardDndWrapper
+            key={item.id}
+            id={item.id}
+            columnId={id}
+            cardIndex={index}
+            cardsLength={MOCK_CANDIDATE_CARD_DATA[id].length}
+          >
             <CandidateStageColumnCard id={item.id} />
           </CardDndWrapper>
         ))}
