@@ -1,8 +1,9 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
+import { useLocation } from "react-router-dom"
 import { AppContainer, Breadcrumbs } from "components/common"
 import { TheAppHeader } from "components/sections"
-import { type ReactNode } from "react"
+import { useMemo, type ReactNode } from "react"
 import {
   TitleOverview,
   TabMenuHorizontal,
@@ -14,8 +15,12 @@ interface TypeProps {
 }
 
 const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
+  const { pathname } = useLocation()
+
+  const isCandidatePage = useMemo(() => pathname.includes("/candidates"), [pathname])
+
   return (
-    <Stack sx={{ height: "100vh", overflow: "scroll" }}>
+    <Stack sx={{ height: "100vh", overflowY: "scroll" }}>
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>
@@ -33,7 +38,7 @@ const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
                 }}
               >
                 <TabMenuHorizontal />
-                <CandidateBoardToolBar />
+                {isCandidatePage && <CandidateBoardToolBar />}
               </Stack>
               {children}
             </Stack>
