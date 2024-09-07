@@ -18,7 +18,7 @@ const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
           <Stack sx={{ height: "100%", gap: "10px" }}>
             <Breadcrumbs />
             <TitleOverview />
-            <Stack sx={{ flexGrow: 1, pt: "16px", pl: "28px" }}>
+            <Stack sx={{ flexGrow: 1, pt: "16px" }}>
               <TabMenuHorizontal />
               {children}
             </Stack>
