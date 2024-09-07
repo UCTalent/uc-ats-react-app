@@ -1,0 +1,11 @@
+.drag-preview {
+  /* opacity: 0.5; */
+}
+
+.drop-preview {
+  width: 100%;
+  height: calc(100% - 12px * 2);
+  margin: auto 0;
+  border-radius: 8px;
+  background: #eef2ff;
+}

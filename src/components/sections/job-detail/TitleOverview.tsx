@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { Fragment, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import { IconLocation, IconJobType, IconStar, IconSalary } from "assets/icons"
@@ -15,13 +15,13 @@ const TitleOverview = () => {
     return (
       <Stack flexDirection="row" alignItems="center" gap="10px">
         {overview.map((item, index) => (
-          <>
-            <Stack key={item.id} flexDirection="row" alignItems="center" gap="3px">
+          <Fragment key={item.id}>
+            <Stack flexDirection="row" alignItems="center" gap="3px">
               <IconSVG src={item.icon} width="20px" height="20px" />
               <Typography variant="body2">{item.text}</Typography>
             </Stack>
             {index !== overview.length - 1 && <DotDivider />}
-          </>
+          </Fragment>
         ))}
         <RemoteTag />
       </Stack>
@@ -29,7 +29,7 @@ const TitleOverview = () => {
   }, [])
 
   return (
-    <Stack sx={{ pl: "28px" }}>
+    <Stack>
       <Typography sx={{ fontWeight: 600, fontSize: "34px", mb: "4px" }}>Product Lead</Typography>
       {horizontalOverview}
     </Stack>
