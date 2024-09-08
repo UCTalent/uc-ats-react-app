@@ -1,1 +1,2 @@
-export { default as applyDrag } from "./applyDrag"
+export { default as coordinateGetter } from "./coordinateGetter"
+export { default as hasDraggableData } from "./hasDraggableData"

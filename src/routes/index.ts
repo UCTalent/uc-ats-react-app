@@ -1,9 +1,9 @@
 // Pages
 import TheHomePage from "pages/TheHomePage"
-import TheJobCandidatePage from "pages/TheJobCandidatePage"
 import TheJobDetailPage from "pages/TheJobDetailPage"
 import TheJobNotePage from "pages/TheJobNotePage"
 import TheNotFoundPage from "pages/TheNotFoundPage"
+import TheJobCandidatePage from "pages/TheCandidatePage"
 // Layouts
 import AsideNavigateLayout from "layouts/AsideNavigateLayout"
 import JobDetailLayout from "layouts/JobDetailLayout"

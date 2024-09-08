@@ -1,19 +1,52 @@
-import React, { type ReactNode } from "react"
+import React, { useMemo } from "react"
 import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable"
+import { CANDIDATE_PROCESS, ICandidate } from "utils/mockSceneDndKit"
+import { CandidateStageColumnCard } from "components/subsections/job-detail"
+// import { CSS } from "@dnd-kit/utilities"
 
 interface TypeProps {
-  children: ReactNode
+  column: (typeof CANDIDATE_PROCESS)[number]
+  cards: ICandidate[]
   name: string
   colors: string[]
 }
 
-const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) => {
+const CandidateStageColumn: React.FC<TypeProps> = ({ name, colors, cards, column }) => {
   const [color, bgcolor] = colors
+
+  const cardIds = useMemo(() => cards.map((c) => c.id), [cards])
+
+  const {
+    setNodeRef,
+    // attributes, listeners, transform, transition, isDragging
+  } = useSortable({
+    id: column.id,
+    data: {
+      type: "Column",
+      column,
+    },
+    attributes: {
+      roleDescription: `Column: ${column.name}`,
+    },
+  })
+
+  // const style = {
+  //   transition,
+  //   transform: CSS.Translate.toString(transform),
+  //   opacity: isDragging ? 0.5 : undefined,
+  // }
+
   return (
     <Stack
+      ref={setNodeRef}
+      // style={style}
+      // {...attributes}
+      // {...listeners}
       sx={{
         height: "fit-content",
+        minHeight: "196px",
         minWidth: "360px",
         borderRadius: "8px",
         border: "1px solid #EEF2FF",
@@ -36,7 +69,12 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) =
         }}
       />
       <Stack gap="24px" sx={{ flexGrow: 1 }}>
-        {children}
+        <SortableContext items={cardIds} strategy={verticalListSortingStrategy}>
+          {cards.map((candidate) => (
+            <CandidateStageColumnCard key={candidate.id} task={candidate} />
+          ))}
+          {/* {cards.length === 0 && <CandidateStageColumnCard task={null} sx={{ opacity: 0 }} />} */}
+        </SortableContext>
       </Stack>
     </Stack>
   )
