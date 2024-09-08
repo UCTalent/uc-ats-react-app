@@ -1,10 +1,20 @@
 import Stack from "@mui/material/Stack"
-import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
+import { useMemo } from "react"
 import { IconSVG, UserAvatar, BeautifulColorTag } from "components/common"
 import { IconThunder, IconThreeDotsVertical } from "assets/icons"
+import { MenuBasic, type IMenuItem } from "components/common/menus"
 
 const CandidateStageColumnCard = () => {
+  const menu: IMenuItem[] = useMemo(
+    () => [
+      { id: "profile", title: "View Profile", onClick: () => {} },
+      { id: "email", title: "Send Email", onClick: () => {} },
+      { id: "status", title: "Status Update", onClick: () => {} },
+    ],
+    []
+  )
+
   return (
     <Stack
       sx={{
@@ -19,9 +29,9 @@ const CandidateStageColumnCard = () => {
     >
       <Stack flexDirection="row" justifyContent="space-between">
         <UserAvatar />
-        <Box sx={{cursor: "pointer"}}>
+        <MenuBasic menu={menu}>
           <IconSVG src={IconThreeDotsVertical} alt="setting" width="16px" height="16px" />
-        </Box>
+        </MenuBasic>
       </Stack>
       <Stack flexDirection="row" justifyContent="end">
         <Stack flexDirection="row" alignItems="center" gap="4px">

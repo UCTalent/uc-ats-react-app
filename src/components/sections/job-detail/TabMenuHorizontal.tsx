@@ -20,6 +20,7 @@ const TabMenuHorizontal = () => {
         title: "Candidates",
         path: PAGE_MAP.JOB_CANDIDATE(jobId),
         index: 0,
+        disabled: false,
       },
       {
         id: "info",
@@ -27,6 +28,7 @@ const TabMenuHorizontal = () => {
         title: "Info",
         path: PAGE_MAP.JOB_DETAIL(jobId),
         index: 1,
+        disabled: false,
       },
       {
         id: "notes",
@@ -34,6 +36,7 @@ const TabMenuHorizontal = () => {
         title: "Notes",
         path: PAGE_MAP.JOB_NOTE(jobId),
         index: 2,
+        disabled: true,
       },
     ],
     [jobId]
@@ -68,13 +71,17 @@ const TabMenuHorizontal = () => {
                 alt={item.title}
                 width={20}
                 height={20}
-                style={{ filter: index === activeTabIndex && "brightness(0) contrast(100%)" }}
+                style={{
+                  filter: index === activeTabIndex && "brightness(0) contrast(100%)",
+                  opacity: item.disabled && 0.4,
+                }}
               />
               {item.title}
             </Stack>
           }
           id={`simple-tab-${index}`}
           aria-controls={`simple-tabpanel-${index}`}
+          disabled={item.disabled}
         />
       ))}
     </Tabs>
