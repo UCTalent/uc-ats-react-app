@@ -12,7 +12,7 @@ export interface TypeProps {
 
 const DndDraggable: React.FC<TypeProps> = ({ children, sx, ...props }) => {
   return (
-    <Box {...props} sx={{ cursor: "grab", ...sx }} className={wrapperClass}>
+    <Box component="div" {...props} sx={{ cursor: "grab", ...sx }} className={wrapperClass}>
       {children}
     </Box>
   )

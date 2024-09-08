@@ -1,10 +1,11 @@
+import cloneDeep from "lodash.clonedeep"
 import { useCallback, useState } from "react"
 import { applyDrag } from "services/dnd"
-import type { IDndScene, IDndSceneCard } from "types/dnd"
 import { DragStartParams, type DropResult } from "react-smooth-dnd"
+import type { IDndScene, IDndSceneCard } from "types/dnd"
 
 const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
-  const [scene, setScene] = useState<IDndScene<ICardData>>(initialScene)
+  const [scene, setScene] = useState<IDndScene<ICardData>>(cloneDeep(initialScene))
   const [payload, setPayload] = useState<IDndSceneCard<ICardData> | null>(null)
 
   const onCardDragStart = useCallback((e: DragStartParams): void => {
@@ -18,12 +19,12 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const onCardDrop = useCallback(
     (columnId: string, dropResult: DropResult): void => {
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-        const updatedScene = { ...scene }
+        const updatedScene = Object.assign({}, scene)
         const column = updatedScene.children.find((p) => p.id === columnId)
         const columnIndex = updatedScene.children.indexOf(column)
 
-        const newColumn = { ...column }
-        newColumn.children = applyDrag(newColumn.children, dropResult)
+        const newColumn = Object.assign({}, column)
+        newColumn.children = applyDrag<IDndSceneCard<ICardData>>(newColumn.children, dropResult)
         updatedScene.children.splice(columnIndex, 1, newColumn)
 
         setScene(updatedScene)
@@ -34,7 +35,7 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
 
   const getCardPayload = useCallback(
     (columnId: string, index: number): IDndSceneCard<ICardData> => {
-      return scene.children.filter((p) => p.id === columnId)[0].children[index]
+      return scene.children.find((p) => p.id === columnId).children[index]
     },
     [scene.children]
   )

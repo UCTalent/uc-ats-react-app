@@ -14,6 +14,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) =
     <Stack
       sx={{
         height: "fit-content",
+        minHeight: "220px",
         minWidth: "360px",
         borderRadius: "8px",
         border: "1px solid #EEF2FF",

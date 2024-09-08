@@ -1,4 +1,6 @@
-const applyDrag = (arr, dragResult) => {
+import { type DropResult } from "react-smooth-dnd"
+
+const applyDrag = <IItemData>(arr: IItemData[], dragResult: DropResult): IItemData[] => {
   const { removedIndex, addedIndex, payload } = dragResult
   if (removedIndex === null && addedIndex === null) return arr
 

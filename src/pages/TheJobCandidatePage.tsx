@@ -15,7 +15,7 @@ const TheJobCandidatePage = () => {
 
   return (
     <Stack sx={{ flexGrow: 1, py: "16px", overflow: "auto" }}>
-      <DndContainer>
+      <DndContainer orientation="horizontal">
         <Stack flexDirection="row" sx={{ flexGrow: 1, gap: "18px" }}>
           {dataToRender.children.map((column, columnIndex) => (
             <CandidateStageColumn
@@ -24,6 +24,7 @@ const TheJobCandidatePage = () => {
               colors={CANDIDATE_PROCESS[columnIndex].colors}
             >
               <DndContainer
+                {...column.props}
                 groupName="col"
                 getChildPayload={(index) => getCardPayload(column.id, index)}
                 onDragStart={onCardDragStart}
@@ -32,10 +33,9 @@ const TheJobCandidatePage = () => {
                 dragClass={cx("drag-preview")}
                 dropPlaceholder={{
                   showOnTop: true,
+                  animationDuration: 150,
                   className: cx("drop-preview"),
-                  
                 }}
-                {...column.props}
               >
                 {column.children.map((card) => (
                   <DndDraggable key={card.id} sx={{ py: "12px" }}>

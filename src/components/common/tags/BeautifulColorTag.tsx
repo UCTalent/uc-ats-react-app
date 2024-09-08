@@ -69,9 +69,9 @@ const BeautifulColorTag: React.FC<TypeProps> = ({ label, color = Colors.Green, s
               width="118.915"
               height="100"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="20" />
               <feComposite
                 in2="SourceAlpha"
