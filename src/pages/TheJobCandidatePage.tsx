@@ -33,6 +33,7 @@ const TheJobCandidatePage = () => {
                 dropPlaceholder={{
                   showOnTop: true,
                   className: cx("drop-preview"),
+                  
                 }}
                 {...column.props}
               >
