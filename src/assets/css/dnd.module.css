@@ -1,5 +1,8 @@
-.drag-preview {
-  /* opacity: 0.5; */
+.card-ghost {
+  /* border: 1px solid #6933ff; */
+}
+
+.card-ghost-drop {
 }
 
 .drop-preview {

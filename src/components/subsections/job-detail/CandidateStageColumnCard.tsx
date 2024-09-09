@@ -1,6 +1,6 @@
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import { useMemo } from "react"
+import { memo, useMemo } from "react"
 import { IconSVG, UserAvatar, BeautifulColorTag } from "components/common"
 import { IconThunder, IconThreeDotsVertical } from "assets/icons"
 import { MenuBasic, type IMenuItem } from "components/common/menus"
@@ -48,4 +48,4 @@ const CandidateStageColumnCard = () => {
   )
 }
 
-export default CandidateStageColumnCard
+export default memo(CandidateStageColumnCard)
