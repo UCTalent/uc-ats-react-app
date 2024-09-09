@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react"
+import React, { memo, type ReactNode } from "react"
 import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
 
@@ -36,11 +36,11 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) =
           bgcolor,
         }}
       />
-      <Stack gap="24px" sx={{ flexGrow: 1 }}>
+      <Stack gap="24px" sx={{ flexGrow: 1, minHeight: "148px" }}>
         {children}
       </Stack>
     </Stack>
   )
 }
 
-export default CandidateStageColumn
+export default memo(CandidateStageColumn)

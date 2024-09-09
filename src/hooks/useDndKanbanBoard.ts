@@ -7,6 +7,8 @@ import type { IDndScene, IDndSceneCard } from "types/dnd"
 const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const [scene, setScene] = useState<IDndScene<ICardData>>(cloneDeep(initialScene))
   const [payload, setPayload] = useState<IDndSceneCard<ICardData> | null>(null)
+  const [dragEnterColumnId, setDragEnterColumnId] = useState<string | null>(null)
+  const [dropReadyColumnId, setDropReadyColumnId] = useState<string | null>(null)
 
   const onCardDragStart = useCallback((e: DragStartParams): void => {
     setPayload(e.payload.data)
@@ -14,6 +16,16 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
 
   const onCardDragEnd = useCallback((): void => {
     setPayload(null)
+    setDragEnterColumnId(null)
+    setDropReadyColumnId(null)
+  }, [])
+
+  const onDragEnter = useCallback((columnId: string): void => {
+    setDragEnterColumnId(columnId)
+  }, [])
+
+  const onDropReady = useCallback((columnId: string): void => {
+    setDropReadyColumnId(columnId)
   }, [])
 
   const onCardDrop = useCallback(
@@ -43,9 +55,13 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   return {
     dataToRender: scene,
     payload,
+    dragEnterColumnId,
+    dropReadyColumnId,
     onCardDrop,
     onCardDragStart,
     onCardDragEnd,
+    onDragEnter,
+    onDropReady,
     getCardPayload,
   }
 }

@@ -14,7 +14,7 @@ const UserAvatar: React.FC<IProps> = ({ sx, avatarSize = 40 }) => {
       <Avatar
         src="https://danviet.mediacdn.vn/2020/10/23/509-16034584963211832639631.jpg"
         alt="Duy"
-        sx={{ width: avatarSize, height: avatarSize }}
+        sx={{ width: avatarSize, height: avatarSize, userSelect: "none", pointerEvents: "none" }}
       />
       <Stack>
         <Typography variant="body1" sx={{ fontSize: "14px", fontWeight: 600 }}>

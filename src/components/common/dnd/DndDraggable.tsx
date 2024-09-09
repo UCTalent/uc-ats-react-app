@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import { constants } from "smooth-dnd"
 import { type SxProps } from "@mui/material"
-import { type ReactNode } from "react"
+import { memo, type ReactNode } from "react"
 
 const { wrapperClass } = constants
 
@@ -18,4 +18,4 @@ const DndDraggable: React.FC<TypeProps> = ({ children, sx, ...props }) => {
   )
 }
 
-export default DndDraggable
+export default memo(DndDraggable)

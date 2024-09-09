@@ -10,8 +10,7 @@ import styles from "assets/css/dnd.module.css"
 const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
-  const { dataToRender, onCardDrop, onCardDragStart, onCardDragEnd, getCardPayload } =
-    useDndKanbanBoard<string>(mockDndScene)
+  const { dataToRender, onCardDrop, getCardPayload } = useDndKanbanBoard<string>(mockDndScene)
 
   return (
     <Stack sx={{ flexGrow: 1, py: "16px", overflow: "auto" }}>
@@ -24,18 +23,18 @@ const TheJobCandidatePage = () => {
               colors={CANDIDATE_PROCESS[columnIndex].colors}
             >
               <DndContainer
-                {...column.props}
+                orientation="vertical"
                 groupName="col"
                 getChildPayload={(index) => getCardPayload(column.id, index)}
-                onDragStart={onCardDragStart}
-                onDragEnd={onCardDragEnd}
                 onDrop={(dropResult) => onCardDrop(column.id, dropResult)}
-                dragClass={cx("drag-preview")}
+                dragClass={cx("card-ghost")}
+                dropClass={cx("card-ghost-drop")}
                 dropPlaceholder={{
                   showOnTop: true,
                   animationDuration: 150,
                   className: cx("drop-preview"),
                 }}
+                dropPlaceholderAnimationDuration={200}
               >
                 {column.children.map((card) => (
                   <DndDraggable key={card.id} sx={{ py: "12px" }}>
