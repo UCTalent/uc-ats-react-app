@@ -1,23 +1,28 @@
 import cloneDeep from "lodash.clonedeep"
 import { useCallback, useState } from "react"
-import { applyDrag } from "services/dnd"
 import { DragStartParams, type DropResult } from "react-smooth-dnd"
-import type { IDndScene, IDndSceneCard } from "types/dnd"
+import type { IDndScene } from "types/dnd"
 
 const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const [scene, setScene] = useState<IDndScene<ICardData>>(cloneDeep(initialScene))
-  const [payload, setPayload] = useState<IDndSceneCard<ICardData> | null>(null)
+  const [payload, setPayload] = useState<{ id: string; data: ICardData } | null>(null)
   const [dragEnterColumnId, setDragEnterColumnId] = useState<string | null>(null)
   const [dropReadyColumnId, setDropReadyColumnId] = useState<string | null>(null)
+  const [activeColumnId, setActiveColumnId] = useState<string | null>(null)
 
-  const onCardDragStart = useCallback((e: DragStartParams): void => {
-    setPayload(e.payload.data)
-  }, [])
+  const onCardDragStart = useCallback(
+    (e: DragStartParams): void => {
+      setPayload(e.payload)
+      setActiveColumnId(Object.keys(scene).find((p) => scene[p].find((q) => q.id === e.payload.id)))
+    },
+    [scene]
+  )
 
   const onCardDragEnd = useCallback((): void => {
     setPayload(null)
     setDragEnterColumnId(null)
     setDropReadyColumnId(null)
+    setActiveColumnId(null)
   }, [])
 
   const onDragEnter = useCallback((columnId: string): void => {
@@ -30,31 +35,44 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
 
   const onCardDrop = useCallback(
     (columnId: string, dropResult: DropResult): void => {
-      if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-        const updatedScene = Object.assign({}, scene)
-        const column = updatedScene.children.find((p) => p.id === columnId)
-        const columnIndex = updatedScene.children.indexOf(column)
+      const { removedIndex, addedIndex } = dropResult
+      if (removedIndex === null && addedIndex === null) return
 
-        const newColumn = Object.assign({}, column)
-        newColumn.children = applyDrag<IDndSceneCard<ICardData>>(newColumn.children, dropResult)
-        updatedScene.children.splice(columnIndex, 1, newColumn)
+      if (removedIndex !== null && addedIndex !== null) {
+        const newScene = Object.assign({}, scene)
+        const [movedCard] = newScene[columnId].splice(removedIndex, 1)
+        newScene[columnId].splice(addedIndex, 0, movedCard)
+        setScene(newScene)
+        return
+      }
 
-        setScene(updatedScene)
+      if (removedIndex !== null) {
+        const newScene = Object.assign({}, scene)
+        newScene[columnId].splice(removedIndex, 1)
+        setScene(newScene)
+        return
+      }
+
+      if (addedIndex !== null) {
+        const newScene = Object.assign({}, scene)
+        newScene[columnId].splice(addedIndex, 0, dropResult.payload)
+        setScene(newScene)
       }
     },
     [scene]
   )
 
   const getCardPayload = useCallback(
-    (columnId: string, index: number): IDndSceneCard<ICardData> => {
-      return scene.children.find((p) => p.id === columnId).children[index]
+    (columnId: string, index: number): { id: string; data: ICardData } => {
+      return scene[columnId][index]
     },
-    [scene.children]
+    [scene]
   )
 
   return {
     dataToRender: scene,
     payload,
+    activeColumnId,
     dragEnterColumnId,
     dropReadyColumnId,
     onCardDrop,

@@ -1,15 +1,18 @@
 import React, { memo, type ReactNode } from "react"
 import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
+import { type SxProps } from "@mui/material"
 
 interface TypeProps {
   children: ReactNode
   name: string
   colors: string[]
+  wrapperCardsSx?: SxProps
 }
 
-const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) => {
+const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors, wrapperCardsSx }) => {
   const [color, bgcolor] = colors
+
   return (
     <Stack
       sx={{
@@ -36,7 +39,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors }) =
           bgcolor,
         }}
       />
-      <Stack gap="24px" sx={{ flexGrow: 1, minHeight: "148px" }}>
+      <Stack gap="24px" sx={{ flexGrow: 1, overflow: "hidden", ...wrapperCardsSx }}>
         {children}
       </Stack>
     </Stack>

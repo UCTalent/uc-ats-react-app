@@ -4,6 +4,7 @@ import { memo, useMemo } from "react"
 import { IconSVG, UserAvatar, BeautifulColorTag } from "components/common"
 import { IconThunder, IconThreeDotsVertical } from "assets/icons"
 import { MenuBasic, type IMenuItem } from "components/common/menus"
+import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 
 const CandidateStageColumnCard = () => {
   const menu: IMenuItem[] = useMemo(
@@ -21,7 +22,7 @@ const CandidateStageColumnCard = () => {
         position: "relative",
         justifyContent: "space-between",
         minWidth: "100%",
-        minHeight: "124px",
+        minHeight: `${CANDIDATE_CARD_HEIGHT - 12 * 2}px`,
         p: "16px",
         bgcolor: "#FFFFFF",
         borderRadius: "8px",
