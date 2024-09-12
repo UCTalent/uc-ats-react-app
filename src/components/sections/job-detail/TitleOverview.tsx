@@ -1,8 +1,13 @@
 import { Fragment, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import { IconLocation, IconJobType, IconStar, IconSalary } from "assets/icons"
-import { IconSVG, DotDivider, RemoteTag } from "components/common"
+import DotDivider from "components/common/DotDivider"
+import RemoteTag from "components/common/tags/RemoteTag"
+import IconSVG from "components/common/IconSVG"
+import IconLocation from "assets/icons/location.svg"
+import IconJobType from "assets/icons/job-type.svg"
+import IconStar from "assets/icons/star.svg"
+import IconSalary from "assets/icons/salary.svg"
 
 const TitleOverview = () => {
   const horizontalOverview = useMemo(() => {

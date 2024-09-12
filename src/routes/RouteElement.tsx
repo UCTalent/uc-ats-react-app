@@ -1,4 +1,4 @@
-import { WrappedSEO } from "components/common"
+import WrappedSEO from "components/common/WrappedSEO"
 import type { TypeRoute } from "routes/type"
 
 interface TypeProps {

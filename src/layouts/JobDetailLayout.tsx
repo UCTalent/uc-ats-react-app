@@ -1,14 +1,13 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
-import { useLocation } from "react-router-dom"
-import { AppContainer, Breadcrumbs } from "components/common"
-import { TheAppHeader } from "components/sections"
+import Breadcrumbs from "components/common/Breadcrumbs"
+import TheAppHeader from "components/sections/TheAppHeader"
+import AppContainer from "components/common/AppContainer"
+import TitleOverview from "components/sections/job-detail/TitleOverview"
+import TabMenuHorizontal from "components/sections/job-detail/TabMenuHorizontal"
+import CandidateBoardToolBar from "components/sections/job-detail/CandidateBoardToolBar"
 import { useMemo, type ReactNode } from "react"
-import {
-  TitleOverview,
-  TabMenuHorizontal,
-  CandidateBoardToolBar,
-} from "components/sections/job-detail"
+import { useLocation } from "react-router-dom"
 
 interface TypeProps {
   children: ReactNode

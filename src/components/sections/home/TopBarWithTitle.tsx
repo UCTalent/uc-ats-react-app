@@ -1,10 +1,10 @@
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import { ButtonContained } from "components/common"
+import ButtonContained from "components/common/buttons/ButtonContained"
+import IconPlus from "assets/icons/plus.svg"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
 import { UCT_LINK_PAGE } from "constants/UCT_WEB"
 import { openLinkInNewTab } from "utils/common"
-import { IconPlus } from "assets/icons"
 
 const TopBarWithTitle = () => {
   const onClickPostJob = () => {

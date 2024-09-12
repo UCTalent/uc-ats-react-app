@@ -1,10 +1,12 @@
 import { useCallback, useMemo } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
+import Stack from "@mui/material/Stack"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
-import Stack from "@mui/material/Stack"
-import { IconCandidates, IconInfo, IconNote } from "assets/icons"
-import { IconSVG } from "components/common"
+import IconSVG from "components/common/IconSVG"
+import IconInfo from "assets/icons/info.svg"
+import IconNote from "assets/icons/note.svg"
+import IconCandidates from "assets/icons/candidates.svg"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TabMenuHorizontal = () => {

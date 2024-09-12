@@ -1,7 +1,7 @@
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Avatar from "@mui/material/Avatar"
-import { IconChevronDown } from "assets/icons"
+import IconChevronDown from "assets/icons/chevron-down.svg"
 import { type SxProps } from "@mui/material"
 
 interface IProps {

@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography"
-import { sanitizeHTMLBasic } from "services/sanitizeHTML"
+import sanitizeHTMLBasic from "services/sanitizeHTML/sanitizeHTMLBasic"
 import { type SxProps } from "@mui/material"
 
 interface TypeProps {

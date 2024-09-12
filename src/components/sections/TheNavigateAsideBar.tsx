@@ -3,7 +3,9 @@ import Box from "@mui/material/Box"
 import { useMemo } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
-import { IconJob, IconPeople, IconStoreBox } from "assets/icons"
+import IconJob from "assets/icons/job.svg"
+import IconPeople from "assets/icons/people.svg"
+import IconStoreBox from "assets/icons/store-box.svg"
 
 const TheNavigateAsideBar = () => {
   const navigate = useNavigate()

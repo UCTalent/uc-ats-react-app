@@ -3,8 +3,9 @@ import Box from "@mui/material/Box"
 import Avatar from "@mui/material/Avatar"
 import Typography from "@mui/material/Typography"
 import Chip from "@mui/material/Chip"
-import { DotDivider } from "components/common"
-import { IconLocation, IconJobType } from "assets/icons"
+import DotDivider from "components/common/DotDivider"
+import IconLocation from "assets/icons/location.svg"
+import IconJobType from "assets/icons/job-type.svg"
 
 const JobCard = () => {
   return (

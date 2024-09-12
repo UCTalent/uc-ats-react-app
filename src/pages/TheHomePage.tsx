@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box"
-import { TopBarWithTitle, TheJobsList } from "components/sections/home"
+import TheJobsList from "components/sections/home/TheJobsList"
+import TopBarWithTitle from "components/sections/home/TopBarWithTitle"
 
 const TheHomePage = () => {
   return (

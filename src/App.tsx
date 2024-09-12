@@ -1,19 +1,19 @@
 import { Routes, Route } from "react-router-dom"
-import { ApolloWrapper } from "libs/apolloProvider"
-import { ModalProvider } from "components/providers"
-import { ROUTES } from "./routes"
+import ApolloProvider from "providers/ApolloProvider"
+import ModalProvider from "providers/ModalProvider"
 import RouteElement from "routes/RouteElement"
+import ROUTES from "./routes"
 
 const App = () => {
   return (
-    <ApolloWrapper>
+    <ApolloProvider>
       <Routes>
-        {ROUTES.map((route) => (
+        {ROUTES.MEMBER.map((route) => (
           <Route key={route.path} path={route.path} element={<RouteElement route={route} />} />
         ))}
       </Routes>
       <ModalProvider />
-    </ApolloWrapper>
+    </ApolloProvider>
   )
 }
 
