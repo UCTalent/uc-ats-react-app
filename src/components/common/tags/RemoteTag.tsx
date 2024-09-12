@@ -1,6 +1,6 @@
 import Stack from "@mui/material/Stack"
-import { IconSVG } from "components/common"
-import { IconRemote } from "assets/icons"
+import IconSVG from "components/common/IconSVG"
+import IconRemote from "assets/icons/remote.svg"
 
 const RemoteTag = () => {
   return (

@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material"
-import Stack from "@mui/material/Stack"
 import { useMemo } from "react"
+import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
 
 const JobOverviewBox = () => {
   const dataOverview = useMemo(

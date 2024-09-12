@@ -1,7 +1,7 @@
 import Stack from "@mui/material/Stack"
 import IconButton from "@mui/material/IconButton"
-import { IconSVG } from "components/common"
-import { IconMoveNext } from "assets/icons"
+import IconSVG from "components/common/IconSVG"
+import IconMoveNext from "assets/icons/move-next.svg"
 
 const CandidateBoardToolBar = () => {
   return (

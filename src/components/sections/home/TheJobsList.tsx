@@ -1,7 +1,9 @@
-import Stack from "@mui/material/Stack"
-import { useNavigate } from "react-router-dom"
 import { useMemo } from "react"
-import { ButtonOutlined, JobCard, CalendarBox } from "components/common"
+import { useNavigate } from "react-router-dom"
+import Stack from "@mui/material/Stack"
+import ButtonOutlined from "components/common/buttons/ButtonOutlined"
+import CalendarBox from "components/common/CalendarBox"
+import JobCard from "components/common/JobCard"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TheJobsList = () => {

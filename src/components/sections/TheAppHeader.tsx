@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import Divider from "@mui/material/Divider"
-import { Link } from "react-router-dom"
-import { AppContainer, UserAvatarWithChevron } from "components/common"
+import AppContainer from "components/common/AppContainer"
+import UserAvatarWithChevron from "components/common/user-avatar/UserAvatarWithChevron"
+import LogoUctText from "assets/logos/uctalent-text.png"
+import IconBell from "assets/icons/bell.svg"
 import { APP_HEADER_HEIGHT, APP_HEADER_LOGO_WIDTH } from "constants/STYLE"
-import { LogoUctText } from "assets/logos"
-import { IconBell } from "assets/icons"
 
 const TheAppHeader = () => {
   return (

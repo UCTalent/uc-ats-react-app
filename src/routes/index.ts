@@ -12,7 +12,7 @@ import { PAGE_MAP } from "constants/PAGE_MAP"
 import { META_SEO } from "constants/META_SEO"
 import type { TypeRoute } from "routes/type"
 
-export const ROUTES: TypeRoute[] = [
+const MEMBER_ROUTES: TypeRoute[] = [
   { path: PAGE_MAP.HOME, component: TheHomePage, layout: AsideNavigateLayout, meta: META_SEO.HOME },
   {
     path: "/jobs/:id/candidates",
@@ -34,3 +34,9 @@ export const ROUTES: TypeRoute[] = [
   },
   { path: "*", component: TheNotFoundPage, meta: META_SEO.DEFAULT },
 ]
+
+const ROUTERS = {
+  MEMBER: MEMBER_ROUTES,
+}
+
+export default ROUTERS

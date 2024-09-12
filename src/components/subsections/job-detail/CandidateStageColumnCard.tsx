@@ -1,9 +1,12 @@
+import { memo, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import { memo, useMemo } from "react"
-import { IconSVG, UserAvatar, BeautifulColorTag } from "components/common"
-import { IconThunder, IconThreeDotsVertical } from "assets/icons"
-import { MenuBasic, type IMenuItem } from "components/common/menus"
+import IconSVG from "components/common/IconSVG"
+import UserAvatar from "components/common/user-avatar/UserAvatar"
+import BeautifulColorTag from "components/common/tags/BeautifulColorTag"
+import MenuBasic, { type IMenuItem } from "components/common/menus/MenuBasic"
+import IconThunder from "assets/icons/thunder.svg"
+import IconThreeDotsVertical from "assets/icons/three-dots-vertical.svg"
 import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 
 const CandidateStageColumnCard = () => {

@@ -1,13 +1,14 @@
 import Stack from "@mui/material/Stack"
+import DndContainer from "components/common/dnd/DndContainer"
+import DndDraggable from "components/common/dnd/DndDraggable"
+import CandidateStageColumn from "components/sections/job-detail/CandidateStageColumn"
+import CandidateStageColumnCard from "components/subsections/job-detail/CandidateStageColumnCard"
 import useDndKanbanBoard from "hooks/useDndKanbanBoard"
-import { DndContainer, DndDraggable } from "components/common/dnd"
-import { CandidateStageColumn } from "components/sections/job-detail"
-import { CandidateStageColumnCard } from "components/subsections/job-detail"
 import { CANDIDATE_PROCESS } from "utils/mockDndScene"
 import { MOCK_DND_SCENE_V2 } from "utils/mockDndSceneV2"
+import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 import { bindClass } from "utils/bindClass"
 import styles from "assets/css/dnd.module.css"
-import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 
 const cx = bindClass(styles)
 

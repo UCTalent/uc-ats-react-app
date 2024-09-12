@@ -1,6 +1,7 @@
 import Stack from "@mui/material/Stack"
-import { AppContainer } from "components/common"
-import { JobOverviewBox, JobDetailContent } from "components/sections/job-detail"
+import AppContainer from "components/common/AppContainer"
+import JobOverviewBox from "components/sections/job-detail/JobOverviewBox"
+import JobDetailContent from "components/sections/job-detail/JobDetailContent"
 
 const TheJobDetailPage = () => {
   return (

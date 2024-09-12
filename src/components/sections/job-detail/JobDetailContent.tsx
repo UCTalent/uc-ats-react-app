@@ -1,6 +1,8 @@
-import { BasicTag, TypographyHtml, WrapperSection } from "components/common"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import BasicTag from "components/common/tags/BasicTag"
+import TypographyHtml from "components/common/TypographyHtml"
+import WrapperSection from "components/common/WrapperSection"
 
 const TAGS = [
   { id: "1", title: "Javascript" },
