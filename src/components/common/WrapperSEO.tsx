@@ -3,7 +3,7 @@ import type { IMetaSEO } from "types/common"
 
 type TypeProps = IMetaSEO
 
-const WrappedSEO: React.FC<TypeProps> = ({ title, description = "", lang = "en" }) => {
+const WrapperSEO: React.FC<TypeProps> = ({ title, description = "", lang = "en" }) => {
   return (
     <Helmet
       htmlAttributes={{ lang }}
@@ -27,4 +27,4 @@ const WrappedSEO: React.FC<TypeProps> = ({ title, description = "", lang = "en" 
   )
 }
 
-export default WrappedSEO
+export default WrapperSEO

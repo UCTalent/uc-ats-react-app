@@ -1,5 +1,13 @@
+import Stack from "@mui/material/Stack"
+import RichTextEditor from "components/common/form-fields/RichTextEditor"
+
 const TheJobNotePage = () => {
-  return <div>TheJobNotePage</div>
+  return (
+    <Stack sx={{ height: "100%", justifyContent: "space-between", py: "16px" }}>
+      <Stack></Stack>
+      <RichTextEditor />
+    </Stack>
+  )
 }
 
 export default TheJobNotePage

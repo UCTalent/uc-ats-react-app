@@ -2,9 +2,9 @@ import FormControl from "@mui/material/FormControl"
 import TextField from "@mui/material/TextField"
 import MuiAutocomplete, { type AutocompleteProps } from "@mui/material/Autocomplete"
 import { useController, type Control, type FieldValues, type Path } from "react-hook-form"
-import { IconSVG } from "components/common"
-import { IconSelectCaret } from "assets/icons"
-import { IAutocompleteOption } from "types/common"
+import IconSVG from "components/common/IconSVG"
+import IconSelectCaret from "assets/icons/select-caret.svg"
+import type { IAutocompleteOption } from "types/common"
 
 type IAutocompleteProps = AutocompleteProps<IAutocompleteOption, false, false, false>
 

@@ -7,7 +7,7 @@ interface TypeProps {
   children: ReactNode
 }
 
-const WrapperSection: React.FC<TypeProps> = ({ title, children }) => {
+const WrapperSectionContent: React.FC<TypeProps> = ({ title, children }) => {
   return (
     <Stack>
       <Typography variant="h5" sx={{ fontSize: "24px !important", fontWeight: "600px", mb: "8px" }}>
@@ -18,4 +18,4 @@ const WrapperSection: React.FC<TypeProps> = ({ title, children }) => {
   )
 }
 
-export default WrapperSection
+export default WrapperSectionContent

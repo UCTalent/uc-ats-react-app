@@ -1,4 +1,4 @@
-import WrappedSEO from "components/common/WrappedSEO"
+import WrapperSEO from "components/common/WrapperSEO"
 import type { TypeRoute } from "routes/type"
 
 interface TypeProps {
@@ -11,7 +11,7 @@ const RouteElement: React.FC<TypeProps> = ({ route }) => {
 
   const page = (
     <>
-      <WrappedSEO {...route.meta} />
+      <WrapperSEO {...route.meta} />
       <Page />
     </>
   )
