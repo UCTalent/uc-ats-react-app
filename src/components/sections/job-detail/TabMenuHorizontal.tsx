@@ -38,7 +38,7 @@ const TabMenuHorizontal = () => {
         title: "Notes",
         path: PAGE_MAP.JOB_NOTE(jobId),
         index: 2,
-        disabled: true,
+        disabled: false,
       },
     ],
     [jobId]

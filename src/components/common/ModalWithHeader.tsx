@@ -3,8 +3,8 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
+import IconClose from "assets/icons/close.svg"
 import { type SxProps } from "@mui/material"
-import { IconClose } from "assets/icons"
 import { type ReactNode } from "react"
 
 interface IProps {

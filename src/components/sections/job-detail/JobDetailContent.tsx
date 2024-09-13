@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import BasicTag from "components/common/tags/BasicTag"
 import TypographyHtml from "components/common/TypographyHtml"
-import WrapperSection from "components/common/WrapperSection"
+import WrapperSectionContent from "components/common/WrapperSectionContent"
 
 const TAGS = [
   { id: "1", title: "Javascript" },
@@ -23,15 +23,15 @@ const TAGS = [
 const JobDetailContent = () => {
   return (
     <>
-      <WrapperSection title="Skills & Technologies">
+      <WrapperSectionContent title="Skills & Technologies">
         <Stack flexDirection="row" sx={{ gap: "6px", flexWrap: "wrap" }}>
           {TAGS.map((tag) => (
             <BasicTag key={tag.id}>{tag.title}</BasicTag>
           ))}
         </Stack>
-      </WrapperSection>
+      </WrapperSectionContent>
 
-      <WrapperSection title="About the Job">
+      <WrapperSectionContent title="About the Job">
         <Typography>
           Rogo is looking for a Product Lead to run our product development process end-to-end,
           primarily as a product manager but with design input as well. We are an engineering-heavy
@@ -42,9 +42,9 @@ const JobDetailContent = () => {
           sounds like a lot, it's because it is. We're building the future of data analytics and we
           need smart people who are passionate about building incredible technology.
         </Typography>
-      </WrapperSection>
+      </WrapperSectionContent>
 
-      <WrapperSection title="Responsibilities">
+      <WrapperSectionContent title="Responsibilities">
         <Typography>
           Rogo is looking for a Product Lead to run our product development process end-to-end,
           primarily as a product manager but with design input as well. We are an engineering-heavy
@@ -55,9 +55,9 @@ const JobDetailContent = () => {
           sounds like a lot, it's because it is. We're building the future of data analytics and we
           need smart people who are passionate about building incredible technology.
         </Typography>
-      </WrapperSection>
+      </WrapperSectionContent>
 
-      <WrapperSection title="Minimum Qualifications">
+      <WrapperSectionContent title="Minimum Qualifications">
         <Typography>
           Rogo is looking for a Product Lead to run our product development process end-to-end,
           primarily as a product manager but with design input as well. We are an engineering-heavy
@@ -68,9 +68,9 @@ const JobDetailContent = () => {
           sounds like a lot, it's because it is. We're building the future of data analytics and we
           need smart people who are passionate about building incredible technology.
         </Typography>
-      </WrapperSection>
+      </WrapperSectionContent>
 
-      <WrapperSection title="Preferred Requirement">
+      <WrapperSectionContent title="Preferred Requirement">
         <Typography>
           Rogo is looking for a Product Lead to run our product development process end-to-end,
           primarily as a product manager but with design input as well. We are an engineering-heavy
@@ -81,15 +81,15 @@ const JobDetailContent = () => {
           sounds like a lot, it's because it is. We're building the future of data analytics and we
           need smart people who are passionate about building incredible technology.
         </Typography>
-      </WrapperSection>
+      </WrapperSectionContent>
 
-      <WrapperSection title="Benefits">
+      <WrapperSectionContent title="Benefits">
         <TypographyHtml>
           {
             "\u003cul\u003e\u003cli\u003eA front-row seat to one of the most exciting blockchain projects that make positive impacts in changing many people’s lives."
           }
         </TypographyHtml>
-      </WrapperSection>
+      </WrapperSectionContent>
     </>
   )
 }

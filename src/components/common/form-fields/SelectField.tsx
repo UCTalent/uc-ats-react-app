@@ -1,10 +1,10 @@
+import { useId, useMemo } from "react"
 import FormControl from "@mui/material/FormControl"
 import InputLabel from "@mui/material/InputLabel"
 import Select from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
-import { useId, useMemo } from "react"
-import { IconSVG } from "components/common"
-import { IconSelectCaret } from "assets/icons"
+import IconSVG from "components/common/IconSVG"
+import IconSelectCaret from "assets/icons/select-caret.svg"
 import { type IBaseOption } from "types/common"
 
 interface IProps {
