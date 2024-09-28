@@ -24,7 +24,7 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => 
       {
         id: "profile",
         title: "View Profile",
-        onClick: () => navigate(PAGE_MAP.JOB_CANDIDATE_INFO(jobId, candidate.id)),
+        onClick: () => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.id)),
       },
       { id: "email", title: "Send Email", onClick: () => {} },
       { id: "status", title: "Status Update", onClick: () => {} },

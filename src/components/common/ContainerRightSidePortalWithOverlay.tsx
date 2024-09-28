@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react"
-import { Outlet, useNavigate } from "react-router-dom"
+import { useCallback, useEffect, useState, type ReactNode } from "react"
+import { useNavigate } from "react-router-dom"
 import { createPortal } from "react-dom"
 import useClickOutside from "hooks/useClickOutside"
 import Stack from "@mui/material/Stack"
@@ -7,19 +7,27 @@ import IconButton from "@mui/material/IconButton"
 import IconSVG from "components/common/IconSVG"
 import IconChevronRight from "assets/icons/chevron-down.svg"
 
-const RightSidePortalWithOverlayLayout = () => {
+const TRANSITION_DURATION = 200
+
+interface IProps {
+  children: ReactNode
+  backPath: string
+}
+
+const ContainerRightSidePortalWithOverlay: React.FC<IProps> = ({ children, backPath }) => {
   const navigate = useNavigate()
   const [isActivePage, setIsActivePage] = useState(false)
-  const { ref: clickOutsideRef } = useClickOutside(() => setIsActivePage(false))
 
   useEffect(() => {
     setIsActivePage(true)
   }, [])
 
   const navigateBack = useCallback(() => {
-    if (isActivePage) return
-    navigate(-1)
-  }, [isActivePage, navigate])
+    setIsActivePage(false)
+    setTimeout(() => navigate(backPath), TRANSITION_DURATION)
+  }, [backPath, navigate])
+
+  const { ref: clickOutsideRef } = useClickOutside(navigateBack)
 
   return createPortal(
     <Stack
@@ -31,7 +39,7 @@ const RightSidePortalWithOverlayLayout = () => {
         height: "100vh",
         width: "100%",
         backgroundColor: isActivePage ? "background.overlay" : "transparent",
-        transition: "backgroundColor 200ms ease-in-out",
+        transition: `backgroundColor ${TRANSITION_DURATION}ms ease-in-out`,
         zIndex: 9999,
       }}
     >
@@ -42,11 +50,10 @@ const RightSidePortalWithOverlayLayout = () => {
           minWidth: "888px",
           bgcolor: "background.default",
           transform: isActivePage ? "translateX(0)" : "translateX(100%)",
-          transition: "transform 200ms ease-in-out",
+          transition: `transform ${TRANSITION_DURATION}ms ease-in-out`,
         }}
-        onTransitionEnd={navigateBack}
       >
-        <Outlet />
+        {children}
         <IconButton
           sx={{
             position: "absolute",
@@ -60,7 +67,7 @@ const RightSidePortalWithOverlayLayout = () => {
             border: "1px solid",
             borderColor: "border.outlined",
           }}
-          onClick={() => setIsActivePage(false)}
+          onClick={navigateBack}
         >
           <IconSVG
             src={IconChevronRight}
@@ -76,4 +83,4 @@ const RightSidePortalWithOverlayLayout = () => {
   )
 }
 
-export default RightSidePortalWithOverlayLayout
+export default ContainerRightSidePortalWithOverlay

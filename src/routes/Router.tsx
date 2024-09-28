@@ -1,27 +1,27 @@
-// Pages
-import TheHomePage from "pages/TheHomePage"
-import TheJobCandidatePage from "pages/TheJobCandidatePage"
-import TheCandidateInfoInTheJobPage from "pages/TheCandidateInfoInTheJobPage"
-import TheJobDetailPage from "pages/TheJobDetailPage"
-import TheJobNotePage from "pages/TheJobNotePage"
-import TheNotFoundPage from "pages/TheNotFoundPage"
+import { createBrowserRouter } from "react-router-dom"
 // Layouts
 import AppLayout from "layouts/AppLayout"
 import AsideNavigateLayout from "layouts/AsideNavigateLayout"
 import JobDetailLayout from "layouts/JobDetailLayout"
-import RightSidePortalWithOverlayLayout from "layouts/RightSidePortalWithOverlayLayout"
-// Others
-import { PAGE_MAP } from "constants/PAGE_MAP"
-import { createBrowserRouter } from "react-router-dom"
+import JobCandidateInfoLayout from "layouts/JobCandidateInfoLayout"
 
 const Router = createBrowserRouter([
   {
     Component: AppLayout,
     children: [
       {
-        path: PAGE_MAP.HOME,
+        path: "/",
         Component: AsideNavigateLayout,
-        children: [{ index: true, Component: TheHomePage }],
+        children: [
+          {
+            index: true,
+            async lazy() {
+              const module = await import("pages/TheHomePage")
+              const Component = module.default
+              return { Component }
+            },
+          },
+        ],
       },
       {
         path: "/jobs/:jobId",
@@ -29,26 +29,78 @@ const Router = createBrowserRouter([
         children: [
           {
             path: "candidates",
-            Component: TheJobCandidatePage,
+            async lazy() {
+              const module = await import("pages/TheJobCandidatePage")
+              const Component = module.default
+              return { Component }
+            },
             children: [
               {
                 path: ":candidateId",
-                Component: RightSidePortalWithOverlayLayout,
-                children: [{ index: true, Component: TheCandidateInfoInTheJobPage }],
+                Component: JobCandidateInfoLayout,
+                children: [
+                  {
+                    path: "summary",
+                    async lazy() {
+                      const module = await import("pages/job-candidate/TheJobCandidateSummaryPage")
+                      const Component = module.default
+                      return { Component }
+                    },
+                  },
+                  {
+                    path: "resume",
+                    async lazy() {
+                      const module = await import("pages/job-candidate/TheJobCandidateResumePage")
+                      const Component = module.default
+                      return { Component }
+                    },
+                  },
+                  {
+                    path: "notes",
+                    async lazy() {
+                      const module = await import("pages/job-candidate/TheJobCandidateNotePage")
+                      const Component = module.default
+                      return { Component }
+                    },
+                  },
+                  {
+                    path: "jobs",
+                    async lazy() {
+                      const module = await import("pages/job-candidate/TheJobCandidateJobListPage")
+                      const Component = module.default
+                      return { Component }
+                    },
+                  },
+                ],
               },
             ],
           },
           {
             path: "info",
-            Component: TheJobDetailPage,
+            async lazy() {
+              const module = await import("pages/TheJobDetailPage")
+              const Component = module.default
+              return { Component }
+            },
           },
           {
             path: "notes",
-            Component: TheJobNotePage,
+            async lazy() {
+              const module = await import("pages/TheJobNotePage")
+              const Component = module.default
+              return { Component }
+            },
           },
         ],
       },
-      { path: "*", Component: TheNotFoundPage },
+      {
+        path: "*",
+        async lazy() {
+          const module = await import("pages/TheNotFoundPage")
+          const Component = module.default
+          return { Component }
+        },
+      },
     ],
   },
 ])

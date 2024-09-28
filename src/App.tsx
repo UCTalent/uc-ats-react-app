@@ -6,7 +6,7 @@ import Router from "./routes"
 const App = () => {
   return (
     <ApolloProvider>
-      <RouterProvider router={Router} />;
+      <RouterProvider router={Router} />
       <ModalProvider />
     </ApolloProvider>
   )
