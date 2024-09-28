@@ -1,14 +1,25 @@
 import cloneDeep from "lodash.clonedeep"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { DragStartParams, type DropResult } from "react-smooth-dnd"
-import type { IDndScene } from "types/dnd"
+import useConfirmAtom from "./atoms/useConfirmAtom"
+import type { IDndResult, IDndScene } from "types/dnd"
 
 const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const [scene, setScene] = useState<IDndScene<ICardData>>(cloneDeep(initialScene))
   const [payload, setPayload] = useState<{ id: string; data: ICardData } | null>(null)
+  const [movedCard, setMovedCard] = useState<{ id: string; data: ICardData } | null>(null)
+  const [dndResult, setDndResult] = useState<IDndResult | null>(null)
   const [dragEnterColumnId, setDragEnterColumnId] = useState<string | null>(null)
   const [dropReadyColumnId, setDropReadyColumnId] = useState<string | null>(null)
   const [activeColumnId, setActiveColumnId] = useState<string | null>(null)
+  const { configConfirm, setHandler, triggerConfirm } = useConfirmAtom()
+
+  const getCardPayload = useCallback(
+    (columnId: string, index: number): { id: string; data: ICardData } => {
+      return scene[columnId][index]
+    },
+    [scene]
+  )
 
   const onCardDragStart = useCallback(
     (e: DragStartParams): void => {
@@ -39,39 +50,77 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
       if (removedIndex === null && addedIndex === null) return
 
       if (removedIndex !== null && addedIndex !== null) {
-        const newScene = Object.assign({}, scene)
-        const [movedCard] = newScene[columnId].splice(removedIndex, 1)
-        newScene[columnId].splice(addedIndex, 0, movedCard)
-        // setScene(newScene)
+        setDndResult({
+          fromColumnId: columnId,
+          toColumnId: columnId,
+          removedIndex,
+          addedIndex,
+        })
         return
       }
 
       if (removedIndex !== null) {
         const newScene = Object.assign({}, scene)
-        newScene[columnId].splice(removedIndex, 1)
-        // setScene(newScene)
+        const [movedCard] = newScene[columnId].splice(removedIndex, 1)
+        setMovedCard(movedCard)
+        setDndResult((prev) => ({ ...prev, fromColumnId: columnId, removedIndex }))
         return
       }
 
       if (addedIndex !== null) {
-        const newScene = Object.assign({}, scene)
-        newScene[columnId].splice(addedIndex, 0, dropResult.payload)
-        setScene(newScene)
+        setDndResult((prev) => ({ ...prev, toColumnId: columnId, addedIndex }))
+        return
       }
     },
     [scene]
   )
 
-  const getCardPayload = useCallback(
-    (columnId: string, index: number): { id: string; data: ICardData } => {
-      return scene[columnId][index]
-    },
-    [scene]
-  )
+  useEffect(() => {
+    const { fromColumnId, toColumnId, removedIndex, addedIndex } = dndResult || {}
+    if (!fromColumnId || !toColumnId || removedIndex === null || addedIndex === null) return
+
+    if (fromColumnId === toColumnId) {
+      const newScene = cloneDeep(scene)
+      const [movedCard] = newScene[fromColumnId].splice(removedIndex, 1)
+      newScene[fromColumnId].splice(addedIndex, 0, movedCard)
+      setScene(newScene)
+      setDndResult(null)
+      return
+    }
+
+    const handleDndMultipleColumns = () => {
+      const newScene = cloneDeep(scene)
+      newScene[toColumnId].splice(addedIndex, 0, movedCard)
+      setScene(newScene)
+      setDndResult(null)
+      setMovedCard(null)
+    }
+
+    const handleCancelDndMultipleColumns = () => {
+      const newScene = cloneDeep(scene)
+      newScene[fromColumnId].splice(removedIndex, 0, movedCard)
+      setScene(newScene)
+      setDndResult(null)
+      setMovedCard(null)
+    }
+
+    if (["hire", "failed"].includes(toColumnId)) {
+      configConfirm({
+        title: `Change status`,
+        content: `Are you sure you want to change the status of this job to ${toColumnId}?`,
+        onConfirm: handleDndMultipleColumns,
+        onCancel: handleCancelDndMultipleColumns,
+        isActive: true,
+      })
+    } else {
+      handleDndMultipleColumns()
+    }
+  }, [configConfirm, dndResult, movedCard, scene, setHandler, triggerConfirm])
 
   return {
     dataToRender: scene,
     payload,
+    dndResult,
     activeColumnId,
     dragEnterColumnId,
     dropReadyColumnId,

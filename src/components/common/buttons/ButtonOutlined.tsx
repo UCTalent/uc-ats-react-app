@@ -7,7 +7,13 @@ interface IProps extends ButtonProps {
   customColor?: string
 }
 
-const ButtonOutlined: React.FC<IProps> = ({ children, startIconSrc, customColor, ...props }) => {
+const ButtonOutlined: React.FC<IProps> = ({
+  children,
+  startIconSrc,
+  customColor,
+  sx,
+  ...props
+}) => {
   const finalColor = useMemo(() => customColor || "primary.main", [customColor])
 
   return (
@@ -24,6 +30,7 @@ const ButtonOutlined: React.FC<IProps> = ({ children, startIconSrc, customColor,
           bgcolor: finalColor,
           color: "white",
         },
+        ...sx,
       }}
       {...props}
     >

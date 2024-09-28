@@ -4,3 +4,10 @@ export interface IDndScene<ICardData> {
     data: ICardData
   }[]
 }
+
+export interface IDndResult {
+  fromColumnId: string
+  toColumnId: string
+  removedIndex: number
+  addedIndex: number
+}
