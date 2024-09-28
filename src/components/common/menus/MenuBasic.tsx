@@ -29,6 +29,10 @@ const MenuBasic: React.FC<TypeProps> = ({ children, menu, sx }) => {
   const handleClose = () => {
     setAnchorEl(null)
   }
+  const onClickMenuItem = (callback: () => void | Promise<void>) => {
+    callback()
+    handleClose()
+  }
 
   return (
     <div>
@@ -72,7 +76,7 @@ const MenuBasic: React.FC<TypeProps> = ({ children, menu, sx }) => {
         sx={{ "& .MuiPaper-root": { borderRadius: "12px" } }}
       >
         {menu.map((item) => (
-          <MenuItem key={item.id} onClick={item.onClick}>
+          <MenuItem key={item.id} onClick={() => onClickMenuItem(item.onClick)}>
             {item.title}
           </MenuItem>
         ))}

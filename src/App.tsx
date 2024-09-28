@@ -1,17 +1,12 @@
-import { Routes, Route } from "react-router-dom"
+import { RouterProvider } from "react-router-dom"
 import ApolloProvider from "providers/ApolloProvider"
 import ModalProvider from "providers/ModalProvider"
-import RouteElement from "routes/RouteElement"
-import ROUTES from "./routes"
+import Router from "./routes"
 
 const App = () => {
   return (
     <ApolloProvider>
-      <Routes>
-        {ROUTES.MEMBER.map((route) => (
-          <Route key={route.path} path={route.path} element={<RouteElement route={route} />} />
-        ))}
-      </Routes>
+      <RouterProvider router={Router} />;
       <ModalProvider />
     </ApolloProvider>
   )

@@ -1,0 +1,12 @@
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-in__from-right {
+  animation: slideInFromRight 200ms ease-in-out;
+}

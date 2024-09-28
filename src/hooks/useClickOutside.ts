@@ -1,7 +1,7 @@
 import { useEffect, useRef, RefObject } from "react"
 
-const useClickOutside = (callback: () => void, externalRef?: RefObject<HTMLElement>) => {
-  const elementRef = useRef<HTMLElement | null>(null)
+const useClickOutside = (callback: () => void, externalRef?: RefObject<HTMLDivElement>) => {
+  const elementRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (externalRef?.current) {

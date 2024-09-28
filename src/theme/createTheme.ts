@@ -30,6 +30,7 @@ export const createTheme = (mode = "light") => {
         lime: isLightMode ? "#C9FF33" : "#C9FF33",
         limeHover: isLightMode ? "#B7E731" : "#B7E731",
         accent: isLightMode ? "#F8F7FF" : "#F8F7FF",
+        overlay: isLightMode ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0.4)",
       },
       primary: {
         main: isLightMode ? "#6933FF" : "#6933FF",
