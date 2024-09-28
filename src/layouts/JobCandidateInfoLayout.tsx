@@ -15,7 +15,6 @@ const JobCandidateInfoLayout = () => {
           alignItems="center"
           gap="16px"
           sx={{
-            mt: "12px",
             borderBottom: "1px solid",
             borderColor: "border.outlined",
           }}
@@ -23,7 +22,7 @@ const JobCandidateInfoLayout = () => {
           <UserAvatarWithDetails />
         </Stack>
         <TabMenuHorizontal />
-        <Stack sx={{ flexGrow: 1, pt: "36px", pb: "32px", px: "40px", overflow: "auto" }}>
+        <Stack sx={{ flexGrow: 1, pt: "36px", pb: "32px", px: "56px", overflow: "auto" }}>
           <Outlet />
         </Stack>
       </Stack>
