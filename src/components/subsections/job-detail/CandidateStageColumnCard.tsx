@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { memo, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
@@ -8,15 +9,27 @@ import MenuBasic, { type IMenuItem } from "components/common/menus/MenuBasic"
 import IconThunder from "assets/icons/thunder.svg"
 import IconThreeDotsVertical from "assets/icons/three-dots-vertical.svg"
 import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
+import { PAGE_MAP } from "constants/PAGE_MAP"
 
-const CandidateStageColumnCard = () => {
+interface TypeProps {
+  candidate: { id: string }
+  jobId: string
+}
+
+const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => {
+  const navigate = useNavigate()
+
   const menu: IMenuItem[] = useMemo(
     () => [
-      { id: "profile", title: "View Profile", onClick: () => {} },
+      {
+        id: "profile",
+        title: "View Profile",
+        onClick: () => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.id)),
+      },
       { id: "email", title: "Send Email", onClick: () => {} },
       { id: "status", title: "Status Update", onClick: () => {} },
     ],
-    []
+    [candidate.id, jobId, navigate]
   )
 
   return (

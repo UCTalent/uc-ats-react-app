@@ -1,17 +1,25 @@
 import React, { memo, type ReactNode } from "react"
-import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
+import Chip from "@mui/material/Chip"
+import Typography from "@mui/material/Typography"
 import { type SxProps } from "@mui/material"
 
 interface TypeProps {
   children: ReactNode
   name: string
   colors: string[]
+  columnLength: number
   wrapperCardsSx?: SxProps
 }
 
-const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors, wrapperCardsSx }) => {
-  const [color, bgcolor] = colors
+const CandidateStageColumn: React.FC<TypeProps> = ({
+  children,
+  name,
+  colors,
+  columnLength,
+  wrapperCardsSx,
+}) => {
+  const [color] = colors
 
   return (
     <Stack
@@ -26,19 +34,27 @@ const CandidateStageColumn: React.FC<TypeProps> = ({ children, name, colors, wra
         bgcolor: "#F8F7FF",
       }}
     >
-      <Chip
-        label={name}
-        size="small"
-        sx={{
-          width: "fit-content",
-          height: "26px",
-          mb: "12px",
-          px: "10px",
-          fontWeight: 600,
-          color,
-          bgcolor,
-        }}
-      />
+      <Stack flexDirection="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
+        <Typography sx={{ color, fontWeight: 600, fontSize: "16px" }}>{name}</Typography>
+        <Chip
+          label={columnLength}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "24px",
+            height: "24px",
+            borderRadius: "50%",
+            fontSize: "14px",
+            bgcolor: color,
+            color: "white",
+            "& .MuiChip-label": {
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+          }}
+        />
+      </Stack>
       <Stack gap="24px" sx={{ flexGrow: 1, overflow: "hidden", ...wrapperCardsSx }}>
         {children}
       </Stack>

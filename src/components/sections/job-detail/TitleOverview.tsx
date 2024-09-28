@@ -1,15 +1,20 @@
+import { useNavigate } from "react-router-dom"
 import { Fragment, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
 import DotDivider from "components/common/DotDivider"
 import RemoteTag from "components/common/tags/RemoteTag"
 import IconSVG from "components/common/IconSVG"
+import IconBackArrow from "assets/icons/back-arrow.svg"
 import IconLocation from "assets/icons/location.svg"
 import IconJobType from "assets/icons/job-type.svg"
 import IconStar from "assets/icons/star.svg"
 import IconSalary from "assets/icons/salary.svg"
 
 const TitleOverview = () => {
+  const navigate = useNavigate()
+
   const horizontalOverview = useMemo(() => {
     const overview = [
       { id: "location", icon: IconLocation, text: "North Las Vegas, USA" },
@@ -34,9 +39,24 @@ const TitleOverview = () => {
   }, [])
 
   return (
-    <Stack>
-      <Typography sx={{ fontWeight: 600, fontSize: "34px", mb: "4px" }}>Product Lead</Typography>
-      {horizontalOverview}
+    <Stack flexDirection="row" sx={{ alignItems: "center", gap: "24px", mt: "24px" }}>
+      <IconButton
+        sx={{
+          width: "36px",
+          height: "36px",
+          borderRadius: "100%",
+          p: 0,
+          bgcolor: "#F8F7FF",
+          "&:hover": { bgcolor: "#F8F7FF" },
+        }}
+        onClick={() => navigate("/")}
+      >
+        <IconSVG src={IconBackArrow} />
+      </IconButton>
+      <Stack>
+        <Typography sx={{ fontWeight: 600, fontSize: "34px", mb: "4px" }}>Product Lead</Typography>
+        {horizontalOverview}
+      </Stack>
     </Stack>
   )
 }

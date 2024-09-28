@@ -1,4 +1,3 @@
-import { BrowserRouter } from "react-router-dom"
 import { createRoot } from "react-dom/client"
 import { RecoilRoot } from "recoil"
 import { CssBaseline } from "@mui/material"
@@ -8,13 +7,11 @@ import "assets/css/app.css"
 
 createRoot(document.getElementById("root")!).render(
   <>
-    <BrowserRouter>
-      <RecoilRoot>
-        <ThemeProvider>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </RecoilRoot>
-    </BrowserRouter>
+    <RecoilRoot>
+      <ThemeProvider>
+        <App />
+        <CssBaseline />
+      </ThemeProvider>
+    </RecoilRoot>
   </>
 )

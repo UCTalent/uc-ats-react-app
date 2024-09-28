@@ -1,20 +1,13 @@
+import { Outlet } from "react-router-dom"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import AppContainer from "components/common/AppContainer"
 import TheAppHeader from "components/sections/TheAppHeader"
 import TheNavigateAsideBar from "components/sections/TheNavigateAsideBar"
-import useScrollToTop from "hooks/useScrollToTop"
-import { type ReactNode } from "react"
 
-interface TypeProps {
-  children: ReactNode
-}
-
-const AsideNavigateLayout: React.FC<TypeProps> = ({ children }) => {
-  const { containerRef } = useScrollToTop()
-
+const AsideNavigateLayout = () => {
   return (
-    <Stack ref={containerRef} sx={{ height: "100vh", overflowY: "scroll" }}>
+    <Stack sx={{ height: "100vh", overflowY: "scroll" }}>
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>
@@ -28,7 +21,9 @@ const AsideNavigateLayout: React.FC<TypeProps> = ({ children }) => {
             }}
           >
             <TheNavigateAsideBar />
-            <Stack sx={{ flexGrow: 1 }}>{children}</Stack>
+            <Stack sx={{ flexGrow: 1 }}>
+              <Outlet />
+            </Stack>
           </Stack>
         </AppContainer>
       </Box>

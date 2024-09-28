@@ -1,9 +1,10 @@
 import { useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 import Stack from "@mui/material/Stack"
-import ButtonOutlined from "components/common/buttons/ButtonOutlined"
 import CalendarBox from "components/common/CalendarBox"
 import JobCard from "components/common/JobCard"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TheJobsList = () => {
@@ -11,18 +12,36 @@ const TheJobsList = () => {
 
   const statusFilterElements = useMemo(() => {
     const statusList = [
-      { name: "Total", action: () => {} },
-      { name: "Hired", action: () => {} },
-      { name: "Dropped", action: () => {} },
+      { id: "active", title: "Active", index: 0, action: () => {} },
+      { id: "close", title: "Closed", index: 1, action: () => {} },
+      { id: "pending", title: "Pending", index: 2, action: () => {} },
     ]
     return (
-      <Stack flexDirection="row" gap="18px" sx={{ px: "28px" }}>
-        {statusList.map((status) => (
-          <ButtonOutlined key={status.name} customColor="black">
-            {status.name}
-          </ButtonOutlined>
+      <Tabs
+        value={0}
+        onChange={() => {}}
+        textColor="secondary"
+        indicatorColor="secondary"
+        sx={{ px: "28px" }}
+      >
+        {statusList.map((item, index) => (
+          <Tab
+            key={item.id}
+            label={
+              <Stack flexDirection="row" alignItems="center" gap="4px" sx={{ fontWeight: 600 }}>
+                {item.title}
+              </Stack>
+            }
+            id={`simple-tab-${index}`}
+            aria-controls={`simple-tabpanel-${index}`}
+            sx={{
+              textTransform: "none",
+              px: "16px",
+              mr: index !== statusList.length - 1 && "12px",
+            }}
+          />
         ))}
-      </Stack>
+      </Tabs>
     )
   }, [])
 
