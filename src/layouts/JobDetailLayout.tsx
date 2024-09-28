@@ -1,6 +1,5 @@
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
-import Breadcrumbs from "components/common/Breadcrumbs"
 import TheAppHeader from "components/sections/TheAppHeader"
 import AppContainer from "components/common/AppContainer"
 import TitleOverview from "components/sections/job-detail/TitleOverview"
@@ -23,10 +22,9 @@ const JobDetailLayout: React.FC<TypeProps> = ({ children }) => {
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>
-          <Stack sx={{ height: "100%", gap: "10px" }}>
-            <Breadcrumbs />
+          <Stack sx={{ height: "100%", gap: "20px" }}>
             <TitleOverview />
-            <Stack sx={{ flexGrow: 1, pt: "16px" }}>
+            <Stack sx={{ flexGrow: 1 }}>
               <Stack
                 flexDirection="row"
                 sx={{

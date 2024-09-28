@@ -33,6 +33,7 @@ const TheJobCandidatePage = () => {
               key={columnId}
               colors={CANDIDATE_PROCESS[columnIndex].colors}
               name={CANDIDATE_PROCESS[columnIndex].name}
+              columnLength={dataToRender[columnId].length}
               wrapperCardsSx={{
                 maxHeight:
                   activeColumnId === columnId &&

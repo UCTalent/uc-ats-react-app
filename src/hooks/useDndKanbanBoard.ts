@@ -42,14 +42,14 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
         const newScene = Object.assign({}, scene)
         const [movedCard] = newScene[columnId].splice(removedIndex, 1)
         newScene[columnId].splice(addedIndex, 0, movedCard)
-        setScene(newScene)
+        // setScene(newScene)
         return
       }
 
       if (removedIndex !== null) {
         const newScene = Object.assign({}, scene)
         newScene[columnId].splice(removedIndex, 1)
-        setScene(newScene)
+        // setScene(newScene)
         return
       }
 
