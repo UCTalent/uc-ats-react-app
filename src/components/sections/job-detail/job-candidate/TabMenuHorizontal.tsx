@@ -62,7 +62,12 @@ const TabMenuHorizontal = () => {
       onChange={handleChange}
       textColor="secondary"
       indicatorColor="secondary"
-      sx={{ width: "fit-content", borderBottom: "1px solid", borderColor: "border.outlined" }}
+      sx={{
+        width: "fit-content",
+        borderBottom: "1px solid",
+        borderColor: "border.outlined",
+        mx: "16px",
+      }}
     >
       {menu.map((item, index) => (
         <Tab
