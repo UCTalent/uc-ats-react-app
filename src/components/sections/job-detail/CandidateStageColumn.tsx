@@ -1,7 +1,8 @@
-import React, { memo, type ReactNode } from "react"
+import { memo, useEffect, useRef, type ReactNode } from "react"
 import Stack from "@mui/material/Stack"
 import Chip from "@mui/material/Chip"
 import Typography from "@mui/material/Typography"
+import { APP_HEADER_HEIGHT, CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 import { type SxProps } from "@mui/material"
 
 interface TypeProps {
@@ -9,6 +10,7 @@ interface TypeProps {
   name: string
   colors: string[]
   columnLength: number
+  columnHtmlId: string
   wrapperCardsSx?: SxProps
 }
 
@@ -17,24 +19,50 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
   name,
   colors,
   columnLength,
+  columnHtmlId,
   wrapperCardsSx,
 }) => {
   const [color] = colors
+  const parentElement = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (columnLength > 0) {
+      if (!parentElement.current) return
+      const dndContainer = parentElement.current.querySelector(
+        ".smooth-dnd-container.vertical"
+      ) as HTMLElement
+      if (!dndContainer) return
+      const containerHeight = Math.max(
+        columnLength * CANDIDATE_CARD_HEIGHT,
+        dndContainer.parentElement.offsetHeight
+      )
+      dndContainer.style.minHeight = `${containerHeight}px`
+    }
+  }, [columnLength, parentElement])
 
   return (
     <Stack
+      id={columnHtmlId}
       sx={{
-        height: "fit-content",
-        minHeight: "220px",
+        maxHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 18px - 16px*2)`,
         minWidth: "360px",
         borderRadius: "8px",
         border: "1px solid #EEF2FF",
-        py: "16px",
-        px: "24px",
         bgcolor: "#F8F7FF",
+        overflow: "hidden",
       }}
     >
-      <Stack flexDirection="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
+      <Stack
+        flexDirection="row"
+        sx={{
+          justifyContent: "space-between",
+          alignItems: "center",
+          minHeight: "52px",
+          px: "24px",
+          borderBottom: "1px solid",
+          borderBottomColor: "border.outlined",
+        }}
+      >
         <Typography sx={{ color, fontWeight: 600, fontSize: "16px" }}>{name}</Typography>
         <Chip
           label={columnLength}
@@ -55,7 +83,16 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
           }}
         />
       </Stack>
-      <Stack gap="24px" sx={{ flexGrow: 1, overflow: "hidden", ...wrapperCardsSx }}>
+      <Stack
+        ref={parentElement}
+        gap="24px"
+        sx={{
+          flexGrow: 1,
+          px: "24px",
+          overflowY: "scroll",
+          ...wrapperCardsSx,
+        }}
+      >
         {children}
       </Stack>
     </Stack>
