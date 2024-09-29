@@ -2,12 +2,12 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import { useMemo } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { APP_HEADER_HEIGHT, ASIDE_NAVIGATE_WIDTH } from "constants/STYLE"
+import { APP_HEADER_HEIGHT, ASIDE_NAVIGATE_COLLAPSE_WIDTH } from "constants/STYLE"
 import IconJob from "assets/icons/job.svg"
 import IconPeople from "assets/icons/people.svg"
 import IconStoreBox from "assets/icons/store-box.svg"
 
-const TheNavigateAsideBar = () => {
+const TheNavigateAsideCollapseBar = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
@@ -34,14 +34,15 @@ const TheNavigateAsideBar = () => {
     ],
     [pathname]
   )
-
   return (
     <Box
       sx={{
-        minWidth: ASIDE_NAVIGATE_WIDTH,
+        minWidth: ASIDE_NAVIGATE_COLLAPSE_WIDTH,
+        maxWidth: ASIDE_NAVIGATE_COLLAPSE_WIDTH,
+        width: "100%",
         borderRight: "1px solid",
-        borderRightColor: "border.outlined",
-        bgcolor: "background.accent",
+        borderLeft: "1px solid",
+        borderColor: "border.outlined",
       }}
     >
       <Stack
@@ -71,7 +72,6 @@ const TheNavigateAsideBar = () => {
             onClick={() => navigate(item.path)}
           >
             <img src={item.icon} alt={item.title} width="24px" height="24px" />
-            {item.title}
           </Stack>
         ))}
       </Stack>
@@ -79,4 +79,4 @@ const TheNavigateAsideBar = () => {
   )
 }
 
-export default TheNavigateAsideBar
+export default TheNavigateAsideCollapseBar

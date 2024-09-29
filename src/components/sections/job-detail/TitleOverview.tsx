@@ -11,8 +11,13 @@ import IconLocation from "assets/icons/location.svg"
 import IconJobType from "assets/icons/job-type.svg"
 import IconStar from "assets/icons/star.svg"
 import IconSalary from "assets/icons/salary.svg"
+import { SxProps } from "@mui/material"
 
-const TitleOverview = () => {
+interface IProps {
+  sx?: SxProps
+}
+
+const TitleOverview: React.FC<IProps> = ({ sx }) => {
   const navigate = useNavigate()
 
   const horizontalOverview = useMemo(() => {
@@ -39,7 +44,7 @@ const TitleOverview = () => {
   }, [])
 
   return (
-    <Stack flexDirection="row" sx={{ alignItems: "center", gap: "24px", mt: "24px" }}>
+    <Stack flexDirection="row" sx={{ height: "84px", alignItems: "center", gap: "24px", ...sx }}>
       <IconButton
         sx={{
           width: "36px",

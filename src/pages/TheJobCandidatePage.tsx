@@ -1,4 +1,6 @@
+import { useCallback, useRef } from "react"
 import { Outlet, useParams } from "react-router-dom"
+import { DragStartParams } from "react-smooth-dnd"
 import Stack from "@mui/material/Stack"
 import DndContainer from "components/common/dnd/DndContainer"
 import DndDraggable from "components/common/dnd/DndDraggable"
@@ -7,7 +9,6 @@ import CandidateStageColumnCard from "components/subsections/job-detail/Candidat
 import useDndKanbanBoard from "hooks/useDndKanbanBoard"
 import { CANDIDATE_PROCESS } from "utils/mockDndScene"
 import { MOCK_DND_SCENE_V2 } from "utils/mockDndSceneV2"
-import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 import { bindClass } from "utils/bindClass"
 import styles from "assets/css/dnd.module.css"
 
@@ -15,22 +16,24 @@ const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
+  const dndBoardRef = useRef<HTMLDivElement | null>(null)
 
-  const {
-    dataToRender,
-    activeColumnId,
-    dragEnterColumnId,
-    onCardDrop,
-    onCardDragStart,
-    onDragEnter,
-    onCardDragEnd,
-    getCardPayload,
-  } = useDndKanbanBoard<object>(MOCK_DND_SCENE_V2)
+  const { dataToRender, onCardDrop, onCardDragStart, onDragEnter, onCardDragEnd, getCardPayload } =
+    useDndKanbanBoard<object>(MOCK_DND_SCENE_V2)
+
+  const handleDragStart = useCallback(
+    (e: DragStartParams) => {
+      if (!dndBoardRef.current) return
+      dndBoardRef.current.scrollIntoView({ block: "start" })
+      onCardDragStart(e)
+    },
+    [onCardDragStart]
+  )
 
   return (
     <>
-      <Stack sx={{ flexGrow: 1, py: "16px", overflow: "auto" }}>
-        <DndContainer orientation="horizontal">
+      <Stack ref={dndBoardRef} sx={{ flexGrow: 1, py: "16px", zIndex: 10, maxHeight: "100%" }}>
+        <DndContainer orientation="horizontal" autoScrollEnabled>
           <Stack flexDirection="row" sx={{ flexGrow: 1, gap: "18px" }}>
             {Object.keys(dataToRender).map((columnId, columnIndex) => (
               <CandidateStageColumn
@@ -38,18 +41,13 @@ const TheJobCandidatePage = () => {
                 colors={CANDIDATE_PROCESS[columnIndex].colors}
                 name={CANDIDATE_PROCESS[columnIndex].name}
                 columnLength={dataToRender[columnId].length}
-                wrapperCardsSx={{
-                  maxHeight:
-                    activeColumnId === columnId &&
-                    dragEnterColumnId !== columnId &&
-                    `calc(${CANDIDATE_CARD_HEIGHT}px * ${dataToRender[columnId].length - 1})`,
-                }}
+                columnHtmlId={columnId}
               >
                 <DndContainer
                   orientation="vertical"
                   groupName="col"
                   getChildPayload={(index) => getCardPayload(columnId, index)}
-                  onDragStart={onCardDragStart}
+                  onDragStart={handleDragStart}
                   onDragEnter={() => onDragEnter(columnId)}
                   onDragEnd={onCardDragEnd}
                   onDrop={(dropResult) => onCardDrop(columnId, dropResult)}
@@ -61,6 +59,7 @@ const TheJobCandidatePage = () => {
                     className: cx("drop-preview"),
                   }}
                   dropPlaceholderAnimationDuration={200}
+                  autoScrollEnabled
                 >
                   {dataToRender[columnId].map((card) => (
                     <DndDraggable key={card.id} sx={{ py: "12px" }}>
