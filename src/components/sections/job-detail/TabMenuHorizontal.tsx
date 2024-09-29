@@ -10,7 +10,7 @@ import IconCandidates from "assets/icons/candidates.svg"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TabMenuHorizontal = () => {
-  const { id: jobId } = useParams()
+  const { jobId } = useParams()
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
