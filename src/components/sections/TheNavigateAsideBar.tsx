@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import { useMemo } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { APP_HEADER_HEIGHT } from "constants/STYLE"
+import { APP_HEADER_HEIGHT, ASIDE_NAVIGATE_WIDTH } from "constants/STYLE"
 import IconJob from "assets/icons/job.svg"
 import IconPeople from "assets/icons/people.svg"
 import IconStoreBox from "assets/icons/store-box.svg"
@@ -36,8 +36,17 @@ const TheNavigateAsideBar = () => {
   )
 
   return (
-    <Box sx={{ minWidth: 304, borderRight: "1px solid", borderRightColor: "border.outlined" }}>
-      <Stack sx={{ position: "sticky", top: APP_HEADER_HEIGHT, p: "24px", gap: "12px" }}>
+    <Box
+      sx={{
+        minWidth: ASIDE_NAVIGATE_WIDTH,
+        borderRight: "1px solid",
+        borderRightColor: "border.outlined",
+        bgcolor: "background.accent",
+      }}
+    >
+      <Stack
+        sx={{ position: "sticky", top: APP_HEADER_HEIGHT, py: "24px", px: "12px", gap: "12px" }}
+      >
         {navigateList.map((item) => (
           <Stack
             key={item.title}
@@ -50,11 +59,11 @@ const TheNavigateAsideBar = () => {
               px: "16px",
               cursor: "pointer",
               color: item.isActive && "text.accent",
-              bgcolor: item.isActive && "background.accent",
+              bgcolor: item.isActive && "background.accentSelected",
               filter: !item.isActive && "brightness(0) contrast(100%)",
               duration: 0.2,
               "&:hover": {
-                bgcolor: "background.accent",
+                bgcolor: "background.accentSelected",
                 color: "text.accent",
                 filter: "none",
               },

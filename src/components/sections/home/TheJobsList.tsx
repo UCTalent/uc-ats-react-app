@@ -1,54 +1,20 @@
-import { useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 import Stack from "@mui/material/Stack"
-import CalendarBox from "components/common/CalendarBox"
+import IconButton from "@mui/material/IconButton"
+import TabsFilter from "components/subsections/home/TabsFilter"
 import JobCard from "components/common/JobCard"
-import Tabs from "@mui/material/Tabs"
-import Tab from "@mui/material/Tab"
+import NumberWithLabelVerticalTag from "components/common/tags/NumberWithLabelVerticalTag"
+import IconSVG from "components/common/IconSVG"
+import IconThreeDotsHorizontal from "assets/icons/three-dots-horizontal.svg"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 const TheJobsList = () => {
   const navigate = useNavigate()
 
-  const statusFilterElements = useMemo(() => {
-    const statusList = [
-      { id: "active", title: "Active", index: 0, action: () => {} },
-      { id: "close", title: "Closed", index: 1, action: () => {} },
-      { id: "pending", title: "Pending", index: 2, action: () => {} },
-    ]
-    return (
-      <Tabs
-        value={0}
-        onChange={() => {}}
-        textColor="secondary"
-        indicatorColor="secondary"
-        sx={{ px: "28px" }}
-      >
-        {statusList.map((item, index) => (
-          <Tab
-            key={item.id}
-            label={
-              <Stack flexDirection="row" alignItems="center" gap="4px" sx={{ fontWeight: 600 }}>
-                {item.title}
-              </Stack>
-            }
-            id={`simple-tab-${index}`}
-            aria-controls={`simple-tabpanel-${index}`}
-            sx={{
-              textTransform: "none",
-              px: "16px",
-              mr: index !== statusList.length - 1 && "12px",
-            }}
-          />
-        ))}
-      </Tabs>
-    )
-  }, [])
-
   return (
-    <Stack sx={{ flexGrow: 1, py: "24px", gap: "24px" }}>
-      {statusFilterElements}
-      <Stack gap="24px">
+    <Stack sx={{ flexGrow: 1 }}>
+      <TabsFilter />
+      <Stack sx={{ pt: "12px" }}>
         {Array.from({ length: 12 }).map((item, index) => (
           <Stack
             key={index}
@@ -56,19 +22,26 @@ const TheJobsList = () => {
             sx={{
               alignItems: "center",
               justifyContent: "space-between",
-              px: "28px",
-              py: "18px",
-              cursor: "pointer",
-              transitionDuration: "0.1s",
-              "&:hover": { backgroundColor: "background.accent" },
+              mx: "28px",
+              py: "24px",
+              borderBottom: index !== 11 && "1px solid",
+              borderColor: "border.outlined",
             }}
-            onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE(index.toString()))}
           >
-            <JobCard />
-            <Stack flexDirection="row" gap="10px">
-              <CalendarBox label="Total" content="100" color="blue" />
-              <CalendarBox label="Applied" content="100" color="green" />
-              <CalendarBox label="Waiting" content="100" color="red" />
+            <JobCard onClickTitle={() => navigate(PAGE_MAP.JOB_CANDIDATE(index.toString()))} />
+            <Stack flexDirection="row" gap="108px" sx={{ px: "24px" }}>
+              <Stack flexDirection="row" gap="10px">
+                <NumberWithLabelVerticalTag label="Viewed" value={100} />
+                <NumberWithLabelVerticalTag label="Applied" value={100} />
+                <NumberWithLabelVerticalTag label="Hired" value={100} />
+                <NumberWithLabelVerticalTag label="Dropped" value={100} />
+              </Stack>
+              <IconButton
+                sx={{ width: "40px", height: "40px" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <IconSVG src={IconThreeDotsHorizontal} alt="Options" />
+              </IconButton>
             </Stack>
           </Stack>
         ))}

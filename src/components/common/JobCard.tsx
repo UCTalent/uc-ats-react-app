@@ -7,7 +7,11 @@ import DotDivider from "components/common/DotDivider"
 import IconLocation from "assets/icons/location.svg"
 import IconJobType from "assets/icons/job-type.svg"
 
-const JobCard = () => {
+interface IProps {
+  onClickTitle?: () => void
+}
+
+const JobCard: React.FC<IProps> = ({ onClickTitle }) => {
   return (
     <Stack flexDirection="row" sx={{ alignItems: "center", gap: "27px" }}>
       <Avatar
@@ -18,7 +22,11 @@ const JobCard = () => {
       <Stack gap="8px">
         <Stack flexDirection="row" gap="8px">
           <Typography sx={{ fontWeight: 600 }}>
-            <Box component="span" sx={{ fontSize: "20px" }}>
+            <Box
+              component="span"
+              sx={{ fontSize: "20px", cursor: onClickTitle && "pointer" }}
+              onClick={onClickTitle}
+            >
               Product Lead
             </Box>
             <Box component="span" sx={{ color: "text.secondary" }}>
