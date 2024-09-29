@@ -30,6 +30,7 @@ export const createTheme = (mode = "light") => {
         lime: isLightMode ? "#C9FF33" : "#C9FF33",
         limeHover: isLightMode ? "#B7E731" : "#B7E731",
         accent: isLightMode ? "#F8F7FF" : "#F8F7FF",
+        accentSelected: isLightMode ? "rgba(105, 51, 255, 0.04)" : "rgba(105, 51, 255, 0.04)",
         overlay: isLightMode ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0.4)",
       },
       primary: {
@@ -40,7 +41,7 @@ export const createTheme = (mode = "light") => {
         main: isLightMode ? "#121619" : "#F8F7FF",
       },
       text: {
-        primary: isLightMode ? "#121619" : "#DFDEE6",
+        primary: isLightMode ? "rgba(18, 22, 25, 1)" : "#DFDEE6",
         secondary: isLightMode ? "#717375" : "#AEADB3",
         accent: isLightMode ? "#6933FF" : "#9670FF",
         accent1: isLightMode ? "rgba(150, 112, 255, 1)" : "rgba(150, 112, 255, 1)",
@@ -49,8 +50,9 @@ export const createTheme = (mode = "light") => {
         button: isLightMode ? "#F8F7FF" : "#F8F7FF",
         disabled: isLightMode ? "rgba(18, 22, 25, 0.3)" : "rgba(248, 247, 255, 0.3)",
         tertiary: isLightMode ? "#A0A2A3" : "#7C7C80",
-        contrast: isLightMode ? "#F8F7FF" : "#121619",
+        contrast: isLightMode ? "#F8F7FF" : "rgba(18, 22, 25, 1)",
         dark: isLightMode ? "#000" : "#000",
+        ter: isLightMode ? "rgba(160, 162, 163, 1)" : "rgba(160, 162, 163, 1)",
       },
       shadow: {
         menu: isLightMode

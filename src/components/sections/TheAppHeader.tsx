@@ -21,7 +21,7 @@ const TheAppHeader = () => {
         zIndex: 20,
       }}
     >
-      <AppContainer>
+      <AppContainer sx={{ px: "16px" }}>
         <Stack
           direction="row"
           sx={{ height: APP_HEADER_HEIGHT, justifyContent: "space-between", alignItems: "center" }}
