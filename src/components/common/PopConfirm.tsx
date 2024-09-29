@@ -21,7 +21,7 @@ const PopConfirm = () => {
   }, [clearConfirm, onCancel])
 
   return (
-    <Modal open={isActive} onClose={clearConfirm}>
+    <Modal open={isActive} onClose={handleCancel}>
       <Stack
         sx={{
           width: 400,
