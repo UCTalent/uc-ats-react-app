@@ -18,7 +18,7 @@ const TopBarWithTitle = () => {
         alignItems: "center",
         gap: "16px",
         position: "sticky",
-        top: APP_HEADER_HEIGHT,
+        top: APP_HEADER_HEIGHT + 1,
         px: "28px",
         bgcolor: "background.accent",
         zIndex: 10,

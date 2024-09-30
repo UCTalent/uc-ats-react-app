@@ -21,18 +21,31 @@ const TheJobCandidatePage = () => {
   const { dataToRender, onCardDrop, onCardDragStart, onDragEnter, onCardDragEnd, getCardPayload } =
     useDndKanbanBoard<object>(MOCK_DND_SCENE_V2)
 
+  const scrollToDndBoard = useCallback(() => {
+    if (!dndBoardRef.current) return
+    dndBoardRef.current.scrollIntoView({ block: "start" })
+  }, [])
+
   const handleDragStart = useCallback(
     (e: DragStartParams) => {
-      if (!dndBoardRef.current) return
-      dndBoardRef.current.scrollIntoView({ block: "start" })
+      scrollToDndBoard()
       onCardDragStart(e)
     },
-    [onCardDragStart]
+    [onCardDragStart, scrollToDndBoard]
   )
 
   return (
     <>
-      <Stack ref={dndBoardRef} sx={{ flexGrow: 1, py: "16px", zIndex: 10, maxHeight: "100%" }}>
+      <Stack
+        ref={dndBoardRef}
+        sx={{
+          flexGrow: 1,
+          py: "16px",
+          px: "20px",
+          zIndex: 10,
+          overflow: "auto",
+        }}
+      >
         <DndContainer orientation="horizontal" autoScrollEnabled>
           <Stack flexDirection="row" sx={{ flexGrow: 1, gap: "18px" }}>
             {Object.keys(dataToRender).map((columnId, columnIndex) => (
@@ -42,6 +55,7 @@ const TheJobCandidatePage = () => {
                 name={CANDIDATE_PROCESS[columnIndex].name}
                 columnLength={dataToRender[columnId].length}
                 columnHtmlId={columnId}
+                onScroll={scrollToDndBoard}
               >
                 <DndContainer
                   orientation="vertical"

@@ -11,6 +11,7 @@ interface TypeProps {
   colors: string[]
   columnLength: number
   columnHtmlId: string
+  onScroll: () => void
   wrapperCardsSx?: SxProps
 }
 
@@ -20,6 +21,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
   colors,
   columnLength,
   columnHtmlId,
+  onScroll,
   wrapperCardsSx,
 }) => {
   const [color] = colors
@@ -44,7 +46,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
     <Stack
       id={columnHtmlId}
       sx={{
-        maxHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 18px - 16px*2)`,
+        maxHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 8px - 16px*2 - 1px)`,
         minWidth: "360px",
         borderRadius: "8px",
         border: "1px solid #EEF2FF",
@@ -89,9 +91,23 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
         sx={{
           flexGrow: 1,
           px: "24px",
-          overflowY: "scroll",
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "6px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: "rgba(18, 22, 25, 0.04)",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "rgba(18, 22, 25, 0.1)",
+            borderRadius: "999px",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            background: "rgba(18, 22, 25, 0.3)",
+          },
           ...wrapperCardsSx,
         }}
+        onScroll={onScroll}
       >
         {children}
       </Stack>

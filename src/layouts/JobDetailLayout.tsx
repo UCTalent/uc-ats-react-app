@@ -13,11 +13,11 @@ const JobDetailLayout = () => {
       <TheAppHeader />
       <Box sx={{ flexGrow: 1 }}>
         <AppContainer sx={{ minHeight: "100%" }}>
-          <Stack flexDirection="row" gap="20px" sx={{ height: "100%" }}>
+          <Stack flexDirection="row" sx={{ height: "100%" }}>
             <TheNavigateAsideCollapseBar />
             <Stack sx={{ flexGrow: 1, height: "100%", overflow: "hidden" }}>
-              <TitleOverview sx={{ mt: "12px", mb: "20px" }} />
-              <Stack sx={{ flexGrow: 1, overflow: "auto" }}>
+              <TitleOverview sx={{ mt: "12px", mb: "20px", px: "20px" }} />
+              <Stack sx={{ flexGrow: 1 }}>
                 <Stack
                   flexDirection="row"
                   sx={{
@@ -25,6 +25,7 @@ const JobDetailLayout = () => {
                     alignItems: "center",
                     borderBottom: 1,
                     borderColor: "border.outlined",
+                    mx: "20px",
                   }}
                 >
                   <TabMenuHorizontal />
