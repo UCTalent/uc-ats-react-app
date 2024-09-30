@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import Avatar from "@mui/material/Avatar"
 import Typography from "@mui/material/Typography"
-import Chip from "@mui/material/Chip"
+// import Chip from "@mui/material/Chip"
 import DotDivider from "components/common/DotDivider"
 import IconLocation from "assets/icons/location.svg"
 import IconJobType from "assets/icons/job-type.svg"
@@ -33,7 +33,7 @@ const JobCard: React.FC<IProps> = ({ onClickTitle }) => {
               , Rogo
             </Box>
           </Typography>
-          <Chip
+          {/* <Chip
             label="Active"
             color="success"
             size="small"
@@ -42,7 +42,7 @@ const JobCard: React.FC<IProps> = ({ onClickTitle }) => {
               color: "#14B8A6",
               bgcolor: "rgba(20, 184, 166, 0.2)",
             }}
-          />
+          /> */}
         </Stack>
         <Stack
           flexDirection="row"

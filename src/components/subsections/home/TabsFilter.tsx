@@ -2,8 +2,13 @@ import { useMemo, useState } from "react"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Stack from "@mui/material/Stack"
+import type { SxProps } from "@mui/material"
 
-const TabsFilter = () => {
+interface IProps {
+  sx?: SxProps
+}
+
+const TabsFilter: React.FC<IProps> = ({ sx }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
 
   const statusList = useMemo(
@@ -32,14 +37,19 @@ const TabsFilter = () => {
       value={activeTabIndex}
       onChange={(_, newValue) => setActiveTabIndex(newValue)}
       sx={{
+        position: "sticky",
+        top: "68px",
         px: "28px",
-        mt: "24px",
+        pt: "24px",
+        bgcolor: "background.default",
         "& .Mui-selected": {
           color: statusList[activeTabIndex].color,
         },
         "& .MuiTabs-indicator": {
           backgroundColor: statusList[activeTabIndex].color,
         },
+        zIndex: 10,
+        ...sx,
       }}
     >
       {statusList.map((item, index) => (

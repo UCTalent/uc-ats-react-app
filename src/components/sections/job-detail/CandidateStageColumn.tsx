@@ -11,7 +11,7 @@ interface TypeProps {
   colors: string[]
   columnLength: number
   columnHtmlId: string
-  onScroll: () => void
+  isDragOver: boolean
   wrapperCardsSx?: SxProps
 }
 
@@ -21,7 +21,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
   colors,
   columnLength,
   columnHtmlId,
-  onScroll,
+  isDragOver,
   wrapperCardsSx,
 }) => {
   const [color] = colors
@@ -46,12 +46,13 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
     <Stack
       id={columnHtmlId}
       sx={{
-        maxHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 8px - 16px*2 - 1px)`,
+        maxHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 84px - 12px - 20px - 48px - 8px - 12px * 2 - 1px - 1px - 8px)`,
         minWidth: "360px",
         borderRadius: "8px",
         border: "1px solid #EEF2FF",
         bgcolor: "#F8F7FF",
         overflow: "hidden",
+        pointerEvents: isDragOver && "none",
       }}
     >
       <Stack
@@ -107,7 +108,6 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
           },
           ...wrapperCardsSx,
         }}
-        onScroll={onScroll}
       >
         {children}
       </Stack>
