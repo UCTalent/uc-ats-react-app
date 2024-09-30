@@ -2,7 +2,6 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import ButtonContained from "components/common/buttons/ButtonContained"
 import IconPlus from "assets/icons/plus.svg"
-import { APP_HEADER_HEIGHT } from "constants/STYLE"
 import { UCT_LINK_PAGE } from "constants/UCT_WEB"
 import { openLinkInNewTab } from "utils/common"
 
@@ -18,7 +17,7 @@ const TopBarWithTitle = () => {
         alignItems: "center",
         gap: "16px",
         position: "sticky",
-        top: APP_HEADER_HEIGHT,
+        top: 0,
         px: "28px",
         bgcolor: "background.accent",
         zIndex: 10,

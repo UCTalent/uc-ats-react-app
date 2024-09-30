@@ -2,7 +2,7 @@ import { Container as SmoothContainer, type ContainerOptions } from "react-smoot
 import { memo, type ReactNode, type CSSProperties } from "react"
 
 type TypeProps = ContainerOptions & {
-  children: ReactNode
+  children?: ReactNode
   dropPlaceholderAnimationDuration?: number
   style?: CSSProperties
 }

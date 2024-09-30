@@ -5,6 +5,7 @@ import { PaletteColor } from "@mui/material/styles"
 declare module "@mui/material/styles" {
   interface TypeBackground {
     accent: string
+    surface: string
   }
 
   interface TypeText {
@@ -24,6 +25,7 @@ declare module "@mui/material/styles" {
     limeHover: string
     scrollbar: {
       primary: string
+      secondary: string
     }
     icons: {
       primary: string

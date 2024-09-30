@@ -70,7 +70,8 @@ export const createTheme = (mode = "light") => {
         otherSelected: isLightMode ? "rgba(105, 51, 255, 0.04)" : "rgba(248, 247, 255, 0.04)",
       },
       scrollbar: {
-        primary: isLightMode ? "rgba(18, 22, 25, 0.3)" : "rgba(248, 247, 255, 0.3)",
+        primary: isLightMode ? "rgba(18, 22, 25, 0.4)" : "rgba(248, 247, 255, 0.3)",
+        secondary: isLightMode ? "rgba(18, 22, 25, 0.1)" : "rgba(248, 247, 255, 0.06)",
       },
       icons: {
         primary: isLightMode ? "rgba(18, 22, 25, 0.54)" : "rgba(248, 247, 255, 0.54)",
@@ -247,6 +248,26 @@ export const createTheme = (mode = "light") => {
         styleOverrides: {
           root: {
             borderColor: isLightMode ? "rgba(18, 22, 25, 0.08)" : "rgba(248, 247, 255, 0.12)",
+          },
+        },
+      },
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            "*::-webkit-scrollbar": {
+              width: "8px",
+              height: "8px",
+            },
+            "*::-webkit-scrollbar-track": {
+              background: theme.palette.scrollbar.secondary,
+            },
+            "*::-webkit-scrollbar-thumb": {
+              background: theme.palette.scrollbar.primary,
+              borderRadius: "999px",
+            },
+            "*::-webkit-scrollbar-thumb:hover": {
+              background: "#888",
+            },
           },
         },
       },
