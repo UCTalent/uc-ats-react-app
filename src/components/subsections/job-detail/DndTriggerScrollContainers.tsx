@@ -1,11 +1,11 @@
 import DndContainer from "components/common/dnd/DndContainer"
-import { ASIDE_NAVIGATE_COLLAPSE_WIDTH } from "constants/STYLE"
 
 interface IProps {
   setIsDragOver: (isDragOver: boolean) => void
+  dndBoardElement: HTMLDivElement
 }
 
-const DndTriggerScrollContainers: React.FC<IProps> = ({ setIsDragOver }) => {
+const DndTriggerScrollContainers: React.FC<IProps> = ({ setIsDragOver, dndBoardElement }) => {
   return (
     <>
       <DndContainer
@@ -15,7 +15,7 @@ const DndTriggerScrollContainers: React.FC<IProps> = ({ setIsDragOver }) => {
         style={{
           position: "fixed",
           top: 0,
-          left: `${ASIDE_NAVIGATE_COLLAPSE_WIDTH}px`,
+          left: `${dndBoardElement.offsetLeft + 1}px`,
           width: "60px",
           height: "100%",
         }}

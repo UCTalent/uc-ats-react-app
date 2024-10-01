@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import TheAppHeader from "components/sections/TheAppHeader"
 import TheNavigateAsideBar from "components/sections/TheNavigateAsideBar"
-import TheNavigateAsideCollapseBar from "components/sections/TheNavigateAsideCollapseBar"
+import TheNavigateAsideBarCollapseExpand from "components/sections/TheNavigateAsideBarCollapseExpand"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
 
 const HeaderWithAsideBarLayout = () => {
@@ -28,7 +28,7 @@ const HeaderWithAsideBarLayout = () => {
             borderColor: "border.outlined",
           }}
         >
-          {isJobDetailPath ? <TheNavigateAsideCollapseBar /> : <TheNavigateAsideBar />}
+          {isJobDetailPath ? <TheNavigateAsideBarCollapseExpand /> : <TheNavigateAsideBar />}
           <Stack
             sx={{
               flexGrow: 1,
