@@ -70,7 +70,12 @@ const TheJobCandidatePage = () => {
               </CandidateStageColumn>
             ))}
           </Stack>
-          {payload && <DndTriggerScrollContainers setIsDragOver={setIsDragOver} />}
+          {payload && (
+            <DndTriggerScrollContainers
+              setIsDragOver={setIsDragOver}
+              dndBoardElement={dndBoardRef.current}
+            />
+          )}
         </DndContainer>
       </Stack>
       <Outlet />
