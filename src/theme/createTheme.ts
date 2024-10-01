@@ -52,6 +52,7 @@ export const createTheme = (mode = "light") => {
         tertiary: isLightMode ? "#A0A2A3" : "#7C7C80",
         contrast: isLightMode ? "#F8F7FF" : "rgba(18, 22, 25, 1)",
         dark: isLightMode ? "#000" : "#000",
+        darkSmoke: isLightMode ? "rgba(18, 22, 25, 0.7)" : "rgba(18, 22, 25, 0.7)",
         ter: isLightMode ? "rgba(160, 162, 163, 1)" : "rgba(160, 162, 163, 1)",
       },
       shadow: {

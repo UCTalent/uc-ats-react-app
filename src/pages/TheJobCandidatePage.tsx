@@ -62,7 +62,7 @@ const TheJobCandidatePage = () => {
                   autoScrollEnabled
                 >
                   {dataToRender[columnId].map((card) => (
-                    <DndDraggable key={card.id} sx={{ py: "12px" }}>
+                    <DndDraggable key={card.id} sx={{ py: "8px" }}>
                       <CandidateStageColumnCard candidate={{ id: card.id }} jobId={jobId} />
                     </DndDraggable>
                   ))}
