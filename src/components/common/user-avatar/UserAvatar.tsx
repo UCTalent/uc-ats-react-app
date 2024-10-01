@@ -6,11 +6,16 @@ import { type SxProps } from "@mui/material"
 interface IProps {
   sx?: SxProps
   avatarSize?: number
+  onClick?: () => void
 }
 
-const UserAvatar: React.FC<IProps> = ({ sx, avatarSize = 40 }) => {
+const UserAvatar: React.FC<IProps> = ({ sx, avatarSize = 40, onClick }) => {
   return (
-    <Stack flexDirection="row" sx={{ gap: "8px", ...sx }}>
+    <Stack
+      flexDirection="row"
+      sx={{ gap: "8px", cursor: onClick && "pointer", ...sx }}
+      onClick={onClick}
+    >
       <Avatar
         src="https://danviet.mediacdn.vn/2020/10/23/509-16034584963211832639631.jpg"
         alt="Duy"

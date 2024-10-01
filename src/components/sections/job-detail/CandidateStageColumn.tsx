@@ -18,13 +18,11 @@ interface TypeProps {
 const CandidateStageColumn: React.FC<TypeProps> = ({
   children,
   name,
-  colors,
   columnLength,
   columnHtmlId,
   isDragOver,
   wrapperCardsSx,
 }) => {
-  const [color] = colors
   const parentElement = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -38,7 +36,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
         columnLength * CANDIDATE_CARD_HEIGHT,
         dndContainer.parentElement.offsetHeight
       )
-      dndContainer.style.minHeight = `${containerHeight}px`
+      dndContainer.style.minHeight = `${containerHeight - 4 * 2}px`
     }
   }, [columnLength, parentElement])
 
@@ -47,6 +45,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
       id={columnHtmlId}
       sx={{
         maxHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 84px - 12px - 20px - 48px - 8px - 12px * 2 - 1px - 1px - 8px)`,
+        minHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px - 84px - 12px - 20px - 48px - 8px - 12px * 2 - 1px - 1px - 8px)`,
         minWidth: "360px",
         borderRadius: "8px",
         border: "1px solid #EEF2FF",
@@ -66,7 +65,9 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
           borderBottomColor: "border.outlined",
         }}
       >
-        <Typography sx={{ color, fontWeight: 600, fontSize: "16px" }}>{name}</Typography>
+        <Typography sx={{ color: "text.darkSmoke", fontWeight: 600, fontSize: "16px" }}>
+          {name}
+        </Typography>
         <Chip
           label={columnLength}
           sx={{
@@ -77,8 +78,8 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
             height: "24px",
             borderRadius: "50%",
             fontSize: "14px",
-            bgcolor: color,
-            color: "white",
+            fontWeight: 500,
+            bgcolor: "rgba(18, 22, 25, 0.1)",
             "& .MuiChip-label": {
               paddingLeft: 0,
               paddingRight: 0,
@@ -92,6 +93,7 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
         sx={{
           flexGrow: 1,
           px: "24px",
+          py: "4px",
           overflowY: "auto",
           "&::-webkit-scrollbar": {
             width: "6px",

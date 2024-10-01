@@ -24,8 +24,8 @@ export const MOCK_DND_SCENE_V2 = {
   screening: [
     { id: "screening-1", data: {} },
     { id: "screening-2", data: {} },
-    { id: "screening-3", data: {} },
-    { id: "screening-4", data: {} },
+    // { id: "screening-3", data: {} },
+    // { id: "screening-4", data: {} },
     // { id: "screening-5", data: {} },
     // { id: "screening-6", data: {} },
     // { id: "screening-7", data: {} },
@@ -68,7 +68,7 @@ export const MOCK_DND_SCENE_V2 = {
   offer: [
     { id: "offer-1", data: {} },
     { id: "offer-2", data: {} },
-    { id: "offer-3", data: {} },
+    // { id: "offer-3", data: {} },
     // { id: "offer-4", data: {} },
     // { id: "offer-5", data: {} },
     // { id: "offer-6", data: {} },
@@ -90,7 +90,7 @@ export const MOCK_DND_SCENE_V2 = {
   hire: [
     { id: "hire-1", data: {} },
     { id: "hire-2", data: {} },
-    { id: "hire-3", data: {} },
+    // { id: "hire-3", data: {} },
     // { id: "hire-4", data: {} },
     // { id: "hire-5", data: {} },
     // { id: "hire-6", data: {} },
@@ -112,7 +112,7 @@ export const MOCK_DND_SCENE_V2 = {
   failed: [
     { id: "failed-1", data: {} },
     { id: "failed-2", data: {} },
-    { id: "failed-3", data: {} },
+    // { id: "failed-3", data: {} },
     // { id: "failed-4", data: {} },
     // { id: "failed-5", data: {} },
     // { id: "failed-6", data: {} },
