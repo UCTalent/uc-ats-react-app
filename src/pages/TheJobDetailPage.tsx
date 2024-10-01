@@ -5,9 +5,9 @@ import JobDetailContent from "components/sections/job-detail/JobDetailContent"
 
 const TheJobDetailPage = () => {
   return (
-    <Stack sx={{ py: "16px", px: "20px" }}>
+    <Stack sx={{ px: "20px", overflow: "auto" }}>
       <AppContainer width={864} sx={{ margin: "0" }}>
-        <Stack sx={{ flexGrow: 1, overflow: "auto", gap: "20px" }}>
+        <Stack sx={{ flexGrow: 1, overflow: "auto", gap: "20px", py: "16px" }}>
           <JobOverviewBox />
           <JobDetailContent />
         </Stack>

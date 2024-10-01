@@ -37,10 +37,9 @@ const TabsFilter: React.FC<IProps> = ({ sx }) => {
       value={activeTabIndex}
       onChange={(_, newValue) => setActiveTabIndex(newValue)}
       sx={{
-        position: "sticky",
-        top: "68px",
-        px: "28px",
-        pt: "24px",
+        // position: "sticky",
+        // top: "68px",
+        // px: "28px",
         bgcolor: "background.default",
         "& .Mui-selected": {
           color: statusList[activeTabIndex].color,
