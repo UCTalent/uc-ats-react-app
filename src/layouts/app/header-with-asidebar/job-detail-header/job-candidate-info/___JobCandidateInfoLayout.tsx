@@ -9,7 +9,7 @@ const JobCandidateInfoLayout = () => {
   const { jobId } = useParams()
   return (
     <ContainerRightSidePortalWithOverlay backPath={PAGE_MAP.JOB_CANDIDATE(jobId)}>
-      <Stack sx={{ maxWidth: "888px", height: "100%", px: "12px", py: "12px", boxShadow: 8 }}>
+      <Stack sx={{ maxWidth: "888px", height: "100%", px: "12px", py: "12px", boxShadow: 10 }}>
         <Stack
           flexDirection="row"
           alignItems="center"

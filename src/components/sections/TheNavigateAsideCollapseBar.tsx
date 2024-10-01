@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import { useMemo } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { APP_HEADER_HEIGHT, ASIDE_NAVIGATE_COLLAPSE_WIDTH } from "constants/STYLE"
+import { ASIDE_NAVIGATE_COLLAPSE_WIDTH } from "constants/STYLE"
 import IconJob from "assets/icons/job.svg"
 import IconPeople from "assets/icons/people.svg"
 import IconStoreBox from "assets/icons/store-box.svg"
@@ -45,9 +45,7 @@ const TheNavigateAsideCollapseBar = () => {
         borderColor: "border.outlined",
       }}
     >
-      <Stack
-        sx={{ position: "sticky", top: APP_HEADER_HEIGHT + 1, py: "24px", px: "12px", gap: "12px" }}
-      >
+      <Stack sx={{ position: "sticky", top: 0, py: "24px", px: "12px", gap: "12px" }}>
         {navigateList.map((item) => (
           <Stack
             key={item.title}

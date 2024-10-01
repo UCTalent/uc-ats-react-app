@@ -44,7 +44,7 @@ const TitleOverview: React.FC<IProps> = ({ sx }) => {
   }, [])
 
   return (
-    <Stack flexDirection="row" sx={{ height: "84px", alignItems: "center", gap: "24px", ...sx }}>
+    <Stack flexDirection="row" sx={{ minHeight: "84px", alignItems: "center", gap: "24px", ...sx }}>
       <IconButton
         sx={{
           width: "36px",

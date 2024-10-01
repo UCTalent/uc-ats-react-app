@@ -13,11 +13,11 @@ const TopBarWithTitle = () => {
     <Stack
       flexDirection="row"
       sx={{
-        height: 68,
+        minHeight: 68,
         alignItems: "center",
         gap: "16px",
-        position: "sticky",
-        top: 0,
+        // position: "sticky",
+        // top: 0,
         px: "28px",
         bgcolor: "background.accent",
         zIndex: 10,
