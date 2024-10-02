@@ -5,7 +5,7 @@ import TabMenuHorizontal from "components/sections/job-detail/job-candidate/TabM
 import ContainerRightSidePortalWithOverlay from "components/common/ContainerRightSidePortalWithOverlay"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
-const JobCandidateInfoLayout = () => {
+const JobDetailCandidateInfoLayout = () => {
   const { jobId } = useParams()
   return (
     <ContainerRightSidePortalWithOverlay backPath={PAGE_MAP.JOB_CANDIDATE(jobId)}>
@@ -30,4 +30,4 @@ const JobCandidateInfoLayout = () => {
   )
 }
 
-export default JobCandidateInfoLayout
+export default JobDetailCandidateInfoLayout

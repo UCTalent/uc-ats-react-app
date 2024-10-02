@@ -54,6 +54,7 @@ const TheNavigateAsideBarCollapseExpand = () => {
     <Stack
       sx={{
         justifyContent: "space-between",
+        width: isExpanded ? ASIDE_NAVIGATE_WIDTH : ASIDE_NAVIGATE_COLLAPSE_WIDTH,
         minWidth: isExpanded ? ASIDE_NAVIGATE_WIDTH : ASIDE_NAVIGATE_COLLAPSE_WIDTH,
         borderRight: "1px solid",
         borderRightColor: "border.outlined",
