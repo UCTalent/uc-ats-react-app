@@ -7,7 +7,7 @@ import TheNavigateAsideBar from "components/sections/TheNavigateAsideBar"
 import TheNavigateAsideBarCollapseExpand from "components/sections/TheNavigateAsideBarCollapseExpand"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
 
-const HeaderWithAsideBarLayout = () => {
+const AppHeaderWithAsideBarLayout = () => {
   const { pathname } = useLocation()
 
   const isJobDetailPath = useMemo(() => {
@@ -44,4 +44,4 @@ const HeaderWithAsideBarLayout = () => {
   )
 }
 
-export default HeaderWithAsideBarLayout
+export default AppHeaderWithAsideBarLayout

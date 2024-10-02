@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom"
 // Layouts
-import AppLayout from "layouts/app"
-import HeaderWithAsideBarLayout from "layouts/app/header-with-asidebar"
-import JobDetailLayout from "layouts/app/header-with-asidebar/job-detail-header"
-import JobCandidateInfoLayout from "layouts/app/header-with-asidebar/job-detail-header/job-candidate-info"
+import AppLayout from "layouts/_app"
+import {
+  AppHeaderWithAsideBarLayout,
+  JobDetailCandidateInfoLayout,
+  JobDetailLayout,
+} from "layouts/app"
 
 const Router = createBrowserRouter([
   {
@@ -11,7 +13,7 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "/",
-        Component: HeaderWithAsideBarLayout,
+        Component: AppHeaderWithAsideBarLayout,
         children: [
           {
             index: true,
@@ -35,7 +37,7 @@ const Router = createBrowserRouter([
                 children: [
                   {
                     path: ":candidateId",
-                    Component: JobCandidateInfoLayout,
+                    Component: JobDetailCandidateInfoLayout,
                     children: [
                       {
                         path: "summary",
