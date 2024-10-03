@@ -8,6 +8,7 @@ interface TypeProps {
 }
 
 const TypographyHtml: React.FC<TypeProps> = ({ children, sx }) => {
+  console.log(children)
   return (
     <Typography
       component="div"

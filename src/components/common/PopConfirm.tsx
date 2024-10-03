@@ -5,10 +5,11 @@ import Typography from "@mui/material/Typography"
 import useConfirmAtom from "hooks/atoms/useConfirmAtom"
 import ButtonContained from "./buttons/ButtonContained"
 import ButtonOutlined from "./buttons/ButtonOutlined"
+import TypographyHtml from "./TypographyHtml"
 
 const PopConfirm = () => {
   const { confirm, clearConfirm, doHandler } = useConfirmAtom()
-  const { isActive, title, content, confirmText, cancelText, onCancel } = confirm
+  const { isActive, title, content, render, confirmText, cancelText, onCancel } = confirm
 
   const handleConfirm = useCallback(async () => {
     await doHandler()
@@ -20,11 +21,16 @@ const PopConfirm = () => {
     clearConfirm()
   }, [clearConfirm, onCancel])
 
+  if (render) {
+    console.log(render())
+  }
+
   return (
     <Modal open={isActive} onClose={handleCancel}>
       <Stack
         sx={{
-          width: 400,
+          alignItems: "center",
+          width: 340,
           py: 3,
           px: 4,
           position: "absolute",
@@ -39,14 +45,19 @@ const PopConfirm = () => {
           },
         }}
       >
-        <Typography sx={{ fontSize: "18px", fontWeight: 700, mb: "12px" }}>{title}</Typography>
-        {content}
+        <Typography sx={{ fontSize: "20px", fontWeight: 700, mb: "8px" }}>{title}</Typography>
+        {content && (
+          <Stack flexDirection="row" sx={{ textAlign: "center", fontSize: "14px" }}>
+            {content}
+          </Stack>
+        )}
+        {render && <TypographyHtml>{render()}</TypographyHtml>}
         <Stack
           flexDirection="row"
           alignItems="center"
           justifyContent="end"
-          gap="4px"
-          sx={{ mt: "24px" }}
+          gap="12px"
+          sx={{ mt: "28px" }}
         >
           <ButtonOutlined sx={{ "&:hover": {} }} onClick={handleCancel}>
             {cancelText}
