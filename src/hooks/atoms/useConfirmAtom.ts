@@ -35,6 +35,7 @@ const useConfirmAtom = () => {
       isActive: false,
       title: "",
       content: "",
+      render: null,
       confirmText: "Confirm",
       cancelText: "Cancel",
       onConfirm: () => {},

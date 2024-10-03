@@ -1,5 +1,7 @@
 import xss from "xss"
 
+const WHITE_LIST_ATTRIBUTES = ["style"]
+
 const sanitizeHTMLBasic = (html: string): string => {
   const xssOptions = {
     whiteList: {
@@ -9,7 +11,8 @@ const sanitizeHTMLBasic = (html: string): string => {
       u: [],
       strong: [],
       em: [],
-      p: [],
+      p: [...WHITE_LIST_ATTRIBUTES],
+      span: [...WHITE_LIST_ATTRIBUTES],
       br: [],
       ul: [],
       li: [],

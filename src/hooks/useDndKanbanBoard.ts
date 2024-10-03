@@ -2,6 +2,7 @@ import cloneDeep from "lodash.clonedeep"
 import { useCallback, useEffect, useState } from "react"
 import { DragStartParams, type DropResult } from "react-smooth-dnd"
 import useConfirmAtom from "./atoms/useConfirmAtom"
+import { getChangeStatusWarningMessage } from "services/dnd/getChangeStatusWarningMessage"
 import type { IDndResult, IDndScene } from "types/dnd"
 
 const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
@@ -107,7 +108,7 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
     if (["hire", "failed"].includes(toColumnId)) {
       configConfirm({
         title: `Change status`,
-        content: `Are you sure you want to change the status of this job to ${toColumnId}?`,
+        render: () => getChangeStatusWarningMessage("Le Quang Duy", toColumnId),
         onConfirm: handleDndMultipleColumns,
         onCancel: handleCancelDndMultipleColumns,
         isActive: true,
