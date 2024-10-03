@@ -15,7 +15,7 @@ const DndTriggerScrollContainers: React.FC<IProps> = ({ setIsDragOver, dndBoardE
         style={{
           position: "fixed",
           top: 0,
-          left: `${dndBoardElement.offsetLeft + 1}px`,
+          left: dndBoardElement.offsetLeft,
           width: "60px",
           height: "100%",
         }}

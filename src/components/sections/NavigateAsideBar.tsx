@@ -7,7 +7,7 @@ import IconPeople from "assets/icons/people.svg"
 import IconStoreBox from "assets/icons/store-box.svg"
 import { ASIDE_NAVIGATE_WIDTH } from "constants/STYLE"
 
-const TheNavigateAsideBar = () => {
+const NavigateAsideBar = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
@@ -77,4 +77,4 @@ const TheNavigateAsideBar = () => {
   )
 }
 
-export default TheNavigateAsideBar
+export default NavigateAsideBar

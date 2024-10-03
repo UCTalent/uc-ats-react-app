@@ -2,9 +2,9 @@ import { useMemo } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
-import TheAppHeader from "components/sections/TheAppHeader"
-import TheNavigateAsideBar from "components/sections/TheNavigateAsideBar"
-import TheNavigateAsideBarCollapseExpand from "components/sections/TheNavigateAsideBarCollapseExpand"
+import AppHeader from "components/sections/AppHeader"
+import NavigateAsideBar from "components/sections/NavigateAsideBar"
+import NavigateAsideBarCollapseExpand from "components/sections/NavigateAsideBarCollapseExpand"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
 
 const AppHeaderWithAsideBarLayout = () => {
@@ -17,7 +17,7 @@ const AppHeaderWithAsideBarLayout = () => {
 
   return (
     <Stack sx={{ height: "100vh", overflowY: "hidden" }}>
-      <TheAppHeader />
+      <AppHeader />
       <Box sx={{ flexGrow: 1, overflow: "hidden" }}>
         <Stack
           direction="row"
@@ -28,7 +28,7 @@ const AppHeaderWithAsideBarLayout = () => {
             borderColor: "border.outlined",
           }}
         >
-          {isJobDetailPath ? <TheNavigateAsideBarCollapseExpand /> : <TheNavigateAsideBar />}
+          {isJobDetailPath ? <NavigateAsideBarCollapseExpand /> : <NavigateAsideBar />}
           <Stack
             sx={{
               flexGrow: 1,
