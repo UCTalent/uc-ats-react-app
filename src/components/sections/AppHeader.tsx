@@ -13,7 +13,7 @@ interface IProps {
   sx?: SxProps
 }
 
-const TheAppHeader: React.FC<IProps> = ({ sx }) => {
+const AppHeader: React.FC<IProps> = ({ sx }) => {
   return (
     <Box
       sx={{
@@ -47,4 +47,4 @@ const TheAppHeader: React.FC<IProps> = ({ sx }) => {
   )
 }
 
-export default TheAppHeader
+export default AppHeader

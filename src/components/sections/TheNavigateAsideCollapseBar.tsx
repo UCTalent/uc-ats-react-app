@@ -7,7 +7,7 @@ import IconJob from "assets/icons/job.svg"
 import IconPeople from "assets/icons/people.svg"
 import IconStoreBox from "assets/icons/store-box.svg"
 
-const TheNavigateAsideCollapseBar = () => {
+const NavigateAsideCollapseBar = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
@@ -77,4 +77,4 @@ const TheNavigateAsideCollapseBar = () => {
   )
 }
 
-export default TheNavigateAsideCollapseBar
+export default NavigateAsideCollapseBar

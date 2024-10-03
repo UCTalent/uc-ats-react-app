@@ -12,7 +12,7 @@ import IconCollapseExpand from "assets/icons/back-arrow.svg"
 import { ASIDE_NAVIGATE_COLLAPSE_WIDTH, ASIDE_NAVIGATE_WIDTH } from "constants/STYLE"
 import { STORAGE_NAV_EXPANDED } from "constants/STORAGE_KEY"
 
-const TheNavigateAsideBarCollapseExpand = () => {
+const NavigateAsideBarCollapseExpand = () => {
   const [isExpanded, setIsExpanded] = usePersistState(STORAGE_NAV_EXPANDED, false)
   const [isTextVisible, setIsTextVisible] = useState(() => isExpanded)
   const { pathname } = useLocation()
@@ -109,4 +109,4 @@ const TheNavigateAsideBarCollapseExpand = () => {
   )
 }
 
-export default TheNavigateAsideBarCollapseExpand
+export default NavigateAsideBarCollapseExpand
