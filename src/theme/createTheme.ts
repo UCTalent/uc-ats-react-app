@@ -6,7 +6,6 @@ import {
   BreakpointsOptions,
   Breakpoint,
 } from "@mui/material/styles"
-// import { font } from "./font"
 
 export const createTheme = (mode = "light") => {
   const isLightMode = mode === "light"
@@ -98,9 +97,9 @@ export const createTheme = (mode = "light") => {
       },
       white: isLightMode ? "#F8F7FF" : "#F8F7FF",
     } as PaletteOptions,
-    // typography: {
-    //   fontFamily: font.style.fontFamily,
-    // },
+    typography: {
+      fontFamily: ["Murecho", "Helvetica", "Arial", "sans-serif"].join(","),
+    },
     breakpoints: {
       values: {
         xs: 0,
