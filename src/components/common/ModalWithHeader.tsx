@@ -10,7 +10,7 @@ import { type ReactNode } from "react"
 interface IProps {
   children: ReactNode
   title: string
-  description: string
+  description?: string
   wrapperSx?: SxProps
   open?: boolean
   onClose?: () => void

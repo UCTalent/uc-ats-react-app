@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
     "@mui/material": "^5.16.7",
+    "axios": "^1.7.7",
     "deep-equal": "^2.2.3",
     "graphql": "^16.9.0",
     "lodash.clonedeep": "^4.5.0",

@@ -9,11 +9,15 @@ const useModalAtom = () => {
     setModal((prevModal) => [...prevModal, modalId])
   }
 
+  const replaceModal = (modalId: MODAL_ID) => {
+    setModal([modalId])
+  }
+
   const pullModal = (modalId: MODAL_ID) => {
     setModal((prevModal) => prevModal.filter((id) => id !== modalId))
   }
 
-  return { modal, pushModal, pullModal }
+  return { modal, pushModal, replaceModal, pullModal }
 }
 
 export default useModalAtom

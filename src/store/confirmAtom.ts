@@ -7,6 +7,7 @@ export const confirmAtom = atom<IConfirmState>({
     isActive: false,
     title: "",
     content: "",
+    render: null,
     confirmText: "Confirm",
     cancelText: "Cancel",
     onConfirm: () => {},
