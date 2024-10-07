@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import IconJob from "assets/icons/job.svg"
-import IconPeople from "assets/icons/people.svg"
-import IconStoreBox from "assets/icons/store-box.svg"
+// import IconPeople from "assets/icons/people.svg"
+// import IconStoreBox from "assets/icons/store-box.svg"
 import { ASIDE_NAVIGATE_WIDTH } from "constants/STYLE"
 
 const NavigateAsideBar = () => {
@@ -19,18 +19,18 @@ const NavigateAsideBar = () => {
         icon: IconJob,
         isActive: pathname.startsWith("/"),
       },
-      {
-        title: "Candidates",
-        path: "/candidates",
-        icon: IconPeople,
-        isActive: pathname.startsWith("/candidates"),
-      },
-      {
-        title: "Drafts",
-        path: "/drafts",
-        icon: IconStoreBox,
-        isActive: pathname.startsWith("/drafts"),
-      },
+      // {
+      //   title: "Candidates",
+      //   path: "/candidates",
+      //   icon: IconPeople,
+      //   isActive: pathname.startsWith("/candidates"),
+      // },
+      // {
+      //   title: "Drafts",
+      //   path: "/drafts",
+      //   icon: IconStoreBox,
+      //   isActive: pathname.startsWith("/drafts"),
+      // },
     ],
     [pathname]
   )

@@ -5,8 +5,8 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import IconJob from "assets/icons/job.svg"
-import IconPeople from "assets/icons/people.svg"
-import IconStoreBox from "assets/icons/store-box.svg"
+// import IconPeople from "assets/icons/people.svg"
+// import IconStoreBox from "assets/icons/store-box.svg"
 import IconSVG from "components/common/IconSVG"
 import IconCollapseExpand from "assets/icons/back-arrow.svg"
 import { ASIDE_NAVIGATE_COLLAPSE_WIDTH, ASIDE_NAVIGATE_WIDTH } from "constants/STYLE"
@@ -34,18 +34,18 @@ const NavigateAsideBarCollapseExpand = () => {
         icon: IconJob,
         isActive: pathname.startsWith("/"),
       },
-      {
-        title: "Candidates",
-        path: "/candidates",
-        icon: IconPeople,
-        isActive: pathname.startsWith("/candidates"),
-      },
-      {
-        title: "Drafts",
-        path: "/drafts",
-        icon: IconStoreBox,
-        isActive: pathname.startsWith("/drafts"),
-      },
+      // {
+      //   title: "Candidates",
+      //   path: "/candidates",
+      //   icon: IconPeople,
+      //   isActive: pathname.startsWith("/candidates"),
+      // },
+      // {
+      //   title: "Drafts",
+      //   path: "/drafts",
+      //   icon: IconStoreBox,
+      //   isActive: pathname.startsWith("/drafts"),
+      // },
     ],
     [pathname]
   )
