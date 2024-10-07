@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "relay": "relay-compiler"
   },
   "dependencies": {
     "@apollo/client": "^3.11.4",
@@ -26,9 +27,11 @@
     "react-hook-form": "^7.53.0",
     "react-number-format": "^5.4.1",
     "react-quill": "^2.0.0",
+    "react-relay": "^18.1.0",
     "react-router-dom": "^6.26.1",
     "react-smooth-dnd": "^0.11.1",
     "recoil": "^0.7.7",
+    "relay-runtime": "^18.1.0",
     "sass": "^1.78.0",
     "ts-node": "^10.9.2",
     "xss": "^1.0.15",
@@ -41,7 +44,10 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-helmet": "^6.1.11",
+    "@types/react-relay": "^16.0.6",
+    "@types/relay-runtime": "^17.0.4",
     "@vitejs/plugin-react": "^4.3.1",
+    "babel-plugin-relay": "^18.1.0",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -50,8 +56,16 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "prettier": "3.3.3",
+    "relay-compiler": "^18.1.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-relay": "workspace:*"
+  },
+  "relay": {
+    "src": "./src",
+    "schema": "./schema.graphql",
+    "language": "typescript",
+    "eagerEsModules": true
   }
 }

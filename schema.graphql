@@ -1,0 +1,108 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+type City {
+  capital: String
+  capitalOf: Country
+  country: Country
+  id: ID!
+  latitude: String
+  longitude: String
+  nameAscii: String!
+  nameLocal: String!
+}
+
+type Country {
+  capitalCity: City
+  cities: [City!]
+  codeIso2: String
+  codeIso3: String
+  globalRegion: Region
+  id: ID!
+  name: String
+  subRegion: Region
+}
+
+type Industry {
+  domain: String
+  id: ID!
+  industry: String
+}
+
+"""An ISO 8601-encoded datetime"""
+scalar ISO8601DateTime
+
+type Job {
+  about: String
+  city: City
+  country: Country
+  createdAt: ISO8601DateTime!
+  experienceLevel: String
+  globalRegion: Region
+  id: ID!
+  jobType: String
+  locationType: String
+  locationValue: String
+  managementLevel: String
+  minimumQualifications: String!
+  organization: Organization
+  preferredRequirement: String!
+  region: Region
+  responsibilities: String!
+  speciality: Speciality
+  title: String!
+  updatedAt: ISO8601DateTime!
+}
+
+type Organization {
+  about: String
+  address: String
+  contactEmail: String
+  contactPhone: String
+  country: Country
+  foundDate: String
+  id: ID!
+  industry: Industry
+  logoUrl: String
+  name: String
+  orgType: String
+  size: String
+  status: String
+  website: String
+}
+
+type Query {
+  """Get all jobs"""
+  jobs(page: Int, perPage: Int): [Job!]!
+
+  """Get all organizations"""
+  organizations(page: Int, perPage: Int): [Organization!]!
+}
+
+type Region {
+  countries: [Country!]
+  globalRegion: Region
+  id: ID!
+  name: String!
+  regionType: String!
+}
+
+type Role {
+  id: ID!
+  name: String
+}
+
+type Speciality {
+  id: ID!
+  role: Role
+  speciality: String
+}
+
