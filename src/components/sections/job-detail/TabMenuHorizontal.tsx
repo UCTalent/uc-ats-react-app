@@ -5,7 +5,7 @@ import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import IconSVG from "components/common/IconSVG"
 import IconInfo from "assets/icons/info.svg"
-import IconNote from "assets/icons/note.svg"
+// import IconNote from "assets/icons/note.svg"
 import IconCandidates from "assets/icons/candidates.svg"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
@@ -32,14 +32,14 @@ const TabMenuHorizontal = () => {
         index: 1,
         disabled: false,
       },
-      {
-        id: "notes",
-        icon: IconNote,
-        title: "Notes",
-        path: PAGE_MAP.JOB_NOTE(jobId),
-        index: 2,
-        disabled: false,
-      },
+      // {
+      //   id: "notes",
+      //   icon: IconNote,
+      //   title: "Notes",
+      //   path: PAGE_MAP.JOB_NOTE(jobId),
+      //   index: 2,
+      //   disabled: false,
+      // },
     ],
     [jobId]
   )

@@ -19,27 +19,27 @@ const TabMenuHorizontal = () => {
         index: 0,
         disabled: false,
       },
-      {
-        id: "resume",
-        title: "Resume",
-        path: PAGE_MAP.JOB_CANDIDATE_RESUME(jobId, candidateId),
-        index: 1,
-        disabled: false,
-      },
-      {
-        id: "notes",
-        title: "Notes",
-        path: PAGE_MAP.JOB_CANDIDATE_NOTES(jobId, candidateId),
-        index: 2,
-        disabled: false,
-      },
-      {
-        id: "jobs",
-        title: "Jobs",
-        path: PAGE_MAP.JOB_CANDIDATE_JOBS(jobId, candidateId),
-        index: 3,
-        disabled: false,
-      },
+      // {
+      //   id: "resume",
+      //   title: "Resume",
+      //   path: PAGE_MAP.JOB_CANDIDATE_RESUME(jobId, candidateId),
+      //   index: 1,
+      //   disabled: false,
+      // },
+      // {
+      //   id: "notes",
+      //   title: "Notes",
+      //   path: PAGE_MAP.JOB_CANDIDATE_NOTES(jobId, candidateId),
+      //   index: 2,
+      //   disabled: false,
+      // },
+      // {
+      //   id: "jobs",
+      //   title: "Jobs",
+      //   path: PAGE_MAP.JOB_CANDIDATE_JOBS(jobId, candidateId),
+      //   index: 3,
+      //   disabled: false,
+      // },
     ],
     [candidateId, jobId]
   )
