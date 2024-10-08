@@ -18,7 +18,7 @@ const PublicRoute: FC<IProps> = ({ children }) => {
     }
 
     if (currentUser.isLoggedIn) {
-      if (pathname === "/login") {
+      if (pathname.startsWith("/login")) {
         navigate("/")
       }
       return
