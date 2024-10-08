@@ -11,7 +11,8 @@ const useMutateGetProfileMe = () => {
 
   const mutate = useCallback(async () => {
     const accessToken = getCookie("access_token")
-    if (!accessToken) return
+    if (!accessToken) return setIsFetched(true)
+
     setLoading(true)
     try {
       const response = await AuthAPI.getProfileMe()
