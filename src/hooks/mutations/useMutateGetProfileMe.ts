@@ -1,5 +1,6 @@
 import useCurrentUserAtom from "hooks/atoms/useCurrentUserAtom"
 import { useCallback, useState } from "react"
+import { getCookie } from "utils/cookie"
 import AuthAPI from "services/api/auth"
 
 const useMutateGetProfileMe = () => {
@@ -9,6 +10,8 @@ const useMutateGetProfileMe = () => {
   const { setLoggedInUser } = useCurrentUserAtom()
 
   const mutate = useCallback(async () => {
+    const accessToken = getCookie("access_token")
+    if (!accessToken) return
     setLoading(true)
     try {
       const response = await AuthAPI.getProfileMe()

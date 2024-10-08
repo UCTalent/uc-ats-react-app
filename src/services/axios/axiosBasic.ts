@@ -1,6 +1,6 @@
 import defaultAxios from "axios"
 import { ENV_API_URL } from "constants/ENV_CONFIG"
-import { getCookie } from "utils/cookie"
+import { deleteCookie, getCookie } from "utils/cookie"
 
 const axios = defaultAxios.create({
   baseURL: ENV_API_URL,
@@ -29,8 +29,9 @@ axios.interceptors.response.use(
     return response
   },
   async function (error) {
-    if (error.response?.status === 401 && window !== undefined) {
+    if (error.response?.status === 401 && typeof window !== "undefined") {
       if (window.location.pathname === "/login") return
+      deleteCookie("access_token")
       window.location.href = "/login"
     }
 
