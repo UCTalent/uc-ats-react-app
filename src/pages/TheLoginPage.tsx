@@ -18,11 +18,11 @@ const TheLoginPage = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ flexBasis: "50%" }}>
+        <Box sx={{ flexBasis: "50%", height: "100%" }}>
           <img
             src={BgTalent}
             alt="Talent"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
           />
         </Box>
         <Stack
