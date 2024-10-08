@@ -21,7 +21,7 @@ const PasswordField = <T extends FieldValues>({ control, name, ...restProps }: T
     <TextField
       {...restProps}
       inputRef={ref}
-      sx={{ "& input": { paddingRight: 0 } }}
+      sx={{ width: "100%", "& input": { paddingRight: 0 } }}
       type={showPassword ? "text" : "password"}
       value={value}
       error={invalid}

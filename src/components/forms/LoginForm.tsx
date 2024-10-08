@@ -1,5 +1,6 @@
 import { useCallback } from "react"
 import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
 import TextField from "components/common/form-fields/TextField"
 import PasswordField from "components/common/form-fields/PasswordField"
 import ButtonContained from "components/common/buttons/ButtonContained"
@@ -16,8 +17,8 @@ const LoginForm = () => {
     resolver: resolver(schemaLoginForm),
     values: { email: "", password: "" },
   })
-  const { mutate: mutateLoginWithEmail } = useMutateLoginWithEmail()
-  const { mutate: mutateGetProfileMe } = useMutateGetProfileMe()
+  const { mutate: mutateLoginWithEmail, loading: loadingGetToken } = useMutateLoginWithEmail()
+  const { mutate: mutateGetProfileMe, loading: loadingGetProfile } = useMutateGetProfileMe()
 
   const login = useCallback(
     async (values: TypeLoginForm) => {
@@ -32,13 +33,27 @@ const LoginForm = () => {
   )
 
   return (
-    <Stack sx={{ gap: "16px", width: "360px", px: "24px", py: "16px", bgcolor: "white" }}>
-      <TextField control={control} name="email" label="Email" />
-      <PasswordField control={control} name="password" label="Password" />
-      <ButtonContained onClick={handleSubmit(login)} type="submit" fullWidth={true}>
-        Log In
-      </ButtonContained>
-    </Stack>
+    <form onSubmit={handleSubmit(login)}>
+      <Stack
+        sx={{
+          alignItems: "center",
+          gap: "16px",
+          width: "360px",
+          px: "24px",
+          py: "16px",
+          bgcolor: "white",
+        }}
+      >
+        <Typography variant="h5" sx={{ mb: "16px" }}>
+          Login
+        </Typography>
+        <TextField control={control} name="email" label="Email" />
+        <PasswordField control={control} name="password" label="Password" />
+        <ButtonContained type="submit" fullWidth disabled={loadingGetToken || loadingGetProfile}>
+          Log In
+        </ButtonContained>
+      </Stack>
+    </form>
   )
 }
 
