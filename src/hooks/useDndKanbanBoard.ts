@@ -13,7 +13,7 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const [dragEnterColumnId, setDragEnterColumnId] = useState<string | null>(null)
   const [dropReadyColumnId, setDropReadyColumnId] = useState<string | null>(null)
   const [activeColumnId, setActiveColumnId] = useState<string | null>(null)
-  const { configConfirm, setHandler, triggerConfirm } = useConfirmAtom()
+  const { configConfirm } = useConfirmAtom()
 
   const getCardPayload = useCallback(
     (columnId: string, index: number): { id: string; data: ICardData } => {
@@ -116,7 +116,7 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
     } else {
       handleDndMultipleColumns()
     }
-  }, [configConfirm, dndResult, movedCard, scene, setHandler, triggerConfirm])
+  }, [configConfirm, dndResult, movedCard, scene])
 
   return {
     dataToRender: scene,
