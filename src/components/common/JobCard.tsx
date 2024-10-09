@@ -6,19 +6,32 @@ import Typography from "@mui/material/Typography"
 import DotDivider from "components/common/DotDivider"
 import IconLocation from "assets/icons/location.svg"
 import IconJobType from "assets/icons/job-type.svg"
+import { JOB_TYPE, JOB_TYPE_NAME } from "constants/JOB"
 
 interface IProps {
+  jobTitle: string
+  organizationName: string
+  organizationLogo: string
+  city: string
+  country: string
+  jobType: JOB_TYPE
   onClickTitle?: () => void
 }
 
-const JobCard: React.FC<IProps> = ({ onClickTitle }) => {
+const JobCard: React.FC<IProps> = ({
+  jobTitle,
+  organizationName,
+  organizationLogo,
+  city,
+  country,
+  jobType,
+  onClickTitle,
+}) => {
   return (
     <Stack flexDirection="row" sx={{ alignItems: "center", gap: "27px" }}>
-      <Avatar
-        src="https://danviet.mediacdn.vn/2020/10/23/509-16034584963211832639631.jpg"
-        alt="Duy"
-        sx={{ width: 60, height: 60 }}
-      />
+      <Avatar src={organizationLogo} alt={jobTitle} sx={{ width: 60, height: 60 }}>
+        {organizationName?.charAt(0).toUpperCase()}
+      </Avatar>
       <Stack gap="8px">
         <Stack flexDirection="row" gap="8px">
           <Typography sx={{ fontWeight: 600 }}>
@@ -27,10 +40,10 @@ const JobCard: React.FC<IProps> = ({ onClickTitle }) => {
               sx={{ fontSize: "20px", cursor: onClickTitle && "pointer" }}
               onClick={onClickTitle}
             >
-              Product Lead
+              {jobTitle}
             </Box>
             <Box component="span" sx={{ color: "text.secondary" }}>
-              , Rogo
+              , {organizationName}
             </Box>
           </Typography>
           {/* <Chip
@@ -48,14 +61,21 @@ const JobCard: React.FC<IProps> = ({ onClickTitle }) => {
           flexDirection="row"
           sx={{ alignItems: "center", gap: "10px", color: "text.secondary" }}
         >
-          <Stack flexDirection="row" sx={{ alignItems: "center", gap: "6px" }}>
-            <img src={IconLocation} alt="location" width="20px" height="20px" />
-            <Box component="span">New York, USA</Box>
-          </Stack>
-          <DotDivider />
+          {(city || country) && (
+            <>
+              <Stack flexDirection="row" sx={{ alignItems: "center", gap: "6px" }}>
+                <img src={IconLocation} alt="location" width="20px" height="20px" />
+                <Box component="span">
+                  {city}
+                  {city && city.endsWith(",") && ","} {country}
+                </Box>
+              </Stack>
+              <DotDivider />
+            </>
+          )}
           <Stack flexDirection="row" sx={{ alignItems: "center", gap: "6px" }}>
             <img src={IconJobType} alt="job type" width="20px" height="20px" />
-            <Box component="span">Full-time</Box>
+            <Box component="span">{JOB_TYPE_NAME[jobType]}</Box>
           </Stack>
         </Stack>
       </Stack>

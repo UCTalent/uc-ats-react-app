@@ -69,10 +69,9 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
 
         <Stack flexDirection="row" gap="8px">
           {TAB_MENU.map((item, index) => (
-            <Tooltip title={index !== 0 && "Coming soon"}>
+            <Tooltip key={item} title={index !== 0 && "Coming soon"}>
               <Box>
                 <Button
-                  key={item}
                   variant="text"
                   color="secondary"
                   sx={{
