@@ -3,23 +3,11 @@ import Box from "@mui/material/Box"
 import TheJobsList from "components/sections/home/TheJobsList"
 import TopBarWithTitle from "components/sections/home/TopBarWithTitle"
 import TabsFilter from "components/subsections/home/TabsFilter"
-import type { TheHomePageQuery as TheHomePageQueryType } from "./__generated__/TheHomePageQuery.graphql"
-
-import { useLazyLoadQuery, graphql } from "react-relay"
-
-const TheHomePageQuery = graphql`
-  query TheHomePageQuery {
-    jobs {
-      createdAt
-      experienceLevel
-      id
-    }
-  }
-`
+import useJobsQuery from "hooks/queries/useJobsQuery"
+// import type { TheHomePageQuery as TheHomePageQueryType } from "./__generated__/TheHomePageQuery.graphql"
 
 const TheHomePage = () => {
-  const data = useLazyLoadQuery<TheHomePageQueryType>(TheHomePageQuery, {})
-  console.log("data:", data)
+  const { data } = useJobsQuery()
 
   return (
     <Stack sx={{ height: "100%", overflow: "hidden" }}>
@@ -36,7 +24,7 @@ const TheHomePage = () => {
         <TabsFilter />
       </Stack>
       <Stack sx={{ flexGrow: 1, overflow: "auto" }}>
-        <TheJobsList />
+        <TheJobsList data={data} />
         <Box
           sx={{
             minHeight: "40px",
