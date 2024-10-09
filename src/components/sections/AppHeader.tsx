@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from "react"
 import { Link } from "react-router-dom"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
@@ -13,6 +14,8 @@ import IconBell from "assets/icons/bell.svg"
 import { APP_HEADER_HEIGHT, APP_HEADER_LOGO_WIDTH } from "constants/STYLE"
 // import { MODAL_ID } from "constants/MODAL_ID"
 import { Tooltip, type SxProps } from "@mui/material"
+import MenuBasic, { IMenuItem } from "components/common/menus/MenuBasic"
+import useConfirmAtom from "hooks/atoms/useConfirmAtom"
 
 interface IProps {
   sx?: SxProps
@@ -22,7 +25,29 @@ const TAB_MENU = ["Home", "Jobs", "Talents", "Challenges"]
 
 const AppHeader: React.FC<IProps> = ({ sx }) => {
   // const { replaceModal } = useModalAtom()
-  const { currentUser } = useCurrentUserAtom()
+  const { currentUser, setLogoutUser } = useCurrentUserAtom()
+  const { configConfirm } = useConfirmAtom()
+
+  const logout = useCallback(() => {
+    configConfirm({
+      title: "Logout",
+      content: "Do you want to logout?",
+      onConfirm: setLogoutUser,
+      isActive: true,
+    })
+  }, [configConfirm, setLogoutUser])
+
+  const userMenu: IMenuItem[] = useMemo(
+    () => [
+      {
+        id: "logout",
+        title: "Logout",
+        onClick: logout,
+      },
+    ],
+    [logout]
+  )
+
   return (
     <Box
       sx={{
@@ -43,15 +68,19 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
         </Link>
 
         <Stack flexDirection="row" gap="8px">
-          {TAB_MENU.map((item) => (
-            <Tooltip title="Coming soon">
+          {TAB_MENU.map((item, index) => (
+            <Tooltip title={index !== 0 && "Coming soon"}>
               <Box>
                 <Button
                   key={item}
                   variant="text"
                   color="secondary"
-                  sx={{ fontSize: "16px", textTransform: "none" }}
-                  disabled
+                  sx={{
+                    fontSize: "16px",
+                    textTransform: "none",
+                    "&:hover": { bgcolor: "transparent" },
+                  }}
+                  disabled={index !== 0}
                 >
                   {item}
                 </Button>
@@ -71,11 +100,13 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
               orientation="vertical"
               sx={{ height: "16px", marginRight: "20px", marginLeft: "4px" }}
             />
-            <UserAvatarWithChevron
-              name={currentUser.name}
-              email={currentUser.email}
-              sx={{ cursor: "pointer" }}
-            />
+            <MenuBasic menu={userMenu}>
+              <UserAvatarWithChevron
+                name={currentUser.name}
+                email={currentUser.email}
+                sx={{ cursor: "pointer" }}
+              />
+            </MenuBasic>
           </Stack>
         )}
       </Stack>

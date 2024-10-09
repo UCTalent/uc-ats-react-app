@@ -47,7 +47,7 @@ const PopConfirm = () => {
       >
         <Typography sx={{ fontSize: "20px", fontWeight: 700, mb: "8px" }}>{title}</Typography>
         {content && (
-          <Stack flexDirection="row" sx={{ textAlign: "center", fontSize: "14px" }}>
+          <Stack flexDirection="row" sx={{ textAlign: "center" }}>
             {content}
           </Stack>
         )}
