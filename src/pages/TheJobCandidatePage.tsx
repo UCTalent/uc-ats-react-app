@@ -6,6 +6,7 @@ import DndDraggable from "components/common/dnd/DndDraggable"
 import CandidateStageColumn from "components/sections/job-detail/CandidateStageColumn"
 import CandidateStageColumnCard from "components/subsections/job-detail/CandidateStageColumnCard"
 import DndTriggerScrollContainers from "components/subsections/job-detail/DndTriggerScrollContainers"
+import useJobCandidatesQuery from "hooks/queries/useJobCandidatesQuery"
 import useDndKanbanBoard from "hooks/useDndKanbanBoard"
 import { CANDIDATE_PROCESS } from "utils/mockDndScene"
 import { MOCK_DND_SCENE_V2 } from "utils/mockDndSceneV2"
@@ -16,6 +17,9 @@ const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
+  const { data } = useJobCandidatesQuery(jobId)
+  console.log(data)
+
   const dndBoardRef = useRef<HTMLDivElement | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
 

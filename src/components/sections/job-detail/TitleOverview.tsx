@@ -12,36 +12,46 @@ import IconJobType from "assets/icons/job-type.svg"
 import IconStar from "assets/icons/star.svg"
 import IconSalary from "assets/icons/salary.svg"
 import { SxProps } from "@mui/material"
+import { IJobOverviewState } from "types/store/job-overview"
+import { JOB_TYPE_NAME } from "constants/JOB"
 
 interface IProps {
+  jobOverview: IJobOverviewState
   sx?: SxProps
 }
 
-const TitleOverview: React.FC<IProps> = ({ sx }) => {
+const TitleOverview: React.FC<IProps> = ({ jobOverview, sx }) => {
   const navigate = useNavigate()
 
   const horizontalOverview = useMemo(() => {
     const overview = [
-      { id: "location", icon: IconLocation, text: "North Las Vegas, USA" },
-      { id: "jobType", icon: IconJobType, text: "Full time" },
-      { id: "experience", icon: IconStar, text: "4-6 yrs" },
-      { id: "salary", icon: IconSalary, text: "$100k-$150k/yr" },
+      { id: "location", icon: IconLocation, text: jobOverview?.place },
+      {
+        id: "jobType",
+        icon: IconJobType,
+        text: jobOverview?.jobType ? JOB_TYPE_NAME[jobOverview?.jobType] : "",
+      },
+      { id: "experience", icon: IconStar, text: `${jobOverview?.exp} yrs` },
+      { id: "salary", icon: IconSalary, text: jobOverview?.salary },
     ]
     return (
       <Stack flexDirection="row" alignItems="center" gap="10px">
-        {overview.map((item, index) => (
-          <Fragment key={item.id}>
-            <Stack flexDirection="row" alignItems="center" gap="3px">
-              <IconSVG src={item.icon} width="20px" height="20px" />
-              <Typography variant="body2">{item.text}</Typography>
-            </Stack>
-            {index !== overview.length - 1 && <DotDivider />}
-          </Fragment>
-        ))}
+        {overview.map(
+          (item, index) =>
+            item.text && (
+              <Fragment key={item.id}>
+                <Stack flexDirection="row" alignItems="center" gap="3px">
+                  <IconSVG src={item.icon} width="20px" height="20px" />
+                  <Typography variant="body2">{item.text}</Typography>
+                </Stack>
+                {index !== overview.length - 1 && <DotDivider />}
+              </Fragment>
+            )
+        )}
         <RemoteTag />
       </Stack>
     )
-  }, [])
+  }, [jobOverview])
 
   return (
     <Stack flexDirection="row" sx={{ minHeight: "84px", alignItems: "center", gap: "24px", ...sx }}>
@@ -59,7 +69,9 @@ const TitleOverview: React.FC<IProps> = ({ sx }) => {
         <IconSVG src={IconBackArrow} />
       </IconButton>
       <Stack>
-        <Typography sx={{ fontWeight: 600, fontSize: "34px", mb: "4px" }}>Product Lead</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: "34px", mb: "4px" }}>
+          {jobOverview?.title}
+        </Typography>
         {horizontalOverview}
       </Stack>
     </Stack>
