@@ -2,8 +2,8 @@ import { useLazyLoadQuery, graphql } from "react-relay"
 import { useJobsQuery as useJobsQueryType } from "./__generated__/useJobsQuery.graphql"
 
 const jobsQuery = graphql`
-  query useJobsQuery {
-    jobs(perPage: 30) {
+  query useJobsQuery($page: Int!, $perPage: Int!) {
+    jobs(perPage: $perPage, page: $page) {
       about
       createdAt
       experienceLevel
@@ -31,8 +31,12 @@ const jobsQuery = graphql`
   }
 `
 
-const useJobsQuery = () => {
-  const data = useLazyLoadQuery<useJobsQueryType>(jobsQuery, {})
+const useJobsQuery = (page: number = 1, perPage: number = 10) => {
+  const data = useLazyLoadQuery<useJobsQueryType>(jobsQuery, {
+    page,
+    perPage,
+  })
+
   return { data }
 }
 

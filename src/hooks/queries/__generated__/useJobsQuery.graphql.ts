@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5f63fdb5e189fcd360013827bfd32205>>
+ * @generated SignedSource<<8a586ccc406b67340a2bc4fc77c7a8b7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,10 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
-export type useJobsQuery$variables = Record<PropertyKey, never>;
+export type useJobsQuery$variables = {
+  page: number;
+  perPage: number;
+};
 export type useJobsQuery$data = {
   readonly jobs: ReadonlyArray<{
     readonly about: string | null | undefined;
@@ -43,28 +46,45 @@ export type useJobsQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "page"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "perPage"
+  }
+],
+v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v1 = {
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v2 = [
+v3 = [
   {
     "alias": null,
     "args": [
       {
-        "kind": "Literal",
+        "kind": "Variable",
+        "name": "page",
+        "variableName": "page"
+      },
+      {
+        "kind": "Variable",
         "name": "perPage",
-        "value": 30
+        "variableName": "perPage"
       }
     ],
     "concreteType": "Job",
@@ -93,7 +113,7 @@ v2 = [
         "name": "experienceLevel",
         "storageKey": null
       },
-      (v0/*: any*/),
+      (v1/*: any*/),
       {
         "alias": null,
         "args": null,
@@ -165,7 +185,7 @@ v2 = [
         "name": "organization",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
+          (v1/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -173,7 +193,7 @@ v2 = [
             "name": "logoUrl",
             "storageKey": null
           },
-          (v1/*: any*/)
+          (v2/*: any*/)
         ],
         "storageKey": null
       },
@@ -192,43 +212,43 @@ v2 = [
             "name": "codeIso3",
             "storageKey": null
           },
-          (v0/*: any*/),
-          (v1/*: any*/)
+          (v1/*: any*/),
+          (v2/*: any*/)
         ],
         "storageKey": null
       }
     ],
-    "storageKey": "jobs(perPage:30)"
+    "storageKey": null
   }
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "useJobsQuery",
-    "selections": (v2/*: any*/),
+    "selections": (v3/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "useJobsQuery",
-    "selections": (v2/*: any*/)
+    "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "99eeeb61a47ef1888f1a7e46537ced10",
+    "cacheID": "acee4e0c02cbaefeebc0413ba5014ae4",
     "id": null,
     "metadata": {},
     "name": "useJobsQuery",
     "operationKind": "query",
-    "text": "query useJobsQuery {\n  jobs(perPage: 30) {\n    about\n    createdAt\n    experienceLevel\n    id\n    jobType\n    locationType\n    locationValue\n    managementLevel\n    minimumQualifications\n    preferredRequirement\n    responsibilities\n    title\n    updatedAt\n    organization {\n      id\n      logoUrl\n      name\n    }\n    country {\n      codeIso3\n      id\n      name\n    }\n  }\n}\n"
+    "text": "query useJobsQuery(\n  $page: Int!\n  $perPage: Int!\n) {\n  jobs(perPage: $perPage, page: $page) {\n    about\n    createdAt\n    experienceLevel\n    id\n    jobType\n    locationType\n    locationValue\n    managementLevel\n    minimumQualifications\n    preferredRequirement\n    responsibilities\n    title\n    updatedAt\n    organization {\n      id\n      logoUrl\n      name\n    }\n    country {\n      codeIso3\n      id\n      name\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ad62b7ee6f4cb12efc69ea252539b92a";
+(node as any).hash = "80e7db1d7a103a8c9b0cb17be38d3ddb";
 
 export default node;
