@@ -1,13 +1,13 @@
+"""
+Requires that exactly one field must be supplied and that field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
 """Exposes a URL that specifies the behavior of this scalar."""
 directive @specifiedBy(
   """The URL that specifies the behavior of this scalar."""
   url: String!
 ) on SCALAR
-
-"""
-Indicates exactly one field must be supplied and this field must not be `null`.
-"""
-directive @oneOf on INPUT_OBJECT
 
 type City {
   capital: String
@@ -42,13 +42,19 @@ scalar ISO8601DateTime
 
 type Job {
   about: String
+  appliedNum: Int
+  benefits: String
   city: City
   country: Country
   createdAt: ISO8601DateTime!
+  droppedNum: Int
   experienceLevel: String
   globalRegion: Region
+  hiredNum: Int
   id: ID!
+  jobApplies: [JobApply!]
   jobType: String
+  location: String
   locationType: String
   locationValue: String
   managementLevel: String
@@ -57,10 +63,31 @@ type Job {
   preferredRequirement: String!
   region: Region
   responsibilities: String!
+  salary: JSON
   speciality: Speciality
+  status: String
+  talents: [Talent!]
   title: String!
   updatedAt: ISO8601DateTime!
+  viewedNum: Int
 }
+
+type JobApply {
+  createdAt: ISO8601DateTime!
+  email: String
+  headline: String
+  id: ID!
+  jobId: ID!
+  organization: Organization
+  phoneNumber: String
+  status: String
+  talent: Talent
+  updatedAt: ISO8601DateTime!
+  uploadedResume: UploadedResume
+}
+
+"""Represents untyped JSON"""
+scalar JSON
 
 type Organization {
   about: String
@@ -81,10 +108,22 @@ type Organization {
 
 type Query {
   """Get all jobs"""
-  jobs(page: Int, perPage: Int): [Job!]!
+  adminJobs(status: String, page: Int, perPage: Int): [Job!]!
+
+  """Get a job detail"""
+  job(id: String): Job!
+
+  """Get all jobs"""
+  jobs(creatorId: ID, status: String, page: Int, perPage: Int): [Job!]!
 
   """Get all organizations"""
   organizations(page: Int, perPage: Int): [Organization!]!
+
+  """Get all talents"""
+  talents(page: Int, perPage: Int): [Talent!]!
+
+  """Get all users"""
+  users(page: Int, perPage: Int): [User!]!
 }
 
 type Region {
@@ -104,5 +143,41 @@ type Speciality {
   id: ID!
   role: Role
   speciality: String
+}
+
+type Talent {
+  about: String
+  createdAt: ISO8601DateTime!
+  employmentStatus: String
+  englishProficiency: String
+  experienceLevel: Int
+  headline: String
+  id: ID!
+  managementLevel: Int
+  status: String
+  step: Int
+  updatedAt: ISO8601DateTime!
+  user: User
+}
+
+type UploadedResume {
+  createdAt: ISO8601DateTime!
+  id: ID!
+  resumeUrl: String
+  status: String
+  talent: Talent
+  updatedAt: ISO8601DateTime!
+}
+
+type User {
+  avatar: String
+  createdAt: ISO8601DateTime!
+  email: String!
+  id: String!
+  name: String
+  phoneNumber: String
+  phoneNumberCountry: String
+  refCode: String
+  updatedAt: ISO8601DateTime!
 }
 
