@@ -9,6 +9,11 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+type BusinessQuery {
+  """Get all business jobs"""
+  jobs(status: String, page: Int, perPage: Int): JobPagination!
+}
+
 type City {
   capital: String
   capitalOf: Country
@@ -64,6 +69,7 @@ type Job {
   region: Region
   responsibilities: String!
   salary: JSON
+  skills: [Skill!]
   speciality: Speciality
   status: String
   talents: [Talent!]
@@ -84,6 +90,15 @@ type JobApply {
   talent: Talent
   updatedAt: ISO8601DateTime!
   uploadedResume: UploadedResume
+}
+
+type JobPagination {
+  currentPage: Int!
+  firstPage: Boolean!
+  jobs: [Job!]!
+  lastPage: Boolean!
+  perPage: Int!
+  totalPages: Int!
 }
 
 """Represents untyped JSON"""
@@ -107,14 +122,14 @@ type Organization {
 }
 
 type Query {
-  """Get all jobs"""
-  adminJobs(status: String, page: Int, perPage: Int): [Job!]!
+  """Business related queries"""
+  business: BusinessQuery!
 
   """Get a job detail"""
   job(id: String): Job!
 
   """Get all jobs"""
-  jobs(creatorId: ID, status: String, page: Int, perPage: Int): [Job!]!
+  jobs(creatorId: ID, status: String, page: Int, perPage: Int): JobPagination!
 
   """Get all organizations"""
   organizations(page: Int, perPage: Int): [Organization!]!
@@ -139,6 +154,17 @@ type Role {
   name: String
 }
 
+type Skill {
+  createdAt: ISO8601DateTime!
+  id: ID!
+  mainRole: String
+  name: String
+  role: Role
+  roleId: ID!
+  skillType: String
+  updatedAt: ISO8601DateTime!
+}
+
 type Speciality {
   id: ID!
   role: Role
@@ -154,6 +180,7 @@ type Talent {
   headline: String
   id: ID!
   managementLevel: Int
+  skills: [Skill!]
   status: String
   step: Int
   updatedAt: ISO8601DateTime!

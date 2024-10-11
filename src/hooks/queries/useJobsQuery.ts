@@ -3,29 +3,36 @@ import { useJobsQuery as useJobsQueryType } from "./__generated__/useJobsQuery.g
 
 const jobsQuery = graphql`
   query useJobsQuery($page: Int!, $perPage: Int!) {
-    jobs(perPage: $perPage, page: $page) {
-      about
-      createdAt
-      experienceLevel
-      id
-      jobType
-      locationType
-      locationValue
-      managementLevel
-      minimumQualifications
-      preferredRequirement
-      responsibilities
-      title
-      updatedAt
-      organization {
-        id
-        logoUrl
-        name
-      }
-      country {
-        codeIso3
-        id
-        name
+    business {
+      jobs(page: $page, perPage: $perPage) {
+        jobs {
+          about
+          appliedNum
+          benefits
+          createdAt
+          droppedNum
+          experienceLevel
+          hiredNum
+          id
+          jobType
+          location
+          locationType
+          locationValue
+          managementLevel
+          minimumQualifications
+          preferredRequirement
+          responsibilities
+          salary
+          status
+          title
+          updatedAt
+          viewedNum
+          organization {
+            name
+            logoUrl
+          }
+        }
+        totalPages
       }
     }
   }
