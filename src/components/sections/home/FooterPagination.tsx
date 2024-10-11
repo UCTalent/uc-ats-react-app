@@ -7,11 +7,12 @@ import IconSVG from "components/common/IconSVG"
 
 interface IProps {
   page: number
+  totalPage: number
   onPrevious: () => void
   onNext: () => void
 }
 
-const FooterPagination: FC<IProps> = ({ page, onPrevious, onNext }) => {
+const FooterPagination: FC<IProps> = ({ page, totalPage, onPrevious, onNext }) => {
   return (
     <Box
       sx={{
@@ -28,7 +29,11 @@ const FooterPagination: FC<IProps> = ({ page, onPrevious, onNext }) => {
           <IconSVG src={IconCaretDown} alt="Previous" style={{ transform: "rotate(90deg)" }} />
         </IconButton>
         Page {page}
-        <IconButton onClick={onNext}>
+        <IconButton
+          onClick={onNext}
+          disabled={page === totalPage}
+          sx={{ opacity: page === totalPage && 0.2 }}
+        >
           <IconSVG src={IconCaretDown} alt="Previous" style={{ transform: "rotate(-90deg)" }} />
         </IconButton>
       </Stack>

@@ -22,7 +22,12 @@ const TheHomePage = () => {
       </Stack>
       <Stack sx={{ flexGrow: 1, overflow: "auto" }}>
         <TheJobsList data={data} />
-        <FooterPagination page={page} onPrevious={onPreviousPage} onNext={onNextPage} />
+        <FooterPagination
+          page={page}
+          totalPage={data.business.jobs.totalPages}
+          onPrevious={onPreviousPage}
+          onNext={onNextPage}
+        />
       </Stack>
     </Stack>
   )
