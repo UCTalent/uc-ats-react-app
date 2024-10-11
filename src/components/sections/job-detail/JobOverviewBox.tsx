@@ -1,16 +1,21 @@
-import { useMemo } from "react"
+import { FC, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import { JobInformationQueryType } from "hooks/queries/useJobInformationQuery"
 
-const JobOverviewBox = () => {
+interface IProps {
+  data: JobInformationQueryType["business"]["job"]
+}
+
+const JobOverviewBox: FC<IProps> = ({ data }) => {
   const dataOverview = useMemo(
     () => [
-      { title: "Specialty", value: "Product Manager" },
-      { title: "Role", value: "Product" },
-      { title: "Level of Experience", value: "3-5 years" },
-      { title: "Management Level", value: "6-10" },
+      { title: "Specialty", value: data.speciality.speciality },
+      { title: "Role", value: data.speciality.role.name },
+      { title: "Level of Experience", value: data.experienceLevel },
+      { title: "Management Level", value: data.managementLevel },
     ],
-    []
+    [data]
   )
 
   return (

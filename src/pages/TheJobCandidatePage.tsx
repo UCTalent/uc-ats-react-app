@@ -1,27 +1,37 @@
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { Outlet, useParams } from "react-router-dom"
+import cloneDeep from "lodash.clonedeep"
 import Stack from "@mui/material/Stack"
 import DndContainer from "components/common/dnd/DndContainer"
 import DndDraggable from "components/common/dnd/DndDraggable"
 import CandidateStageColumn from "components/sections/job-detail/CandidateStageColumn"
 import CandidateStageColumnCard from "components/subsections/job-detail/CandidateStageColumnCard"
 import DndTriggerScrollContainers from "components/subsections/job-detail/DndTriggerScrollContainers"
-import useJobCandidatesQuery from "hooks/queries/useJobCandidatesQuery"
+import useJobCandidatesQuery, { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
 import useDndKanbanBoard from "hooks/useDndKanbanBoard"
 import { CANDIDATE_PROCESS } from "utils/mockDndScene"
-import { MOCK_DND_SCENE_V2 } from "utils/mockDndSceneV2"
 import { bindClass } from "utils/bindClass"
 import styles from "assets/css/dnd.module.css"
+import { CANDIDATE_STATUS_MAPPING, dndSceneInitial } from "constants/JOB"
 
 const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
   const { data } = useJobCandidatesQuery(jobId)
-  console.log(data)
 
   const dndBoardRef = useRef<HTMLDivElement | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
+
+  const dndScene = useMemo(
+    () =>
+      data?.business.job.jobApplies.reduce((acc, candidate) => {
+        const groupKey = CANDIDATE_STATUS_MAPPING[candidate.status]
+        acc[groupKey].push({ id: candidate.talent.id, data: candidate })
+        return acc
+      }, cloneDeep(dndSceneInitial)),
+    [data?.business.job.jobApplies]
+  )
 
   const {
     dataToRender,
@@ -31,7 +41,7 @@ const TheJobCandidatePage = () => {
     onCardDragEnd,
     getCardPayload,
     payload,
-  } = useDndKanbanBoard<object>(MOCK_DND_SCENE_V2)
+  } = useDndKanbanBoard<JobCandidatesQueryType["business"]["job"]["jobApplies"][0]>(dndScene)
 
   return (
     <>
@@ -67,7 +77,7 @@ const TheJobCandidatePage = () => {
                 >
                   {dataToRender[columnId].map((card) => (
                     <DndDraggable key={card.id} sx={{ py: "8px" }}>
-                      <CandidateStageColumnCard candidate={{ id: card.id }} jobId={jobId} />
+                      <CandidateStageColumnCard candidate={card.data} jobId={jobId} />
                     </DndDraggable>
                   ))}
                 </DndContainer>

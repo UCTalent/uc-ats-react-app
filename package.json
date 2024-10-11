@@ -18,6 +18,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/material": "^5.16.7",
     "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
     "deep-equal": "^2.2.3",
     "graphql": "^16.9.0",
     "lodash.clonedeep": "^4.5.0",

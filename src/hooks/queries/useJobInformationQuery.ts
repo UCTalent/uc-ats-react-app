@@ -1,38 +1,25 @@
 import { useEffect } from "react"
 import { useLazyLoadQuery, graphql } from "react-relay"
-import { useJobCandidatesQuery as useJobCandidatesQueryType } from "./__generated__/useJobCandidatesQuery.graphql"
+import { useJobInformationQuery as useJobInformationQueryType } from "./__generated__/useJobInformationQuery.graphql"
 import { useRecoilState } from "recoil"
 import { jobOverviewAtom } from "store/jobOverviewAtom"
 import { IJobOverviewState } from "types/store/job-overview"
 
-const jobCandidatesQuery = graphql`
-  query useJobCandidatesQuery($id: String!) {
+const jobInformationQuery = graphql`
+  query useJobInformationQuery($id: String!) {
     business {
       job(id: $id) {
         about
         benefits
         experienceLevel
         id
-        jobApplies {
-          status
-          talent {
-            id
-            user {
-              avatar
-              email
-              id
-              name
-            }
-            status
-          }
-          createdAt
-        }
         jobType
         location
         locationType
         managementLevel
         minimumQualifications
         responsibilities
+        preferredRequirement
         salary
         speciality {
           role {
@@ -42,13 +29,16 @@ const jobCandidatesQuery = graphql`
         }
         title
         locationValue
+        skills {
+          name
+        }
       }
     }
   }
 `
 
-const useJobCandidatesQuery = (jobId: string) => {
-  const data = useLazyLoadQuery<useJobCandidatesQueryType>(jobCandidatesQuery, { id: jobId })
+const useJobInformationQuery = (jobId: string) => {
+  const data = useLazyLoadQuery<useJobInformationQueryType>(jobInformationQuery, { id: jobId })
   const [jobOverview, setJobOverview] = useRecoilState(jobOverviewAtom)
 
   useEffect(() => {
@@ -75,7 +65,7 @@ const useJobCandidatesQuery = (jobId: string) => {
   return { data }
 }
 
-type JobCandidatesQueryType = useJobCandidatesQueryType["response"]
+type JobInformationQueryType = useJobInformationQueryType["response"]
 
-export { JobCandidatesQueryType }
-export default useJobCandidatesQuery
+export { JobInformationQueryType }
+export default useJobInformationQuery
