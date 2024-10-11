@@ -1,16 +1,18 @@
 import { memo } from "react"
 import { useNavigate } from "react-router-dom"
+import dayjs from "dayjs"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import Chip from "@mui/material/Chip"
+// import Chip from "@mui/material/Chip"
 import IconSVG from "components/common/IconSVG"
 import UserAvatar from "components/common/user-avatar/UserAvatar"
 import IconThunder from "assets/icons/thunder.svg"
+import { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
 import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 interface TypeProps {
-  candidate: { id: string }
+  candidate: JobCandidatesQueryType["business"]["job"]["jobApplies"][0]
   jobId: string
 }
 
@@ -31,8 +33,13 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => 
       }}
     >
       <Stack flexDirection="row" justifyContent="space-between" gap="4px">
-        <UserAvatar onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.id))} />
-        <Chip
+        <UserAvatar
+          name={candidate.talent.user.name}
+          email={candidate.talent.user.email}
+          avatar={candidate.talent.user.avatar}
+          onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.talent.user.id))}
+        />
+        {/* <Chip
           label="100%"
           size="small"
           sx={{
@@ -41,12 +48,14 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => 
             color: "#14B8A6",
             bgcolor: "rgba(20, 184, 166, 0.2)",
           }}
-        />
+        /> */}
       </Stack>
       <Stack flexDirection="row" justifyContent="end">
         <Stack flexDirection="row" alignItems="center" gap="4px">
           <IconSVG src={IconThunder} alt="location" width="14px" height="14px" />
-          <Typography sx={{ fontSize: "14px" }}>2min</Typography>
+          <Typography sx={{ fontSize: "14px" }}>
+            {dayjs(candidate.createdAt).format("mm:hh, MMM D, YYYY")}
+          </Typography>
         </Stack>
       </Stack>
     </Stack>

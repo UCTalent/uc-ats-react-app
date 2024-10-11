@@ -7,33 +7,41 @@ import { IJobOverviewState } from "types/store/job-overview"
 
 const jobCandidatesQuery = graphql`
   query useJobCandidatesQuery($id: String!) {
-    job(id: $id) {
-      about
-      appliedNum
-      benefits
-      createdAt
-      droppedNum
-      experienceLevel
-      hiredNum
-      id
-      jobType
-      location
-      locationType
-      locationValue
-      managementLevel
-      minimumQualifications
-      preferredRequirement
-      responsibilities
-      salary
-      status
-      title
-      updatedAt
-      viewedNum
-      speciality {
-        speciality
-        role {
-          name
+    business {
+      job(id: $id) {
+        about
+        benefits
+        experienceLevel
+        id
+        jobApplies {
+          status
+          talent {
+            id
+            user {
+              avatar
+              email
+              id
+              name
+            }
+            status
+          }
+          createdAt
         }
+        jobType
+        location
+        locationType
+        managementLevel
+        minimumQualifications
+        responsibilities
+        salary
+        speciality {
+          role {
+            name
+          }
+          speciality
+        }
+        title
+        locationValue
       }
     }
   }
@@ -45,13 +53,14 @@ const useJobCandidatesQuery = (jobId: string) => {
 
   useEffect(() => {
     if (!data) return
+    const job = data.business.job
     const newJobOverview: IJobOverviewState = {
-      id: data.job.id,
-      title: data.job.title,
-      place: data.job.location,
-      jobType: data.job.jobType,
-      exp: data.job.experienceLevel,
-      salary: data.job.salary.text,
+      id: job.id,
+      title: job.title,
+      place: job.location,
+      jobType: job.jobType,
+      exp: job.experienceLevel,
+      salary: job.salary.text,
       isRemote: true,
     }
     if (!jobOverview || (jobOverview && jobOverview.id !== newJobOverview.id)) {

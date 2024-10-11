@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<826470884783d64ea43ae5b732b6a4d3>>
+ * @generated SignedSource<<8eeb1cef55d2d697f6b849d1c1522154>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,34 +13,42 @@ export type useJobCandidatesQuery$variables = {
   id: string;
 };
 export type useJobCandidatesQuery$data = {
-  readonly job: {
-    readonly about: string | null | undefined;
-    readonly appliedNum: number | null | undefined;
-    readonly benefits: string | null | undefined;
-    readonly createdAt: any;
-    readonly droppedNum: number | null | undefined;
-    readonly experienceLevel: string | null | undefined;
-    readonly hiredNum: number | null | undefined;
-    readonly id: string;
-    readonly jobType: string | null | undefined;
-    readonly location: string | null | undefined;
-    readonly locationType: string | null | undefined;
-    readonly locationValue: string | null | undefined;
-    readonly managementLevel: string | null | undefined;
-    readonly minimumQualifications: string;
-    readonly preferredRequirement: string;
-    readonly responsibilities: string;
-    readonly salary: any | null | undefined;
-    readonly speciality: {
-      readonly role: {
-        readonly name: string | null | undefined;
+  readonly business: {
+    readonly job: {
+      readonly about: string | null | undefined;
+      readonly benefits: string | null | undefined;
+      readonly experienceLevel: string | null | undefined;
+      readonly id: string;
+      readonly jobApplies: ReadonlyArray<{
+        readonly createdAt: any;
+        readonly status: string | null | undefined;
+        readonly talent: {
+          readonly id: string;
+          readonly status: string | null | undefined;
+          readonly user: {
+            readonly avatar: string | null | undefined;
+            readonly email: string;
+            readonly id: string;
+            readonly name: string | null | undefined;
+          } | null | undefined;
+        } | null | undefined;
+      }> | null | undefined;
+      readonly jobType: string | null | undefined;
+      readonly location: string | null | undefined;
+      readonly locationType: string | null | undefined;
+      readonly locationValue: string | null | undefined;
+      readonly managementLevel: string | null | undefined;
+      readonly minimumQualifications: string;
+      readonly responsibilities: string;
+      readonly salary: any | null | undefined;
+      readonly speciality: {
+        readonly role: {
+          readonly name: string | null | undefined;
+        } | null | undefined;
+        readonly speciality: string | null | undefined;
       } | null | undefined;
-      readonly speciality: string | null | undefined;
-    } | null | undefined;
-    readonly status: string | null | undefined;
-    readonly title: string;
-    readonly updatedAt: any;
-    readonly viewedNum: number | null | undefined;
+      readonly title: string;
+    };
   };
 };
 export type useJobCandidatesQuery = {
@@ -74,49 +82,82 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "appliedNum",
+  "name": "benefits",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "benefits",
+  "name": "experienceLevel",
   "storageKey": null
 },
 v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "createdAt",
+  "name": "id",
   "storageKey": null
 },
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "droppedNum",
+  "name": "status",
   "storageKey": null
 },
 v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "experienceLevel",
+  "name": "name",
   "storageKey": null
 },
 v8 = {
   "alias": null,
   "args": null,
-  "kind": "ScalarField",
-  "name": "hiredNum",
+  "concreteType": "Talent",
+  "kind": "LinkedField",
+  "name": "talent",
+  "plural": false,
+  "selections": [
+    (v5/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "User",
+      "kind": "LinkedField",
+      "name": "user",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "avatar",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "email",
+          "storageKey": null
+        },
+        (v5/*: any*/),
+        (v7/*: any*/)
+      ],
+      "storageKey": null
+    },
+    (v6/*: any*/)
+  ],
   "storageKey": null
 },
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "createdAt",
   "storageKey": null
 },
 v10 = {
@@ -144,84 +185,49 @@ v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "locationValue",
+  "name": "managementLevel",
   "storageKey": null
 },
 v14 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "managementLevel",
+  "name": "minimumQualifications",
   "storageKey": null
 },
 v15 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "minimumQualifications",
+  "name": "responsibilities",
   "storageKey": null
 },
 v16 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "preferredRequirement",
+  "name": "salary",
   "storageKey": null
 },
 v17 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "responsibilities",
+  "name": "speciality",
   "storageKey": null
 },
 v18 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "salary",
+  "name": "title",
   "storageKey": null
 },
 v19 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "status",
-  "storageKey": null
-},
-v20 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v21 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "updatedAt",
-  "storageKey": null
-},
-v22 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "viewedNum",
-  "storageKey": null
-},
-v23 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "speciality",
-  "storageKey": null
-},
-v24 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
+  "name": "locationValue",
   "storageKey": null
 };
 return {
@@ -233,54 +239,71 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
-        "concreteType": "Job",
+        "args": null,
+        "concreteType": "BusinessQuery",
         "kind": "LinkedField",
-        "name": "job",
+        "name": "business",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/),
-          (v6/*: any*/),
-          (v7/*: any*/),
-          (v8/*: any*/),
-          (v9/*: any*/),
-          (v10/*: any*/),
-          (v11/*: any*/),
-          (v12/*: any*/),
-          (v13/*: any*/),
-          (v14/*: any*/),
-          (v15/*: any*/),
-          (v16/*: any*/),
-          (v17/*: any*/),
-          (v18/*: any*/),
-          (v19/*: any*/),
-          (v20/*: any*/),
-          (v21/*: any*/),
-          (v22/*: any*/),
           {
             "alias": null,
-            "args": null,
-            "concreteType": "Speciality",
+            "args": (v1/*: any*/),
+            "concreteType": "Job",
             "kind": "LinkedField",
-            "name": "speciality",
+            "name": "job",
             "plural": false,
             "selections": [
-              (v23/*: any*/),
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
+              (v5/*: any*/),
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "Role",
+                "concreteType": "JobApply",
                 "kind": "LinkedField",
-                "name": "role",
-                "plural": false,
+                "name": "jobApplies",
+                "plural": true,
                 "selections": [
-                  (v24/*: any*/)
+                  (v6/*: any*/),
+                  (v8/*: any*/),
+                  (v9/*: any*/)
                 ],
                 "storageKey": null
-              }
+              },
+              (v10/*: any*/),
+              (v11/*: any*/),
+              (v12/*: any*/),
+              (v13/*: any*/),
+              (v14/*: any*/),
+              (v15/*: any*/),
+              (v16/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Speciality",
+                "kind": "LinkedField",
+                "name": "speciality",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Role",
+                    "kind": "LinkedField",
+                    "name": "role",
+                    "plural": false,
+                    "selections": [
+                      (v7/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
+                  (v17/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v18/*: any*/),
+              (v19/*: any*/)
             ],
             "storageKey": null
           }
@@ -299,56 +322,74 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
-        "concreteType": "Job",
+        "args": null,
+        "concreteType": "BusinessQuery",
         "kind": "LinkedField",
-        "name": "job",
+        "name": "business",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/),
-          (v6/*: any*/),
-          (v7/*: any*/),
-          (v8/*: any*/),
-          (v9/*: any*/),
-          (v10/*: any*/),
-          (v11/*: any*/),
-          (v12/*: any*/),
-          (v13/*: any*/),
-          (v14/*: any*/),
-          (v15/*: any*/),
-          (v16/*: any*/),
-          (v17/*: any*/),
-          (v18/*: any*/),
-          (v19/*: any*/),
-          (v20/*: any*/),
-          (v21/*: any*/),
-          (v22/*: any*/),
           {
             "alias": null,
-            "args": null,
-            "concreteType": "Speciality",
+            "args": (v1/*: any*/),
+            "concreteType": "Job",
             "kind": "LinkedField",
-            "name": "speciality",
+            "name": "job",
             "plural": false,
             "selections": [
-              (v23/*: any*/),
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
+              (v5/*: any*/),
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "Role",
+                "concreteType": "JobApply",
                 "kind": "LinkedField",
-                "name": "role",
-                "plural": false,
+                "name": "jobApplies",
+                "plural": true,
                 "selections": [
-                  (v24/*: any*/),
-                  (v9/*: any*/)
+                  (v6/*: any*/),
+                  (v8/*: any*/),
+                  (v9/*: any*/),
+                  (v5/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v9/*: any*/)
+              (v10/*: any*/),
+              (v11/*: any*/),
+              (v12/*: any*/),
+              (v13/*: any*/),
+              (v14/*: any*/),
+              (v15/*: any*/),
+              (v16/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Speciality",
+                "kind": "LinkedField",
+                "name": "speciality",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Role",
+                    "kind": "LinkedField",
+                    "name": "role",
+                    "plural": false,
+                    "selections": [
+                      (v7/*: any*/),
+                      (v5/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
+                  (v17/*: any*/),
+                  (v5/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v18/*: any*/),
+              (v19/*: any*/)
             ],
             "storageKey": null
           }
@@ -358,16 +399,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "46178793d998b5a07404bb29b36e7725",
+    "cacheID": "282b80e7cbdf4a65bb5e044c123d459f",
     "id": null,
     "metadata": {},
     "name": "useJobCandidatesQuery",
     "operationKind": "query",
-    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  job(id: $id) {\n    about\n    appliedNum\n    benefits\n    createdAt\n    droppedNum\n    experienceLevel\n    hiredNum\n    id\n    jobType\n    location\n    locationType\n    locationValue\n    managementLevel\n    minimumQualifications\n    preferredRequirement\n    responsibilities\n    salary\n    status\n    title\n    updatedAt\n    viewedNum\n    speciality {\n      speciality\n      role {\n        name\n        id\n      }\n      id\n    }\n  }\n}\n"
+    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      about\n      benefits\n      experienceLevel\n      id\n      jobApplies {\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n        id\n      }\n      jobType\n      location\n      locationType\n      managementLevel\n      minimumQualifications\n      responsibilities\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      locationValue\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "e38a414ee4780e7096cb073a6c52b742";
+(node as any).hash = "5d9c6ef2ea316b0116023e5f273a0499";
 
 export default node;

@@ -10,8 +10,14 @@ directive @specifiedBy(
 ) on SCALAR
 
 type BusinessQuery {
+  """Get a job detail"""
+  job(id: String): Job!
+
   """Get all business jobs"""
   jobs(status: String, page: Int, perPage: Int): JobPagination!
+
+  """Get a talent detail"""
+  talent(id: String): Talent!
 }
 
 type City {
@@ -94,9 +100,9 @@ type JobApply {
 
 type JobPagination {
   currentPage: Int!
-  firstPage: Boolean!
+  isFirstPage: Boolean!
+  isLastPage: Boolean!
   jobs: [Job!]!
-  lastPage: Boolean!
   perPage: Int!
   totalPages: Int!
 }

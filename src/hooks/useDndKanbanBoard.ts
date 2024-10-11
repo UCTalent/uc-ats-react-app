@@ -15,6 +15,12 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
   const [activeColumnId, setActiveColumnId] = useState<string | null>(null)
   const { configConfirm } = useConfirmAtom()
 
+  useEffect(() => {
+    return () => {
+      setScene({})
+    }
+  }, [])
+
   const getCardPayload = useCallback(
     (columnId: string, index: number): { id: string; data: ICardData } => {
       return scene[columnId][index]
