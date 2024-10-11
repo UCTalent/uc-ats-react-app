@@ -1,7 +1,25 @@
+import { SxProps, Theme } from "@mui/material"
+
 export interface IMetaSEO {
   title: string
   description?: string
   lang?: string
+}
+
+export interface IconProps {
+  width?: string | number
+  height?: string | number
+  className?: string
+  color?: string
+  sx?: SxProps<Theme>
+  otherProps?: Record<string, string>
+}
+
+export interface OptionSelect {
+  value: string
+  label: string
+  additional?: unknown
+  id?: string
 }
 
 export interface IBaseOption {

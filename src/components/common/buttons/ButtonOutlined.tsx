@@ -23,7 +23,8 @@ const ButtonOutlined: React.FC<IProps> = ({
         px: "22px",
         borderRadius: "999px",
         color: finalColor,
-        border: `1px solid ${finalColor}`,
+        border: `1px solid`,
+        borderColor: finalColor,
         textTransform: "none",
         fontWeight: 600,
         "&:hover": {

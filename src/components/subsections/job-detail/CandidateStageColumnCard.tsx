@@ -46,6 +46,9 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
         bgcolor: "#FFFFFF",
         borderRadius: "8px",
       }}
+      onClick={() => {
+        console.log("click", candidate, jobId)
+      }}
     >
       <Stack flexDirection="row" justifyContent="space-between" gap="4px">
         <UserAvatar

@@ -16,6 +16,7 @@ import { APP_HEADER_HEIGHT, APP_HEADER_LOGO_WIDTH } from "constants/STYLE"
 import { Tooltip, type SxProps } from "@mui/material"
 import MenuBasic, { IMenuItem } from "components/common/menus/MenuBasic"
 import useConfirmAtom from "hooks/atoms/useConfirmAtom"
+import BaseWallet from "components/common/BaseWallet"
 
 interface IProps {
   sx?: SxProps
@@ -107,6 +108,9 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
                 sx={{ cursor: "pointer" }}
               />
             </MenuBasic>
+            <Box sx={{ ml: "16px" }}>
+              <BaseWallet />
+            </Box>
           </Stack>
         )}
       </Stack>
