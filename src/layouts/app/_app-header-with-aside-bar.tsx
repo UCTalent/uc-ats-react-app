@@ -12,10 +12,7 @@ import { APP_HEADER_HEIGHT } from "constants/STYLE"
 const AppHeaderWithAsideBarLayout = () => {
   const { pathname } = useLocation()
 
-  const isJobDetailPath = useMemo(() => {
-    const regex = /^\/jobs\/\d+\//
-    return regex.test(pathname)
-  }, [pathname])
+  const isHomePath = useMemo(() => pathname === "/", [pathname])
 
   return (
     <PrivateRoute>
@@ -31,7 +28,7 @@ const AppHeaderWithAsideBarLayout = () => {
               borderColor: "border.outlined",
             }}
           >
-            {isJobDetailPath ? <NavigateAsideBarCollapseExpand /> : <NavigateAsideBar />}
+            {isHomePath ? <NavigateAsideBar /> : <NavigateAsideBarCollapseExpand />}
             <Stack
               sx={{
                 flexGrow: 1,
