@@ -38,7 +38,7 @@ const TheJobCandidateSummaryPage = () => {
         </Stack>
       </Stack>
       {/* Language */}
-      <Stack
+      {/* <Stack
         flexDirection="row"
         sx={{ mt: "24px", pb: "24px", borderBottom: "1px solid", borderColor: "border.outlined" }}
       >
@@ -48,13 +48,13 @@ const TheJobCandidateSummaryPage = () => {
           Language
         </Typography>
         <Stack flexDirection="row" sx={{ gap: "6px", flexWrap: "wrap" }}>
-          {/* {TAGS.map((tag) => (
+          {TAGS.map((tag) => (
             <BasicTag key={tag.id} sx={{ fontWeight: 700 }}>
               {tag.title}
             </BasicTag>
-          ))} */}
+          ))}
         </Stack>
-      </Stack>
+      </Stack> */}
     </>
   )
 }

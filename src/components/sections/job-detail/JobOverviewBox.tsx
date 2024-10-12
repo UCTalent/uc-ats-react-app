@@ -2,6 +2,7 @@ import { FC, useMemo } from "react"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import { JobInformationQueryType } from "hooks/queries/useJobInformationQuery"
+import { EXPERIENCE_LEVELS_NAME, MANAGEMENT_LEVELS_NAME } from "constants/JOB"
 
 interface IProps {
   data: JobInformationQueryType["business"]["job"]
@@ -12,8 +13,8 @@ const JobOverviewBox: FC<IProps> = ({ data }) => {
     () => [
       { title: "Specialty", value: data.speciality.speciality },
       { title: "Role", value: data.speciality.role.name },
-      { title: "Level of Experience", value: data.experienceLevel },
-      { title: "Management Level", value: data.managementLevel },
+      { title: "Level of Experience", value: EXPERIENCE_LEVELS_NAME[data.experienceLevel] },
+      { title: "Management Level", value: MANAGEMENT_LEVELS_NAME[data.managementLevel] },
     ],
     [data]
   )
