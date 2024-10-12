@@ -26,18 +26,18 @@ const CandidateStageColumn: React.FC<TypeProps> = ({
   const parentElement = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (columnLength > 0) {
-      if (!parentElement.current) return
-      const dndContainer = parentElement.current.querySelector(
-        ".smooth-dnd-container.vertical"
-      ) as HTMLElement
-      if (!dndContainer) return
-      const containerHeight = Math.max(
-        columnLength * CANDIDATE_CARD_HEIGHT,
-        dndContainer.parentElement.offsetHeight
-      )
-      dndContainer.style.minHeight = `${containerHeight - 4 * 2}px`
-    }
+    // if (columnLength > 0) {
+    if (!parentElement.current) return
+    const dndContainer = parentElement.current.querySelector(
+      ".smooth-dnd-container.vertical"
+    ) as HTMLElement
+    if (!dndContainer) return
+    const containerHeight = Math.max(
+      columnLength * CANDIDATE_CARD_HEIGHT,
+      dndContainer.parentElement.offsetHeight
+    )
+    dndContainer.style.minHeight = `${containerHeight - 4 * 2}px`
+    // }
   }, [columnLength, parentElement])
 
   return (

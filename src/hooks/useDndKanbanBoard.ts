@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import cloneDeep from "lodash.clonedeep"
 import { useCallback, useEffect, useState } from "react"
 import { DragStartParams, type DropResult } from "react-smooth-dnd"
@@ -5,7 +6,10 @@ import useConfirmAtom from "./atoms/useConfirmAtom"
 import { getChangeStatusWarningMessage } from "services/dnd/getChangeStatusWarningMessage"
 import type { IDndResult, IDndScene } from "types/dnd"
 
-const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
+const useDndKanbanBoard = <ICardData>(
+  initialScene: IDndScene<ICardData>,
+  handleDrop: (result: IDndResult, payload: ICardData) => Promise<void>
+) => {
   const [scene, setScene] = useState<IDndScene<ICardData>>(cloneDeep(initialScene))
   const [payload, setPayload] = useState<{ id: string; data: ICardData } | null>(null)
   const [movedCard, setMovedCard] = useState<{ id: string; data: ICardData } | null>(null)
@@ -101,6 +105,7 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
       setScene(newScene)
       setDndResult(null)
       setMovedCard(null)
+      handleDrop(dndResult, movedCard.data)
     }
 
     const handleCancelDndMultipleColumns = () => {
@@ -114,7 +119,8 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
     if (["hire", "failed"].includes(toColumnId)) {
       configConfirm({
         title: `Change status`,
-        render: () => getChangeStatusWarningMessage("Le Quang Duy", toColumnId),
+        //@ts-ignore
+        render: () => getChangeStatusWarningMessage(movedCard.data?.talent?.user?.name, toColumnId),
         onConfirm: handleDndMultipleColumns,
         onCancel: handleCancelDndMultipleColumns,
         isActive: true,
@@ -122,7 +128,7 @@ const useDndKanbanBoard = <ICardData>(initialScene: IDndScene<ICardData>) => {
     } else {
       handleDndMultipleColumns()
     }
-  }, [configConfirm, dndResult, movedCard, scene])
+  }, [configConfirm, dndResult, handleDrop, movedCard, scene])
 
   return {
     dataToRender: scene,

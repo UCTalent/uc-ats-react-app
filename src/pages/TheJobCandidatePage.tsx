@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react"
+import { useCallback, useMemo, useRef, useState } from "react"
 import { Outlet, useParams } from "react-router-dom"
 import cloneDeep from "lodash.clonedeep"
 import Stack from "@mui/material/Stack"
@@ -11,14 +11,22 @@ import useJobCandidatesQuery, { JobCandidatesQueryType } from "hooks/queries/use
 import useDndKanbanBoard from "hooks/useDndKanbanBoard"
 import { CANDIDATE_PROCESS } from "utils/mockDndScene"
 import { bindClass } from "utils/bindClass"
+import {
+  CANDIDATE_STATUS_MAPPING,
+  dndSceneInitial,
+  JOB_APPLY_STATUS,
+  JOB_APPLY_STATUS_MAPPING,
+} from "constants/JOB"
+import { IUpdateJobApplyStatusRequest } from "types/api/job-apply"
+import { IDndResult } from "types/dnd"
+import JobApplyAPI from "services/api/job-apply"
 import styles from "assets/css/dnd.module.css"
-import { CANDIDATE_STATUS_MAPPING, dndSceneInitial } from "constants/JOB"
 
 const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
-  const { data } = useJobCandidatesQuery(jobId)
+  const { data, refetch: refetchJobCandidates } = useJobCandidatesQuery(jobId)
 
   const dndBoardRef = useRef<HTMLDivElement | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
@@ -33,6 +41,29 @@ const TheJobCandidatePage = () => {
     [data?.business.job.jobApplies]
   )
 
+  const handleDndDrop = useCallback(
+    async (
+      result: IDndResult,
+      payload: JobCandidatesQueryType["business"]["job"]["jobApplies"][0]
+    ) => {
+      const body: IUpdateJobApplyStatusRequest = {
+        job_apply: {
+          status: JOB_APPLY_STATUS_MAPPING[result.toColumnId],
+        },
+      }
+      if (result.toColumnId === JOB_APPLY_STATUS.REJECTED) {
+        body.job_apply.rejected_note = "Rejected"
+      }
+      try {
+        await JobApplyAPI.updateJobApplyStatus(payload.id, body)
+        refetchJobCandidates()
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [refetchJobCandidates]
+  )
+
   const {
     dataToRender,
     onCardDrop,
@@ -41,7 +72,10 @@ const TheJobCandidatePage = () => {
     onCardDragEnd,
     getCardPayload,
     payload,
-  } = useDndKanbanBoard<JobCandidatesQueryType["business"]["job"]["jobApplies"][0]>(dndScene)
+  } = useDndKanbanBoard<JobCandidatesQueryType["business"]["job"]["jobApplies"][0]>(
+    dndScene,
+    handleDndDrop
+  )
 
   return (
     <>

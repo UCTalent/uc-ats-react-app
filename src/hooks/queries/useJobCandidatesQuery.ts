@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useLazyLoadQuery, graphql } from "react-relay"
 import { useJobCandidatesQuery as useJobCandidatesQueryType } from "./__generated__/useJobCandidatesQuery.graphql"
 import { useRecoilState } from "recoil"
 import { jobOverviewAtom } from "store/jobOverviewAtom"
 import { IJobOverviewState } from "types/store/job-overview"
+import { getSalaryText } from "services/job/candidates"
 
 const jobCandidatesQuery = graphql`
   query useJobCandidatesQuery($id: String!) {
@@ -14,6 +15,7 @@ const jobCandidatesQuery = graphql`
         experienceLevel
         id
         jobApplies {
+          id
           status
           talent {
             id
@@ -30,6 +32,7 @@ const jobCandidatesQuery = graphql`
         jobType
         location
         locationType
+        locationValue
         managementLevel
         minimumQualifications
         responsibilities
@@ -48,7 +51,12 @@ const jobCandidatesQuery = graphql`
 `
 
 const useJobCandidatesQuery = (jobId: string) => {
-  const data = useLazyLoadQuery<useJobCandidatesQueryType>(jobCandidatesQuery, { id: jobId })
+  const [fetchKey, setFetchKey] = useState<number>(0)
+  const data = useLazyLoadQuery<useJobCandidatesQueryType>(
+    jobCandidatesQuery,
+    { id: jobId },
+    { fetchKey, fetchPolicy: "network-only" }
+  )
   const [jobOverview, setJobOverview] = useRecoilState(jobOverviewAtom)
 
   useEffect(() => {
@@ -57,22 +65,22 @@ const useJobCandidatesQuery = (jobId: string) => {
     const newJobOverview: IJobOverviewState = {
       id: job.id,
       title: job.title,
-      place: job.location,
+      place: job.locationValue,
       jobType: job.jobType,
       exp: job.experienceLevel,
-      salary: job.salary.text,
+      salary: getSalaryText(job.salary.text),
       isRemote: true,
     }
     if (!jobOverview || (jobOverview && jobOverview.id !== newJobOverview.id)) {
       setJobOverview(newJobOverview)
     }
-  }, [data, jobOverview, setJobOverview])
+  }, [data, jobOverview, setJobOverview, fetchKey])
 
-  // useEffect(() => {
-  //   setJobOverview(null)
-  // }, [jobId])
+  const refetch = useCallback(() => {
+    setFetchKey((prev) => prev + 1)
+  }, [setFetchKey])
 
-  return { data }
+  return { data, refetch }
 }
 
 type JobCandidatesQueryType = useJobCandidatesQueryType["response"]

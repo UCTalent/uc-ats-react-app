@@ -1,5 +1,5 @@
-import { Suspense, useEffect } from "react"
-import LoadingSuspense from "components/common/LoadingSuspense"
+import { useEffect } from "react"
+// import LoadingSuspense from "components/common/LoadingSuspense"
 import ModalProvider from "providers/ModalProvider"
 import PopConfirmProvider from "providers/PopConfirmProvider"
 import { RelayEnvironmentProvider } from "react-relay"
@@ -21,11 +21,11 @@ const App = () => {
   if (!isFetched) return null
   return (
     <RelayEnvironmentProvider environment={environment}>
-      <Suspense fallback={<LoadingSuspense />}>
-        <RouterProvider router={Router} />
-        <ModalProvider />
-        <PopConfirmProvider />
-      </Suspense>
+      {/* <Suspense fallback={<LoadingSuspense />}> */}
+      <RouterProvider router={Router} />
+      <ModalProvider />
+      <PopConfirmProvider />
+      {/* </Suspense> */}
     </RelayEnvironmentProvider>
   )
 }

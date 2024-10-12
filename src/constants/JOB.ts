@@ -31,6 +31,24 @@ export const MANAGEMENT_LEVELS_NAME = {
   41: "41+",
 }
 
+export enum JOB_APPLY_STATUS {
+  EMAIL_APPLICATION = "new-application",
+  SCREENING = "screening",
+  INTERVIEWING = "interview",
+  OFFERING = "offer",
+  HIRED = "hired",
+  REJECTED = "failed",
+}
+
+export const JOB_APPLY_STATUS_MAPPING = {
+  [JOB_APPLY_STATUS.EMAIL_APPLICATION]: "new",
+  [JOB_APPLY_STATUS.SCREENING]: "under_review",
+  [JOB_APPLY_STATUS.INTERVIEWING]: "interviewing",
+  [JOB_APPLY_STATUS.OFFERING]: "offering",
+  [JOB_APPLY_STATUS.HIRED]: "hired",
+  [JOB_APPLY_STATUS.REJECTED]: "rejected",
+}
+
 export const CANDIDATE_STATUS_MAPPING = {
   new: "new-application",
   email_sent: "new-application",
