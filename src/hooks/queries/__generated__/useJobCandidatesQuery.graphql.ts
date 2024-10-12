@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8eeb1cef55d2d697f6b849d1c1522154>>
+ * @generated SignedSource<<12cee656874b8edf5a540f52bf505c36>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,7 @@ export type useJobCandidatesQuery$data = {
       readonly id: string;
       readonly jobApplies: ReadonlyArray<{
         readonly createdAt: any;
+        readonly id: string;
         readonly status: string | null | undefined;
         readonly talent: {
           readonly id: string;
@@ -116,40 +117,60 @@ v7 = {
 v8 = {
   "alias": null,
   "args": null,
-  "concreteType": "Talent",
+  "concreteType": "JobApply",
   "kind": "LinkedField",
-  "name": "talent",
-  "plural": false,
+  "name": "jobApplies",
+  "plural": true,
   "selections": [
     (v5/*: any*/),
+    (v6/*: any*/),
     {
       "alias": null,
       "args": null,
-      "concreteType": "User",
+      "concreteType": "Talent",
       "kind": "LinkedField",
-      "name": "user",
+      "name": "talent",
       "plural": false,
       "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "avatar",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "email",
-          "storageKey": null
-        },
         (v5/*: any*/),
-        (v7/*: any*/)
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "User",
+          "kind": "LinkedField",
+          "name": "user",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "avatar",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "email",
+              "storageKey": null
+            },
+            (v5/*: any*/),
+            (v7/*: any*/)
+          ],
+          "storageKey": null
+        },
+        (v6/*: any*/)
       ],
       "storageKey": null
     },
-    (v6/*: any*/)
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "createdAt",
+      "storageKey": null
+    }
   ],
   "storageKey": null
 },
@@ -157,28 +178,28 @@ v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "createdAt",
+  "name": "jobType",
   "storageKey": null
 },
 v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "jobType",
+  "name": "location",
   "storageKey": null
 },
 v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "location",
+  "name": "locationType",
   "storageKey": null
 },
 v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "locationType",
+  "name": "locationValue",
   "storageKey": null
 },
 v13 = {
@@ -222,13 +243,6 @@ v18 = {
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
-},
-v19 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "locationValue",
-  "storageKey": null
 };
 return {
   "fragment": {
@@ -257,20 +271,8 @@ return {
               (v3/*: any*/),
               (v4/*: any*/),
               (v5/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "JobApply",
-                "kind": "LinkedField",
-                "name": "jobApplies",
-                "plural": true,
-                "selections": [
-                  (v6/*: any*/),
-                  (v8/*: any*/),
-                  (v9/*: any*/)
-                ],
-                "storageKey": null
-              },
+              (v8/*: any*/),
+              (v9/*: any*/),
               (v10/*: any*/),
               (v11/*: any*/),
               (v12/*: any*/),
@@ -302,8 +304,7 @@ return {
                 ],
                 "storageKey": null
               },
-              (v18/*: any*/),
-              (v19/*: any*/)
+              (v18/*: any*/)
             ],
             "storageKey": null
           }
@@ -340,21 +341,8 @@ return {
               (v3/*: any*/),
               (v4/*: any*/),
               (v5/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "JobApply",
-                "kind": "LinkedField",
-                "name": "jobApplies",
-                "plural": true,
-                "selections": [
-                  (v6/*: any*/),
-                  (v8/*: any*/),
-                  (v9/*: any*/),
-                  (v5/*: any*/)
-                ],
-                "storageKey": null
-              },
+              (v8/*: any*/),
+              (v9/*: any*/),
               (v10/*: any*/),
               (v11/*: any*/),
               (v12/*: any*/),
@@ -388,8 +376,7 @@ return {
                 ],
                 "storageKey": null
               },
-              (v18/*: any*/),
-              (v19/*: any*/)
+              (v18/*: any*/)
             ],
             "storageKey": null
           }
@@ -399,16 +386,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "282b80e7cbdf4a65bb5e044c123d459f",
+    "cacheID": "8509a33cace24404222db26c1a1d0663",
     "id": null,
     "metadata": {},
     "name": "useJobCandidatesQuery",
     "operationKind": "query",
-    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      about\n      benefits\n      experienceLevel\n      id\n      jobApplies {\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n        id\n      }\n      jobType\n      location\n      locationType\n      managementLevel\n      minimumQualifications\n      responsibilities\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      locationValue\n    }\n  }\n}\n"
+    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      about\n      benefits\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      minimumQualifications\n      responsibilities\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "5d9c6ef2ea316b0116023e5f273a0499";
+(node as any).hash = "14d90d35737322fbec4f729c670ce190";
 
 export default node;

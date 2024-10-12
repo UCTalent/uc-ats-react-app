@@ -39,7 +39,7 @@ const TheJobsList: FC<IProps> = ({ data }) => {
               jobTitle={job.title}
               organizationName={job.organization?.name}
               organizationLogo={job.organization?.logoUrl}
-              city={job.location}
+              city={job.locationValue}
               country={job.country?.codeIso3}
               jobType={job.jobType}
               onClickTitle={() => navigate(PAGE_MAP.JOB_CANDIDATE(job.id.toString()))}
