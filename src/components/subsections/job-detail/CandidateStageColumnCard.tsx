@@ -37,7 +37,7 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => 
           name={candidate.talent.user.name}
           email={candidate.talent.user.email}
           avatar={candidate.talent.user.avatar}
-          onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.talent.user.id))}
+          onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.talent.id))}
         />
         {/* <Chip
           label="100%"
