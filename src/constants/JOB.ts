@@ -12,6 +12,25 @@ export const JOB_TYPE_NAME = {
   [JOB_TYPE.FREELANCER]: "Freelancer",
 }
 
+export const EXPERIENCE_LEVELS_NAME = {
+  0: "0-1 years",
+  1: "1-2 years",
+  2: "2-4 years",
+  4: "4-6 years",
+  6: "6-10 years",
+  10: "10-15 years",
+  15: "15+ years",
+}
+
+export const MANAGEMENT_LEVELS_NAME = {
+  0: "None",
+  1: "1-5",
+  6: "6-10",
+  11: "11-20",
+  21: "21-40",
+  41: "41+",
+}
+
 export const CANDIDATE_STATUS_MAPPING = {
   new: "new-application",
   email_sent: "new-application",
