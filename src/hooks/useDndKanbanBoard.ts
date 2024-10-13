@@ -128,7 +128,7 @@ const useDndKanbanBoard = <ICardData>(
       setMovedCard(null)
     }
 
-    if (["hire", "failed"].includes(toColumnId)) {
+    if (["hired", "failed"].includes(toColumnId)) {
       configConfirm({
         title: `Change status`,
         //@ts-ignore
