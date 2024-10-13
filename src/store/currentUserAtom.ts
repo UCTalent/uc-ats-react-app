@@ -5,8 +5,9 @@ export const currentUserAtom = atom<ICurrentUserState>({
   key: "currentUserState",
   default: {
     isLoggedIn: false,
+    userId: "",
     email: "",
     name: "",
-    userId: "",
+    avatar: "",
   },
 })
