@@ -1,6 +1,7 @@
 export interface ICurrentUserState {
+  userId: string
   isLoggedIn: boolean
   email: string
   name: string
-  userId: string
+  avatar: string
 }

@@ -103,6 +103,7 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
               <UserAvatarWithChevron
                 name={currentUser.name}
                 email={currentUser.email}
+                avatar={currentUser.avatar}
                 sx={{ cursor: "pointer" }}
               />
             </MenuBasic>

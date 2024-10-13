@@ -17,8 +17,8 @@ const useMutateGetProfileMe = () => {
     try {
       const response = await AuthAPI.getProfileMe()
       if (!response) return
-      const { email, name, id } = response.data || {}
-      setLoggedInUser({ email, name, userId: id })
+      const { email, name, id, profile_picture } = response.data || {}
+      setLoggedInUser({ userId: id, email, name, avatar: profile_picture?.url })
       return response
     } catch (error) {
       setErrors(error)
