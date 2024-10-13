@@ -69,7 +69,7 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
         <Stack flexDirection="row" alignItems="center" gap="4px">
           <IconSVG src={IconThunder} alt="location" width="14px" height="14px" />
           <Typography sx={{ fontSize: "14px" }}>
-            {dayjs(candidate.createdAt).format("mm:hh, MMM D, YYYY")}
+            {dayjs(candidate.createdAt).format("HH:mm, DD/MM/YYYY")}
           </Typography>
         </Stack>
       </Stack>
