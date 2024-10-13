@@ -28,7 +28,7 @@ const FooterPagination: FC<IProps> = ({ page, totalPage, onPrevious, onNext }) =
         <IconButton onClick={onPrevious} disabled={page === 1} sx={{ opacity: page === 1 && 0.2 }}>
           <IconSVG src={IconCaretDown} alt="Previous" style={{ transform: "rotate(90deg)" }} />
         </IconButton>
-        Page {page}
+        Page {page}/ {totalPage}
         <IconButton
           onClick={onNext}
           disabled={page === totalPage}

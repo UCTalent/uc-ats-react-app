@@ -38,9 +38,9 @@ const jobsQuery = graphql`
   }
 `
 
-const useJobsQuery = (page: number = 1, perPage: number = 10) => {
+const useJobsQuery = (page: number, perPage: number = 10) => {
   const data = useLazyLoadQuery<useJobsQueryType>(jobsQuery, {
-    page,
+    page: page || 1,
     perPage,
   })
 
