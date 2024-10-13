@@ -26,7 +26,10 @@ const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
-  const { data, refetch: refetchJobCandidates } = useJobCandidatesQuery(jobId)
+  const {
+    data,
+    // refetch: refetchJobCandidates
+  } = useJobCandidatesQuery(jobId)
 
   const dndBoardRef = useRef<HTMLDivElement | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
@@ -56,12 +59,12 @@ const TheJobCandidatePage = () => {
       }
       try {
         await JobApplyAPI.updateJobApplyStatus(payload.id, body)
-        refetchJobCandidates()
+        // refetchJobCandidates()
       } catch (error) {
         console.log(error)
       }
     },
-    [refetchJobCandidates]
+    []
   )
 
   const {
@@ -74,7 +77,8 @@ const TheJobCandidatePage = () => {
     payload,
   } = useDndKanbanBoard<JobCandidatesQueryType["business"]["job"]["jobApplies"][0]>(
     dndScene,
-    handleDndDrop
+    handleDndDrop,
+    { allowDropInnerColumn: false }
   )
 
   return (
