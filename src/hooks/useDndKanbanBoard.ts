@@ -6,10 +6,21 @@ import useConfirmAtom from "./atoms/useConfirmAtom"
 import { getChangeStatusWarningMessage } from "services/dnd/getChangeStatusWarningMessage"
 import type { IDndResult, IDndScene } from "types/dnd"
 
+type Options = {
+  allowDropInnerColumn?: boolean
+}
+
+const DEFAULT_OPTIONS: Options = {
+  allowDropInnerColumn: true,
+}
+
 const useDndKanbanBoard = <ICardData>(
   initialScene: IDndScene<ICardData>,
-  handleDrop: (result: IDndResult, payload: ICardData) => Promise<void>
+  handleDrop: (result: IDndResult, payload: ICardData) => Promise<void>,
+  options: Options = DEFAULT_OPTIONS
 ) => {
+  const { allowDropInnerColumn } = options
+
   const [scene, setScene] = useState<IDndScene<ICardData>>(cloneDeep(initialScene))
   const [payload, setPayload] = useState<{ id: string; data: ICardData } | null>(null)
   const [movedCard, setMovedCard] = useState<{ id: string; data: ICardData } | null>(null)
@@ -91,6 +102,7 @@ const useDndKanbanBoard = <ICardData>(
     if (!fromColumnId || !toColumnId || removedIndex === null || addedIndex === null) return
 
     if (fromColumnId === toColumnId) {
+      if (!allowDropInnerColumn) return
       const newScene = cloneDeep(scene)
       const [movedCard] = newScene[fromColumnId].splice(removedIndex, 1)
       newScene[fromColumnId].splice(addedIndex, 0, movedCard)
@@ -128,7 +140,7 @@ const useDndKanbanBoard = <ICardData>(
     } else {
       handleDndMultipleColumns()
     }
-  }, [configConfirm, dndResult, handleDrop, movedCard, scene])
+  }, [allowDropInnerColumn, configConfirm, dndResult, handleDrop, movedCard, scene])
 
   return {
     dataToRender: scene,
