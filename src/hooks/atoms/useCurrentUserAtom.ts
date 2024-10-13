@@ -13,7 +13,8 @@ const useCurrentUserAtom = () => {
   const setLogoutUser = () => {
     deleteCookie("access_token")
     deleteCookie("refresh_token")
-    setCurrentUser({ isLoggedIn: false, email: "", name: "", userId: "" })
+    setCurrentUser({ isLoggedIn: false, email: "", name: "", userId: "", avatar: "" })
+    window.location.href = "/login"
   }
 
   return { currentUser, setLoggedInUser, setLogoutUser }
