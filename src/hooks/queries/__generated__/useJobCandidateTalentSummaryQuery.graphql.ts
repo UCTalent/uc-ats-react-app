@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c6a3ac3ecd171bd5892f2d76fa0f93d0>>
+ * @generated SignedSource<<afbb9bb76b5fbec5d990e13bcf0b9bc5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -33,11 +33,21 @@ export type useJobCandidateTalentSummaryQuery$data = {
         readonly skillType: string | null | undefined;
         readonly updatedAt: any;
       }> | null | undefined;
+      readonly specialities: ReadonlyArray<{
+        readonly id: string;
+        readonly role: {
+          readonly name: string | null | undefined;
+        } | null | undefined;
+        readonly speciality: string | null | undefined;
+      }> | null | undefined;
       readonly status: string | null | undefined;
       readonly step: number | null | undefined;
       readonly updatedAt: any;
       readonly user: {
         readonly avatar: string | null | undefined;
+        readonly city: {
+          readonly nameAscii: string;
+        } | null | undefined;
         readonly email: string;
         readonly id: string;
         readonly name: string | null | undefined;
@@ -168,48 +178,74 @@ v15 = {
 v16 = {
   "alias": null,
   "args": null,
-  "kind": "ScalarField",
-  "name": "mainRole",
+  "concreteType": "Role",
+  "kind": "LinkedField",
+  "name": "role",
+  "plural": false,
+  "selections": [
+    (v13/*: any*/)
+  ],
   "storageKey": null
 },
 v17 = {
   "alias": null,
   "args": null,
-  "concreteType": "User",
+  "kind": "ScalarField",
+  "name": "mainRole",
+  "storageKey": null
+},
+v18 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "avatar",
+  "storageKey": null
+},
+v19 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "email",
+  "storageKey": null
+},
+v20 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "phoneNumber",
+  "storageKey": null
+},
+v21 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "phoneNumberCountry",
+  "storageKey": null
+},
+v22 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "nameAscii",
+  "storageKey": null
+},
+v23 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "speciality",
+  "storageKey": null
+},
+v24 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "Role",
   "kind": "LinkedField",
-  "name": "user",
+  "name": "role",
   "plural": false,
   "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "avatar",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "email",
-      "storageKey": null
-    },
-    (v8/*: any*/),
     (v13/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "phoneNumber",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "phoneNumberCountry",
-      "storageKey": null
-    }
+    (v8/*: any*/)
   ],
   "storageKey": null
 };
@@ -259,23 +295,54 @@ return {
                   (v14/*: any*/),
                   (v15/*: any*/),
                   (v12/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Role",
-                    "kind": "LinkedField",
-                    "name": "role",
-                    "plural": false,
-                    "selections": [
-                      (v13/*: any*/)
-                    ],
-                    "storageKey": null
-                  },
-                  (v16/*: any*/)
+                  (v16/*: any*/),
+                  (v17/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v17/*: any*/)
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "User",
+                "kind": "LinkedField",
+                "name": "user",
+                "plural": false,
+                "selections": [
+                  (v18/*: any*/),
+                  (v19/*: any*/),
+                  (v8/*: any*/),
+                  (v13/*: any*/),
+                  (v20/*: any*/),
+                  (v21/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "City",
+                    "kind": "LinkedField",
+                    "name": "city",
+                    "plural": false,
+                    "selections": [
+                      (v22/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Speciality",
+                "kind": "LinkedField",
+                "name": "specialities",
+                "plural": true,
+                "selections": [
+                  (v8/*: any*/),
+                  (v23/*: any*/),
+                  (v16/*: any*/)
+                ],
+                "storageKey": null
+              }
             ],
             "storageKey": null
           }
@@ -331,25 +398,56 @@ return {
                   (v14/*: any*/),
                   (v15/*: any*/),
                   (v12/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Role",
-                    "kind": "LinkedField",
-                    "name": "role",
-                    "plural": false,
-                    "selections": [
-                      (v13/*: any*/),
-                      (v8/*: any*/)
-                    ],
-                    "storageKey": null
-                  },
-                  (v16/*: any*/),
+                  (v24/*: any*/),
+                  (v17/*: any*/),
                   (v8/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v17/*: any*/)
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "User",
+                "kind": "LinkedField",
+                "name": "user",
+                "plural": false,
+                "selections": [
+                  (v18/*: any*/),
+                  (v19/*: any*/),
+                  (v8/*: any*/),
+                  (v13/*: any*/),
+                  (v20/*: any*/),
+                  (v21/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "City",
+                    "kind": "LinkedField",
+                    "name": "city",
+                    "plural": false,
+                    "selections": [
+                      (v22/*: any*/),
+                      (v8/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Speciality",
+                "kind": "LinkedField",
+                "name": "specialities",
+                "plural": true,
+                "selections": [
+                  (v8/*: any*/),
+                  (v23/*: any*/),
+                  (v24/*: any*/)
+                ],
+                "storageKey": null
+              }
             ],
             "storageKey": null
           }
@@ -359,16 +457,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c1206e663ff177c3daafcf823a4c8a1f",
+    "cacheID": "2391a3aa80f64b4069cb643153c98628",
     "id": null,
     "metadata": {},
     "name": "useJobCandidateTalentSummaryQuery",
     "operationKind": "query",
-    "text": "query useJobCandidateTalentSummaryQuery(\n  $id: String!\n) {\n  business {\n    talent(id: $id) {\n      about\n      createdAt\n      employmentStatus\n      englishProficiency\n      experienceLevel\n      headline\n      id\n      managementLevel\n      status\n      step\n      updatedAt\n      skills {\n        name\n        roleId\n        skillType\n        updatedAt\n        role {\n          name\n          id\n        }\n        mainRole\n        id\n      }\n      user {\n        avatar\n        email\n        id\n        name\n        phoneNumber\n        phoneNumberCountry\n      }\n    }\n  }\n}\n"
+    "text": "query useJobCandidateTalentSummaryQuery(\n  $id: String!\n) {\n  business {\n    talent(id: $id) {\n      about\n      createdAt\n      employmentStatus\n      englishProficiency\n      experienceLevel\n      headline\n      id\n      managementLevel\n      status\n      step\n      updatedAt\n      skills {\n        name\n        roleId\n        skillType\n        updatedAt\n        role {\n          name\n          id\n        }\n        mainRole\n        id\n      }\n      user {\n        avatar\n        email\n        id\n        name\n        phoneNumber\n        phoneNumberCountry\n        city {\n          nameAscii\n          id\n        }\n      }\n      specialities {\n        id\n        speciality\n        role {\n          name\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "fc09ceaf4b8cb4bbc0f7fdd0bc6b2aff";
+(node as any).hash = "7f78777debe2bdae4725184c079dc235";
 
 export default node;

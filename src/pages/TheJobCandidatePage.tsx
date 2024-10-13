@@ -111,7 +111,11 @@ const TheJobCandidatePage = () => {
                 >
                   {dataToRender[columnId].map((card) => (
                     <DndDraggable key={card.id} sx={{ py: "8px" }}>
-                      <CandidateStageColumnCard candidate={card.data} jobId={jobId} />
+                      <CandidateStageColumnCard
+                        candidate={card.data}
+                        jobId={jobId}
+                        status={CANDIDATE_PROCESS[columnIndex].name}
+                      />
                     </DndDraggable>
                   ))}
                 </DndContainer>

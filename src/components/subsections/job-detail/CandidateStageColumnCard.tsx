@@ -1,5 +1,6 @@
-import { memo } from "react"
-import { useNavigate } from "react-router-dom"
+import { memo, useCallback, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { useRecoilState } from "recoil"
 import dayjs from "dayjs"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
@@ -9,15 +10,29 @@ import UserAvatar from "components/common/user-avatar/UserAvatar"
 import IconThunder from "assets/icons/thunder.svg"
 import { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
 import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
+import { talentOverviewAtom } from "store/talentOverviewAtom"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 
 interface TypeProps {
   candidate: JobCandidatesQueryType["business"]["job"]["jobApplies"][0]
   jobId: string
+  status: string
 }
 
-const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => {
+const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, status }) => {
+  const { candidateId } = useParams()
+  const setTalentOverview = useRecoilState(talentOverviewAtom)[1]
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!candidateId) return
+    setTalentOverview((prev) => ({ ...prev, status }))
+  }, [setTalentOverview, status, candidateId])
+
+  const handleCardClick = useCallback(() => {
+    setTalentOverview((prev) => ({ ...prev, status }))
+    navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.talent.id))
+  }, [candidate.talent.id, jobId, navigate, setTalentOverview, status])
 
   return (
     <Stack
@@ -37,7 +52,7 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId }) => 
           name={candidate.talent.user.name}
           email={candidate.talent.user.email}
           avatar={candidate.talent.user.avatar}
-          onClick={() => navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.talent.id))}
+          onClick={handleCardClick}
         />
         {/* <Chip
           label="100%"
