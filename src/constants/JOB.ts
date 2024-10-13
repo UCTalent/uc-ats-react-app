@@ -64,6 +64,6 @@ export const dndSceneInitial = {
   screening: [],
   interview: [],
   offer: [],
-  hire: [],
+  hired: [],
   failed: [],
 }
