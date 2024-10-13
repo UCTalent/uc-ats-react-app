@@ -37,6 +37,16 @@ const jobCandidateUserSummaryQuery = graphql`
           name
           phoneNumber
           phoneNumberCountry
+          city {
+            nameAscii
+          }
+        }
+        specialities {
+          id
+          speciality
+          role {
+            name
+          }
         }
       }
     }
@@ -53,18 +63,17 @@ const useJobCandidateTalentSummaryQuery = (talentId: string) => {
   useEffect(() => {
     if (!data) return
     const talent = data.business.talent
-    const newTalentOverview: ITalentOverviewState = {
+    const newTalentOverview: Omit<ITalentOverviewState, "status"> = {
       id: talent.id,
       name: talent.user.name,
       avatar: talent.user.avatar,
       phone: talent.user.phoneNumber,
       email: talent.user.email,
-      status: talent.status,
-      role: talent.skills[0].name,
-      place: talent.headline,
+      role: talent.specialities[0]?.speciality,
+      place: talent.user.city.nameAscii,
     }
     if (!talentOverview || (talentOverview && talentOverview.id !== newTalentOverview.id)) {
-      setTalentOverview(newTalentOverview)
+      setTalentOverview((prev) => ({ ...prev, ...newTalentOverview }))
     }
   }, [data, setTalentOverview, talentOverview])
 

@@ -31,7 +31,7 @@ const UserAvatarWithDetails: FC<IProps> = ({ talent }) => {
           <Stack flexDirection="row" alignItems="center" gap="4px">
             <IconSVG src={IconLocation} alt="location" width="16px" height="16px" />
             <Typography variant="body2" sx={{ fontSize: "12px", color: "#717375" }}>
-              New York, United State
+              {talent?.place}
             </Typography>
           </Stack>
           <Stack flexDirection="row" alignItems="center" gap="4px">
