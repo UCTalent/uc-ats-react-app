@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<12cee656874b8edf5a540f52bf505c36>>
+ * @generated SignedSource<<920f39e65956cd5030844fbb683df1bc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,8 +15,6 @@ export type useJobCandidatesQuery$variables = {
 export type useJobCandidatesQuery$data = {
   readonly business: {
     readonly job: {
-      readonly about: string | null | undefined;
-      readonly benefits: string | null | undefined;
       readonly experienceLevel: string | null | undefined;
       readonly id: string;
       readonly jobApplies: ReadonlyArray<{
@@ -39,8 +37,6 @@ export type useJobCandidatesQuery$data = {
       readonly locationType: string | null | undefined;
       readonly locationValue: string | null | undefined;
       readonly managementLevel: string | null | undefined;
-      readonly minimumQualifications: string;
-      readonly responsibilities: string;
       readonly salary: any | null | undefined;
       readonly speciality: {
         readonly role: {
@@ -76,45 +72,31 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "about",
+  "name": "experienceLevel",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "benefits",
+  "name": "id",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "experienceLevel",
+  "name": "status",
   "storageKey": null
 },
 v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
-v6 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "status",
-  "storageKey": null
-},
-v7 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v8 = {
+v6 = {
   "alias": null,
   "args": null,
   "concreteType": "JobApply",
@@ -122,8 +104,8 @@ v8 = {
   "name": "jobApplies",
   "plural": true,
   "selections": [
-    (v5/*: any*/),
-    (v6/*: any*/),
+    (v3/*: any*/),
+    (v4/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -132,7 +114,7 @@ v8 = {
       "name": "talent",
       "plural": false,
       "selections": [
-        (v5/*: any*/),
+        (v3/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -155,12 +137,12 @@ v8 = {
               "name": "email",
               "storageKey": null
             },
-            (v5/*: any*/),
-            (v7/*: any*/)
+            (v3/*: any*/),
+            (v5/*: any*/)
           ],
           "storageKey": null
         },
-        (v6/*: any*/)
+        (v4/*: any*/)
       ],
       "storageKey": null
     },
@@ -174,70 +156,56 @@ v8 = {
   ],
   "storageKey": null
 },
-v9 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "jobType",
   "storageKey": null
 },
-v10 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "location",
   "storageKey": null
 },
-v11 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "locationType",
   "storageKey": null
 },
-v12 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "locationValue",
   "storageKey": null
 },
-v13 = {
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "managementLevel",
   "storageKey": null
 },
-v14 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "minimumQualifications",
-  "storageKey": null
-},
-v15 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "responsibilities",
-  "storageKey": null
-},
-v16 = {
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "salary",
   "storageKey": null
 },
-v17 = {
+v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "speciality",
   "storageKey": null
 },
-v18 = {
+v14 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -269,17 +237,13 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v4/*: any*/),
-              (v5/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
               (v10/*: any*/),
               (v11/*: any*/),
               (v12/*: any*/),
-              (v13/*: any*/),
-              (v14/*: any*/),
-              (v15/*: any*/),
-              (v16/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -296,15 +260,15 @@ return {
                     "name": "role",
                     "plural": false,
                     "selections": [
-                      (v7/*: any*/)
+                      (v5/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v17/*: any*/)
+                  (v13/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v18/*: any*/)
+              (v14/*: any*/)
             ],
             "storageKey": null
           }
@@ -339,17 +303,13 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v4/*: any*/),
-              (v5/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
               (v10/*: any*/),
               (v11/*: any*/),
               (v12/*: any*/),
-              (v13/*: any*/),
-              (v14/*: any*/),
-              (v15/*: any*/),
-              (v16/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -366,17 +326,17 @@ return {
                     "name": "role",
                     "plural": false,
                     "selections": [
-                      (v7/*: any*/),
-                      (v5/*: any*/)
+                      (v5/*: any*/),
+                      (v3/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v17/*: any*/),
-                  (v5/*: any*/)
+                  (v13/*: any*/),
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v18/*: any*/)
+              (v14/*: any*/)
             ],
             "storageKey": null
           }
@@ -386,16 +346,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8509a33cace24404222db26c1a1d0663",
+    "cacheID": "19873ec5a9eb057ad3bb3b3082cbd551",
     "id": null,
     "metadata": {},
     "name": "useJobCandidatesQuery",
     "operationKind": "query",
-    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      about\n      benefits\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      minimumQualifications\n      responsibilities\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n    }\n  }\n}\n"
+    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "14d90d35737322fbec4f729c670ce190";
+(node as any).hash = "fccd0a12fd759675a1fe4c1a0a871454";
 
 export default node;

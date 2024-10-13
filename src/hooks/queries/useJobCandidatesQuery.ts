@@ -10,8 +10,6 @@ const jobCandidatesQuery = graphql`
   query useJobCandidatesQuery($id: String!) {
     business {
       job(id: $id) {
-        about
-        benefits
         experienceLevel
         id
         jobApplies {
@@ -34,8 +32,6 @@ const jobCandidatesQuery = graphql`
         locationType
         locationValue
         managementLevel
-        minimumQualifications
-        responsibilities
         salary
         speciality {
           role {
@@ -44,7 +40,6 @@ const jobCandidatesQuery = graphql`
           speciality
         }
         title
-        locationValue
       }
     }
   }
