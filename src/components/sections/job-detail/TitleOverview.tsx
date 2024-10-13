@@ -11,6 +11,7 @@ import IconLocation from "assets/icons/location.svg"
 import IconJobType from "assets/icons/job-type.svg"
 import IconStar from "assets/icons/star.svg"
 import IconSalary from "assets/icons/salary.svg"
+import SkeletonJobTitleOverview from "components/skeletons/JobTitleOverview"
 import { SxProps } from "@mui/material"
 import { IJobOverviewState } from "types/store/job-overview"
 import { JOB_TYPE_NAME } from "constants/JOB"
@@ -34,6 +35,9 @@ const TitleOverview: React.FC<IProps> = ({ jobOverview, sx }) => {
       { id: "experience", icon: IconStar, text: `${jobOverview?.exp} yrs` },
       { id: "salary", icon: IconSalary, text: jobOverview?.salary },
     ]
+
+    if (!jobOverview) return <SkeletonJobTitleOverview />
+
     return (
       <Stack flexDirection="row" alignItems="center" gap="10px">
         {overview.map(
