@@ -25,9 +25,9 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!candidateId) return
+    if (!candidateId || candidateId !== candidate.talent.id) return
     setTalentOverview((prev) => ({ ...prev, status }))
-  }, [setTalentOverview, status, candidateId])
+  }, [setTalentOverview, status, candidateId, candidate.talent.id])
 
   const handleCardClick = useCallback(() => {
     setTalentOverview((prev) => ({ ...prev, status }))
