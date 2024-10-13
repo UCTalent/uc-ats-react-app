@@ -12,7 +12,6 @@
     "relay": "relay-compiler"
   },
   "dependencies": {
-    "@apollo/client": "^3.11.4",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
