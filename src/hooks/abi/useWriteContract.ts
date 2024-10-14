@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ADDRESS_CORE_SMART_CONTRACT, coreABI } from "src/smart-contract/development/coreABI"
+import { ADDRESS_CORE_SMART_CONTRACT, coreABI } from "../../smart-contract/development/coreABI"
 import {
   useAccount,
   useConnect,

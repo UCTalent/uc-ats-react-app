@@ -4,7 +4,7 @@ import { JobAPI } from "services/api/job"
 const useMutateCancelJob = () => {
   const [isFetched, setIsFetched] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [errors, setErrors] = useState<unknown>({})
+  const [errors, setErrors] = useState<unknown>(null)
 
   const mutate = useCallback(async (idJob: string) => {
     setLoading(true)

@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { useRecoilState } from "recoil"
 import dayjs from "dayjs"
 import Stack from "@mui/material/Stack"
@@ -8,10 +8,11 @@ import Typography from "@mui/material/Typography"
 import IconSVG from "components/common/IconSVG"
 import UserAvatar from "components/common/user-avatar/UserAvatar"
 import IconThunder from "assets/icons/thunder.svg"
-import { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
-import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
 import { talentOverviewAtom } from "store/talentOverviewAtom"
 import { PAGE_MAP } from "constants/PAGE_MAP"
+import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
+import { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
+import useCloseJobSmartContract from "hooks/abi/useCloseJobSmartContract"
 
 interface TypeProps {
   candidate: JobCandidatesQueryType["business"]["job"]["jobApplies"][0]
@@ -23,6 +24,9 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
   const { candidateId } = useParams()
   const setTalentOverview = useRecoilState(talentOverviewAtom)[1]
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const isCloseJobStatus = searchParams.get("close-job") === "success"
+  const { mutate } = useCloseJobSmartContract()
 
   useEffect(() => {
     if (!candidateId || candidateId !== candidate.id) return
@@ -30,9 +34,10 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
   }, [setTalentOverview, status, candidateId, candidate.id])
 
   const handleCardClick = useCallback(() => {
+    if (isCloseJobStatus) return
     setTalentOverview((prev) => ({ ...prev, status }))
     navigate(PAGE_MAP.JOB_CANDIDATE_SUMMARY(jobId, candidate.id))
-  }, [candidate.id, jobId, navigate, setTalentOverview, status])
+  }, [candidate.id, jobId, navigate, setTalentOverview, status, isCloseJobStatus])
 
   return (
     <Stack
@@ -47,7 +52,14 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
         borderRadius: "8px",
       }}
       onClick={() => {
-        console.log("click", candidate, jobId)
+        if (isCloseJobStatus) {
+          mutate({
+            idJob: jobId,
+            idJobApplies: candidate.id,
+            status: "hired",
+          })
+          console.log("click", candidate, jobId)
+        }
       }}
     >
       <Stack flexDirection="row" justifyContent="space-between" gap="4px">

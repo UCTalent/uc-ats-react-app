@@ -21,7 +21,8 @@
       "routes/*": ["src/routes/*"],
       "data/*": ["src/data/*"],
       "layouts/*": ["src/layouts/*"],
-      "theme/*": ["src/theme/*"]
+      "theme/*": ["src/theme/*"],
+      "smart-contract/*": ["src/smart-contract/*"]
     }
   },
   "include": ["src"]

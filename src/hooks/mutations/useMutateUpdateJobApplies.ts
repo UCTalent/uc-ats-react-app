@@ -5,7 +5,7 @@ import { JobAppliesRequest } from "types/api/job"
 const useMutateUpdateJobApplies = () => {
   const [isFetched, setIsFetched] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [errors, setErrors] = useState<unknown>({})
+  const [errors, setErrors] = useState<unknown>(null)
 
   const mutate = useCallback(async (idJobApplies: string, body: JobAppliesRequest) => {
     setLoading(true)

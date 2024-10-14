@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { OnchainKitProvider } from "@coinbase/onchainkit"
 import { base } from "wagmi/chains"
 import { ENV_ONCHAINKIT_API_KEY } from "constants/ENV_CONFIG"
+import { Alert } from "components/common/Alert"
 
 const App = () => {
   const { mutate: mutateGetProfileMe, isFetched } = useMutateGetProfileMe()
@@ -45,6 +46,7 @@ const App = () => {
               <RouterProvider router={Router} />
               <ModalProvider />
               <PopConfirmProvider />
+              <Alert />
             </Suspense>
           </RelayEnvironmentProvider>
         </OnchainKitProvider>
