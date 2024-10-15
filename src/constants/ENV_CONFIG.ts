@@ -6,3 +6,4 @@ export const ENV_OAUTH = {
 }
 
 export const ENV_GRAPHQL_ENDPOINT = import.meta.env.VITE_APP_GRAPHQL_ENDPOINT
+export const ENV_ONCHAINKIT_API_KEY = import.meta.env.VITE_APP_ONCHAINKIT_API_KEY

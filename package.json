@@ -12,10 +12,14 @@
     "relay": "relay-compiler"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.4",
+    "@coinbase/onchainkit": "^0.33.6",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
+    "@mui/icons-material": "^6.1.3",
     "@mui/material": "^5.16.7",
+    "@tanstack/react-query": "^5.59.9",
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "deep-equal": "^2.2.3",
@@ -35,6 +39,8 @@
     "relay-runtime": "^18.1.0",
     "sass": "^1.78.0",
     "ts-node": "^10.9.2",
+    "viem": "2.x",
+    "wagmi": "^2.12.17",
     "xss": "^1.0.15",
     "yup": "^1.4.0"
   },

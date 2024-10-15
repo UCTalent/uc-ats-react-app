@@ -38,7 +38,7 @@ const TheJobCandidatePage = () => {
     () =>
       data?.business.job.jobApplies.reduce((acc, candidate) => {
         const groupKey = CANDIDATE_STATUS_MAPPING[candidate.status]
-        acc[groupKey].push({ id: candidate.talent.id, data: candidate })
+        acc[groupKey]?.push({ id: candidate.talent.id, data: candidate })
         return acc
       }, cloneDeep(dndSceneInitial)),
     [data?.business.job.jobApplies]

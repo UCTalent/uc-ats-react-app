@@ -26,6 +26,7 @@ const jobCandidatesQuery = graphql`
             status
           }
           createdAt
+          id
         }
         jobType
         location

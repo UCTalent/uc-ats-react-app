@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom"
+import { Box, Typography } from "@mui/material"
 import Stack from "@mui/material/Stack"
-import IconButton from "@mui/material/IconButton"
 import JobCard from "components/common/JobCard"
 import NumberWithLabelVerticalTag from "components/common/tags/NumberWithLabelVerticalTag"
-import IconSVG from "components/common/IconSVG"
-import IconThreeDotsHorizontal from "assets/icons/three-dots-horizontal.svg"
-import { JobsListType } from "hooks/queries/useJobsQuery"
 import { PAGE_MAP } from "constants/PAGE_MAP"
+import { JobsListType } from "hooks/queries/useJobsQuery"
 import { FC } from "react"
+import { useNavigate } from "react-router-dom"
+import CloseJobSuccess from "./modals/CloseJobSuccess"
+import CloseJobFailed from "./modals/CloseJobFailed"
 
 interface IProps {
   data: JobsListType
@@ -51,12 +51,13 @@ const TheJobsList: FC<IProps> = ({ data }) => {
                 <NumberWithLabelVerticalTag label="Hired" value={job.hiredNum} />
                 <NumberWithLabelVerticalTag label="Dropped" value={job.droppedNum} />
               </Stack>
-              <IconButton
-                sx={{ width: "40px", height: "40px" }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <IconSVG src={IconThreeDotsHorizontal} alt="Options" />
-              </IconButton>
+              <Box>
+                <Typography mb="10px">Choose status to close Job</Typography>
+                <Stack flexDirection="row" gap="12px">
+                  <CloseJobSuccess jobId={job.id} />
+                  <CloseJobFailed jobId={job.id} />
+                </Stack>
+              </Box>
             </Stack>
           </Stack>
         ))}
