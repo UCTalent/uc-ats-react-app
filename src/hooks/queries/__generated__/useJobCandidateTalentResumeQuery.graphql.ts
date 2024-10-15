@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e0433050fd96c1d57fb0fee82b72e095>>
+ * @generated SignedSource<<8825f499c5fbf4511076d3970faf141e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,23 +9,16 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
-export type useJobCandidateTalentSummaryQuery$variables = {
+export type useJobCandidateTalentResumeQuery$variables = {
   id: string;
 };
-export type useJobCandidateTalentSummaryQuery$data = {
+export type useJobCandidateTalentResumeQuery$data = {
   readonly business: {
     readonly jobApply: {
       readonly id: string;
       readonly talent: {
-        readonly about: string | null | undefined;
-        readonly englishProficiency: string | null | undefined;
-        readonly experienceLevel: number | null | undefined;
-        readonly headline: string | null | undefined;
         readonly id: string;
         readonly managementLevel: number | null | undefined;
-        readonly skills: ReadonlyArray<{
-          readonly name: string | null | undefined;
-        }> | null | undefined;
         readonly specialities: ReadonlyArray<{
           readonly id: string;
           readonly role: {
@@ -51,9 +44,9 @@ export type useJobCandidateTalentSummaryQuery$data = {
     };
   };
 };
-export type useJobCandidateTalentSummaryQuery = {
-  response: useJobCandidateTalentSummaryQuery$data;
-  variables: useJobCandidateTalentSummaryQuery$variables;
+export type useJobCandidateTalentResumeQuery = {
+  response: useJobCandidateTalentResumeQuery$data;
+  variables: useJobCandidateTalentResumeQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -82,14 +75,14 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "headline",
+  "name": "managementLevel",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "managementLevel",
+  "name": "speciality",
   "storageKey": null
 },
 v5 = {
@@ -99,89 +92,54 @@ v5 = {
   "name": "name",
   "storageKey": null
 },
-v6 = [
-  (v5/*: any*/)
-],
-v7 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "speciality",
-  "storageKey": null
-},
-v8 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "avatar",
   "storageKey": null
 },
-v9 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "email",
   "storageKey": null
 },
-v10 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "phoneNumber",
   "storageKey": null
 },
-v11 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "phoneNumberCountry",
   "storageKey": null
 },
-v12 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "nameAscii",
   "storageKey": null
 },
-v13 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "englishProficiency",
-  "storageKey": null
-},
-v14 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "about",
-  "storageKey": null
-},
-v15 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "experienceLevel",
-  "storageKey": null
-},
-v16 = {
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "resumeUrl",
   "storageKey": null
-},
-v17 = [
-  (v5/*: any*/),
-  (v2/*: any*/)
-];
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "useJobCandidateTalentSummaryQuery",
+    "name": "useJobCandidateTalentResumeQuery",
     "selections": [
       {
         "alias": null,
@@ -208,19 +166,8 @@ return {
                 "name": "talent",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
                   (v2/*: any*/),
-                  (v4/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Skill",
-                    "kind": "LinkedField",
-                    "name": "skills",
-                    "plural": true,
-                    "selections": (v6/*: any*/),
-                    "storageKey": null
-                  },
+                  (v3/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -230,7 +177,7 @@ return {
                     "plural": true,
                     "selections": [
                       (v2/*: any*/),
-                      (v7/*: any*/),
+                      (v4/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -238,7 +185,9 @@ return {
                         "kind": "LinkedField",
                         "name": "role",
                         "plural": false,
-                        "selections": (v6/*: any*/),
+                        "selections": [
+                          (v5/*: any*/)
+                        ],
                         "storageKey": null
                       }
                     ],
@@ -252,12 +201,12 @@ return {
                     "name": "user",
                     "plural": false,
                     "selections": [
-                      (v8/*: any*/),
-                      (v9/*: any*/),
+                      (v6/*: any*/),
+                      (v7/*: any*/),
                       (v2/*: any*/),
                       (v5/*: any*/),
-                      (v10/*: any*/),
-                      (v11/*: any*/),
+                      (v8/*: any*/),
+                      (v9/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -266,16 +215,13 @@ return {
                         "name": "city",
                         "plural": false,
                         "selections": [
-                          (v12/*: any*/)
+                          (v10/*: any*/)
                         ],
                         "storageKey": null
                       }
                     ],
                     "storageKey": null
-                  },
-                  (v13/*: any*/),
-                  (v14/*: any*/),
-                  (v15/*: any*/)
+                  }
                 ],
                 "storageKey": null
               },
@@ -287,7 +233,7 @@ return {
                 "name": "uploadedResume",
                 "plural": false,
                 "selections": [
-                  (v16/*: any*/)
+                  (v11/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -305,7 +251,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "useJobCandidateTalentSummaryQuery",
+    "name": "useJobCandidateTalentResumeQuery",
     "selections": [
       {
         "alias": null,
@@ -332,19 +278,8 @@ return {
                 "name": "talent",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
                   (v2/*: any*/),
-                  (v4/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Skill",
-                    "kind": "LinkedField",
-                    "name": "skills",
-                    "plural": true,
-                    "selections": (v17/*: any*/),
-                    "storageKey": null
-                  },
+                  (v3/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -354,7 +289,7 @@ return {
                     "plural": true,
                     "selections": [
                       (v2/*: any*/),
-                      (v7/*: any*/),
+                      (v4/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -362,7 +297,10 @@ return {
                         "kind": "LinkedField",
                         "name": "role",
                         "plural": false,
-                        "selections": (v17/*: any*/),
+                        "selections": [
+                          (v5/*: any*/),
+                          (v2/*: any*/)
+                        ],
                         "storageKey": null
                       }
                     ],
@@ -376,12 +314,12 @@ return {
                     "name": "user",
                     "plural": false,
                     "selections": [
-                      (v8/*: any*/),
-                      (v9/*: any*/),
+                      (v6/*: any*/),
+                      (v7/*: any*/),
                       (v2/*: any*/),
                       (v5/*: any*/),
-                      (v10/*: any*/),
-                      (v11/*: any*/),
+                      (v8/*: any*/),
+                      (v9/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -390,17 +328,14 @@ return {
                         "name": "city",
                         "plural": false,
                         "selections": [
-                          (v12/*: any*/),
+                          (v10/*: any*/),
                           (v2/*: any*/)
                         ],
                         "storageKey": null
                       }
                     ],
                     "storageKey": null
-                  },
-                  (v13/*: any*/),
-                  (v14/*: any*/),
-                  (v15/*: any*/)
+                  }
                 ],
                 "storageKey": null
               },
@@ -412,7 +347,7 @@ return {
                 "name": "uploadedResume",
                 "plural": false,
                 "selections": [
-                  (v16/*: any*/),
+                  (v11/*: any*/),
                   (v2/*: any*/)
                 ],
                 "storageKey": null
@@ -426,16 +361,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "31a8c60e1b45d17f12b4ca87a1904cab",
+    "cacheID": "3c9006555b91f8b1f4a6049f2992b3ba",
     "id": null,
     "metadata": {},
-    "name": "useJobCandidateTalentSummaryQuery",
+    "name": "useJobCandidateTalentResumeQuery",
     "operationKind": "query",
-    "text": "query useJobCandidateTalentSummaryQuery(\n  $id: String!\n) {\n  business {\n    jobApply(id: $id) {\n      id\n      talent {\n        headline\n        id\n        managementLevel\n        skills {\n          name\n          id\n        }\n        specialities {\n          id\n          speciality\n          role {\n            name\n            id\n          }\n        }\n        user {\n          avatar\n          email\n          id\n          name\n          phoneNumber\n          phoneNumberCountry\n          city {\n            nameAscii\n            id\n          }\n        }\n        englishProficiency\n        about\n        experienceLevel\n      }\n      uploadedResume {\n        resumeUrl\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query useJobCandidateTalentResumeQuery(\n  $id: String!\n) {\n  business {\n    jobApply(id: $id) {\n      id\n      talent {\n        id\n        managementLevel\n        specialities {\n          id\n          speciality\n          role {\n            name\n            id\n          }\n        }\n        user {\n          avatar\n          email\n          id\n          name\n          phoneNumber\n          phoneNumberCountry\n          city {\n            nameAscii\n            id\n          }\n        }\n      }\n      uploadedResume {\n        resumeUrl\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a2bed637f6f12f328f49d1b6fa99227d";
+(node as any).hash = "cb27322326e32bd4cdce698243a94357";
 
 export default node;
