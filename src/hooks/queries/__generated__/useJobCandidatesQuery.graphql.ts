@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<920f39e65956cd5030844fbb683df1bc>>
+ * @generated SignedSource<<4d95b71ddb9e0827ac79e632e97127f9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -160,95 +160,21 @@ v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v8 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "JobApply",
-  "kind": "LinkedField",
-  "name": "jobApplies",
-  "plural": true,
-  "selections": [
-    (v6/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "Talent",
-      "kind": "LinkedField",
-      "name": "talent",
-      "plural": false,
-      "selections": [
-        (v5/*: any*/),
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "User",
-          "kind": "LinkedField",
-          "name": "user",
-          "plural": false,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "avatar",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "email",
-              "storageKey": null
-            },
-            (v5/*: any*/),
-            (v7/*: any*/)
-          ],
-          "storageKey": null
-        },
-        (v6/*: any*/)
-      ],
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "createdAt",
-      "storageKey": null
-    },
-    (v5/*: any*/)
-  ],
-  "storageKey": null
-},
-v9 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "jobType",
   "storageKey": null
 },
-v10 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "location",
   "storageKey": null
 },
-v8 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "locationType",
-  "storageKey": null
-},
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "managementLevel",
+  "name": "locationType",
   "storageKey": null
 },
 v10 = {
@@ -262,42 +188,28 @@ v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "minimumQualifications",
+  "name": "managementLevel",
   "storageKey": null
 },
-v14 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "responsibilities",
-  "storageKey": null
-},
-v15 = {
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "salary",
   "storageKey": null
 },
-v16 = {
+v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "speciality",
   "storageKey": null
 },
-v13 = {
+v14 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "title",
-  "storageKey": null
-},
-v18 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "locationValue",
   "storageKey": null
 };
 return {
@@ -325,16 +237,13 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v4/*: any*/),
-              (v5/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
               (v10/*: any*/),
               (v11/*: any*/),
               (v12/*: any*/),
-              (v13/*: any*/),
-              (v14/*: any*/),
-              (v15/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -355,12 +264,11 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v16/*: any*/)
+                  (v13/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v17/*: any*/),
-              (v18/*: any*/)
+              (v14/*: any*/)
             ],
             "storageKey": null
           }
@@ -395,16 +303,13 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v4/*: any*/),
-              (v5/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
               (v8/*: any*/),
               (v9/*: any*/),
               (v10/*: any*/),
               (v11/*: any*/),
               (v12/*: any*/),
-              (v13/*: any*/),
-              (v14/*: any*/),
-              (v15/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -426,13 +331,12 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v16/*: any*/),
-                  (v5/*: any*/)
+                  (v13/*: any*/),
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v17/*: any*/),
-              (v18/*: any*/)
+              (v14/*: any*/)
             ],
             "storageKey": null
           }
@@ -452,6 +356,6 @@ return {
 };
 })();
 
-(node as any).hash = "52b8bb2a224cd38bbf25e152a18aeb5c";
+(node as any).hash = "d0675ef88226afd9c6da2616520f359d";
 
 export default node;
