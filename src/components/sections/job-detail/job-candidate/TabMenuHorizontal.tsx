@@ -19,13 +19,13 @@ const TabMenuHorizontal = () => {
         index: 0,
         disabled: false,
       },
-      // {
-      //   id: "resume",
-      //   title: "Resume",
-      //   path: PAGE_MAP.JOB_CANDIDATE_RESUME(jobId, candidateId),
-      //   index: 1,
-      //   disabled: false,
-      // },
+      {
+        id: "resume",
+        title: "Resume",
+        path: PAGE_MAP.JOB_CANDIDATE_RESUME(jobId, candidateId),
+        index: 1,
+        disabled: false,
+      },
       // {
       //   id: "notes",
       //   title: "Notes",

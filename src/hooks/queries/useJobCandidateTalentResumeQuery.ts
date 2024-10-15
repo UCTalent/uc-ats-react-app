@@ -1,22 +1,18 @@
 import { useLazyLoadQuery, graphql } from "react-relay"
-import { useJobCandidateTalentSummaryQuery as useJobCandidateTalentSummaryQueryType } from "./__generated__/useJobCandidateTalentSummaryQuery.graphql"
+import { useJobCandidateTalentResumeQuery as useJobCandidateTalentResumeQueryType } from "./__generated__/useJobCandidateTalentResumeQuery.graphql"
 import { useEffect } from "react"
 import { ITalentOverviewState } from "types/store/talent-overview"
 import { useRecoilState } from "recoil"
 import { talentOverviewAtom } from "store/talentOverviewAtom"
 
-const jobCandidateUserSummaryQuery = graphql`
-  query useJobCandidateTalentSummaryQuery($id: String!) {
+const jobCandidateUserResumeQuery = graphql`
+  query useJobCandidateTalentResumeQuery($id: String!) {
     business {
       jobApply(id: $id) {
         id
         talent {
-          headline
           id
           managementLevel
-          skills {
-            name
-          }
           specialities {
             id
             speciality
@@ -35,9 +31,6 @@ const jobCandidateUserSummaryQuery = graphql`
               nameAscii
             }
           }
-          englishProficiency
-          about
-          experienceLevel
         }
         uploadedResume {
           resumeUrl
@@ -47,11 +40,10 @@ const jobCandidateUserSummaryQuery = graphql`
   }
 `
 
-const useJobCandidateTalentSummaryQuery = (talentId: string) => {
-  const data = useLazyLoadQuery<useJobCandidateTalentSummaryQueryType>(
-    jobCandidateUserSummaryQuery,
-    { id: talentId }
-  )
+const useJobCandidateTalentResumeQuery = (talentId: string) => {
+  const data = useLazyLoadQuery<useJobCandidateTalentResumeQueryType>(jobCandidateUserResumeQuery, {
+    id: talentId,
+  })
   const [talentOverview, setTalentOverview] = useRecoilState(talentOverviewAtom)
 
   useEffect(() => {
@@ -74,7 +66,7 @@ const useJobCandidateTalentSummaryQuery = (talentId: string) => {
   return { data }
 }
 
-type JobCandidateTalentSummaryQueryType = useJobCandidateTalentSummaryQueryType["response"]
+type JobCandidateTalentResumeQueryType = useJobCandidateTalentResumeQueryType["response"]
 
-export { JobCandidateTalentSummaryQueryType }
-export default useJobCandidateTalentSummaryQuery
+export { JobCandidateTalentResumeQueryType }
+export default useJobCandidateTalentResumeQuery

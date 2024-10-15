@@ -59,6 +59,16 @@ export const CANDIDATE_STATUS_MAPPING = {
   rejected: "failed",
 }
 
+export const CANDIDATE_STATUS_NAME_MAPPING = {
+  new: "New Application",
+  email_sent: "New Application",
+  under_review: "Screening",
+  interviewing: "Interview",
+  offering: "Offer",
+  hired: "Hired",
+  rejected: "Failed",
+}
+
 export const dndSceneInitial = {
   "new-application": [],
   screening: [],

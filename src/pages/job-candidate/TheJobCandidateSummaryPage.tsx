@@ -8,7 +8,7 @@ import useJobCandidateTalentSummaryQuery from "hooks/queries/useJobCandidateTale
 const TheJobCandidateSummaryPage = () => {
   const { candidateId } = useParams()
   const { data } = useJobCandidateTalentSummaryQuery(candidateId)
-  const talent = data?.business.talent
+  const talent = data?.business.jobApply.talent
 
   return (
     <>
