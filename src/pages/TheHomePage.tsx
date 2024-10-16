@@ -29,7 +29,7 @@ const TheHomePage = () => {
         <TheJobsList data={data} />
         <FooterPagination
           page={page}
-          totalPage={data?.business?.jobs?.totalPages}
+          totalPage={data?.business?.jobs?.totalPages || 1}
           onPrevious={onPreviousPage}
           onNext={onNextPage}
         />
