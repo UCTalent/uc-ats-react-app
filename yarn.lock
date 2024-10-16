@@ -732,10 +732,10 @@
   resolved "https://registry.yarnpkg.com/@metamask/safe-event-emitter/-/safe-event-emitter-3.1.1.tgz#e89b840a7af8097a8ed4953d8dc8470d1302d3ef"
   integrity sha512-ihb3B0T/wJm1eUuArYP4lCTSEoZsClHhuWyfo/kMX3m/odpqNcPfsz5O2A3NT7dXCAgWPGDQGPqygCpgeniKMw==
 
-"@metamask/sdk-communication-layer@0.28.2":
-  version "0.28.2"
-  resolved "https://registry.yarnpkg.com/@metamask/sdk-communication-layer/-/sdk-communication-layer-0.28.2.tgz#25d84a6af4dd79324e0d4c9d1f307711fbd4aa91"
-  integrity sha512-kGx6qgP482DecPILnIS38bgxIjNransR3/Jh5Lfg9BXJLaXpq/MEGrjHGnJHAqCyfRymnd5cgexHtXJvQtRWQA==
+"@metamask/sdk-communication-layer@0.29.2":
+  version "0.29.2"
+  resolved "https://registry.yarnpkg.com/@metamask/sdk-communication-layer/-/sdk-communication-layer-0.29.2.tgz#6c63435c55fcc122428c5fe8c19d38c05c98ecde"
+  integrity sha512-Xfa1DXOg0bfvMqXa3o/Y43bm2kHYyD4YdR0XiuhL70NJzPcUPM53I1O7aSg83ogRHsHI4LM7dEEMEo6w6uQgdg==
   dependencies:
     bufferutil "^4.0.8"
     date-fns "^2.29.3"
@@ -743,22 +743,22 @@
     utf-8-validate "^5.0.2"
     uuid "^8.3.2"
 
-"@metamask/sdk-install-modal-web@0.28.1":
-  version "0.28.1"
-  resolved "https://registry.yarnpkg.com/@metamask/sdk-install-modal-web/-/sdk-install-modal-web-0.28.1.tgz#3e7085c34eaec7f9974e4a928e7f5bea33a278c9"
-  integrity sha512-mHkIjWTpYQMPDMtLEEtTVXhae4pEjy7jDBfV7497L0U3VCPQrBl/giZBwA6AgKEX1emYcM2d1WRHWR9N4YhyJA==
+"@metamask/sdk-install-modal-web@0.29.2":
+  version "0.29.2"
+  resolved "https://registry.yarnpkg.com/@metamask/sdk-install-modal-web/-/sdk-install-modal-web-0.29.2.tgz#a50dce1f910318440994ba6570e711c099d80567"
+  integrity sha512-AOiRpv0pIxIyWYTuBWRymdTVwdZrsVNGNFv0I7RlBU0s1hQ6lapEq2eeIv30d9E88mS/DI6F3R0ArSg0So7W2g==
   dependencies:
     qr-code-styling "^1.6.0-rc.1"
 
-"@metamask/sdk@0.28.4":
-  version "0.28.4"
-  resolved "https://registry.yarnpkg.com/@metamask/sdk/-/sdk-0.28.4.tgz#bb5f3849629403ec97c23e1a968c6b893ecf001c"
-  integrity sha512-RjWBKPNesjeua2SXIDF9IvYALOSsOQyqHv5DPPK0Voskytk7y+2n/33ocbC1BH5hTLI4hDPH+BuCpXJRWs3/Yg==
+"@metamask/sdk@0.29.3":
+  version "0.29.3"
+  resolved "https://registry.yarnpkg.com/@metamask/sdk/-/sdk-0.29.3.tgz#7d25be3deb1628349f2f7e3885260c556d89cc1c"
+  integrity sha512-raOqMlsEjzsz3bOAK1x7/1QyGfnCyGvFZOT4OYoyepKu3QG3ex3o8iHdVYlcMkqZVcOsXWLsrUorn0SYploXyw==
   dependencies:
     "@metamask/onboarding" "^1.0.1"
     "@metamask/providers" "16.1.0"
-    "@metamask/sdk-communication-layer" "0.28.2"
-    "@metamask/sdk-install-modal-web" "0.28.1"
+    "@metamask/sdk-communication-layer" "0.29.2"
+    "@metamask/sdk-install-modal-web" "0.29.2"
     "@types/dom-screen-wake-lock" "^1.0.0"
     "@types/uuid" "^10.0.0"
     bowser "^2.9.0"
@@ -1747,13 +1747,13 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.14.2"
 
-"@wagmi/connectors@5.1.15":
-  version "5.1.15"
-  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-5.1.15.tgz#39ff0fe0f1729ce9d0dce24806d40a82fe5a48fb"
-  integrity sha512-Bz5EBpn8hAYFuxCWoXviwABk2VlLRuQTpJ7Yd/hu4HuuXnTdCN27cfvT+Fy2sWbwpLnr1e29LJGAUCIyYkHz7g==
+"@wagmi/connectors@5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-5.2.1.tgz#537f8d57da84b7f7d399d99a952508d3ab4faa8a"
+  integrity sha512-+QxjRJnSlhBhq6wiMU4zxdfKgszk2Ul7rHxOHdKyq4bTNXikc0iBu+XxLJKBpEsL065rUtBitaBS70xkSWw5ow==
   dependencies:
     "@coinbase/wallet-sdk" "4.0.4"
-    "@metamask/sdk" "0.28.4"
+    "@metamask/sdk" "0.29.3"
     "@safe-global/safe-apps-provider" "0.18.3"
     "@safe-global/safe-apps-sdk" "9.1.0"
     "@walletconnect/ethereum-provider" "2.17.0"
@@ -2090,10 +2090,15 @@ acorn-walk@^8.1.1:
   dependencies:
     acorn "^8.11.0"
 
-acorn@^8.11.0, acorn@^8.12.0, acorn@^8.12.1, acorn@^8.4.1:
+acorn@^8.11.0, acorn@^8.12.0, acorn@^8.4.1:
   version "8.12.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.12.1.tgz#71616bdccbe25e27a54439e0046e89ca76df2248"
   integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
+
+acorn@^8.12.1:
+  version "8.13.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.13.0.tgz#2a30d670818ad16ddd6a35d3842dacec9e5d7ca3"
+  integrity sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==
 
 ajv@^6.12.4:
   version "6.12.6"
@@ -5762,7 +5767,12 @@ tslib@1.14.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.6.2:
+tslib@^2.0.0, tslib@^2.3.1:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.0.tgz#d124c86c3c05a40a91e6fdea4021bd31d377971b"
+  integrity sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==
+
+tslib@^2.1.0, tslib@^2.3.0, tslib@^2.6.2:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.7.0.tgz#d9b40c5c40ab59e8738f297df3087bf1a2690c01"
   integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
@@ -6010,10 +6020,25 @@ valtio@1.11.2:
     proxy-compare "2.5.1"
     use-sync-external-store "1.2.0"
 
-viem@2.x, viem@^2.1.1, viem@^2.17.4:
+viem@2.x, viem@^2.17.4:
   version "2.21.26"
   resolved "https://registry.yarnpkg.com/viem/-/viem-2.21.26.tgz#6a4d070c35caee8635a4badb32f0d735c4ce59df"
   integrity sha512-qanTFUzU5y3tCZTwYlwA/LXCR4X7OsCPvvKOmxOyuY8gEvWKMS/oh+FBxYO/2bXOhDG/ylg1V3toIbRuMseF8w==
+  dependencies:
+    "@adraffy/ens-normalize" "1.11.0"
+    "@noble/curves" "1.6.0"
+    "@noble/hashes" "1.5.0"
+    "@scure/bip32" "1.5.0"
+    "@scure/bip39" "1.4.0"
+    abitype "1.0.6"
+    isows "1.0.6"
+    webauthn-p256 "0.0.10"
+    ws "8.18.0"
+
+viem@^2.1.1:
+  version "2.21.27"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-2.21.27.tgz#4f47ae8df832e160c5a339238e823c0e56794e64"
+  integrity sha512-lBpldSmwmKZ8jIiVLqoplPnuMs2Cza8tK0/G9m+ZjqfbgEp4+BPviFBJWCDNFxSp8H3gPzAuqj8o1WKQyq3wlg==
   dependencies:
     "@adraffy/ens-normalize" "1.11.0"
     "@noble/curves" "1.6.0"
@@ -6044,11 +6069,11 @@ vite@^5.4.1:
     fsevents "~2.3.3"
 
 wagmi@^2.11.0, wagmi@^2.12.17:
-  version "2.12.17"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-2.12.17.tgz#b3fad0dc38a67a35a2506db3dc8df90164f1ee87"
-  integrity sha512-WkofyvOX6XGOXrs8W0NvnzbLGIb9Di8ECqpMDW32nqwTKRxfolfN4GI/AlAMs9fjx4h3k8LGTfqa6UGLb063yg==
+  version "2.12.19"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-2.12.19.tgz#d727c5852e57129c24e26fc66278ce300739b352"
+  integrity sha512-ksXR7r8xniaSVYBwmjJFMeqkBf1TNB2L+3yGFD4Elu7+GQdxjrZp6+SR8HYIOGFtR7BGp1VUPGTxbndg7ghxVw==
   dependencies:
-    "@wagmi/connectors" "5.1.15"
+    "@wagmi/connectors" "5.2.1"
     "@wagmi/core" "2.13.8"
     use-sync-external-store "1.2.0"
 
