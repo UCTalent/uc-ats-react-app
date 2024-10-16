@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1440a393a4e051845ad23dd3f72aa1d1>>
+ * @generated SignedSource<<a5158a15f950e0bc4e52e5cefd53b83c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,7 @@ import { ConcreteRequest } from 'relay-runtime';
 export type useJobsQuery$variables = {
   page: number;
   perPage: number;
+  status: ReadonlyArray<string>;
 };
 export type useJobsQuery$data = {
   readonly business: {
@@ -53,19 +54,22 @@ export type useJobsQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "page"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "perPage"
-  }
-],
-v1 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "page"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "perPage"
+},
+v2 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "status"
+},
+v3 = [
   {
     "kind": "Variable",
     "name": "page",
@@ -75,170 +79,175 @@ v1 = [
     "kind": "Variable",
     "name": "perPage",
     "variableName": "perPage"
+  },
+  {
+    "kind": "Variable",
+    "name": "status",
+    "variableName": "status"
   }
 ],
-v2 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "about",
   "storageKey": null
 },
-v3 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "appliedNum",
   "storageKey": null
 },
-v4 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "benefits",
   "storageKey": null
 },
-v5 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "createdAt",
   "storageKey": null
 },
-v6 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "droppedNum",
   "storageKey": null
 },
-v7 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "experienceLevel",
   "storageKey": null
 },
-v8 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "hiredNum",
   "storageKey": null
 },
-v9 = {
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v10 = {
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "jobType",
   "storageKey": null
 },
-v11 = {
+v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "location",
   "storageKey": null
 },
-v12 = {
+v14 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "locationType",
   "storageKey": null
 },
-v13 = {
+v15 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "locationValue",
   "storageKey": null
 },
-v14 = {
+v16 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "managementLevel",
   "storageKey": null
 },
-v15 = {
+v17 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "minimumQualifications",
   "storageKey": null
 },
-v16 = {
+v18 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "preferredRequirement",
   "storageKey": null
 },
-v17 = {
+v19 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "responsibilities",
   "storageKey": null
 },
-v18 = {
+v20 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "salary",
   "storageKey": null
 },
-v19 = {
+v21 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "status",
   "storageKey": null
 },
-v20 = {
+v22 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 },
-v21 = {
+v23 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "updatedAt",
   "storageKey": null
 },
-v22 = {
+v24 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "viewedNum",
   "storageKey": null
 },
-v23 = {
+v25 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v24 = {
+v26 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "logoUrl",
   "storageKey": null
 },
-v25 = {
+v27 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -247,7 +256,11 @@ v25 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/),
+      (v2/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "useJobsQuery",
@@ -262,7 +275,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v1/*: any*/),
+            "args": (v3/*: any*/),
             "concreteType": "JobPagination",
             "kind": "LinkedField",
             "name": "jobs",
@@ -276,8 +289,6 @@ return {
                 "name": "jobs",
                 "plural": true,
                 "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/),
                   (v4/*: any*/),
                   (v5/*: any*/),
                   (v6/*: any*/),
@@ -297,6 +308,8 @@ return {
                   (v20/*: any*/),
                   (v21/*: any*/),
                   (v22/*: any*/),
+                  (v23/*: any*/),
+                  (v24/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -305,15 +318,15 @@ return {
                     "name": "organization",
                     "plural": false,
                     "selections": [
-                      (v23/*: any*/),
-                      (v24/*: any*/)
+                      (v25/*: any*/),
+                      (v26/*: any*/)
                     ],
                     "storageKey": null
                   }
                 ],
                 "storageKey": null
               },
-              (v25/*: any*/)
+              (v27/*: any*/)
             ],
             "storageKey": null
           }
@@ -326,7 +339,11 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v2/*: any*/),
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Operation",
     "name": "useJobsQuery",
     "selections": [
@@ -340,7 +357,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v1/*: any*/),
+            "args": (v3/*: any*/),
             "concreteType": "JobPagination",
             "kind": "LinkedField",
             "name": "jobs",
@@ -354,8 +371,6 @@ return {
                 "name": "jobs",
                 "plural": true,
                 "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/),
                   (v4/*: any*/),
                   (v5/*: any*/),
                   (v6/*: any*/),
@@ -375,6 +390,8 @@ return {
                   (v20/*: any*/),
                   (v21/*: any*/),
                   (v22/*: any*/),
+                  (v23/*: any*/),
+                  (v24/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -383,16 +400,16 @@ return {
                     "name": "organization",
                     "plural": false,
                     "selections": [
-                      (v23/*: any*/),
-                      (v24/*: any*/),
-                      (v9/*: any*/)
+                      (v25/*: any*/),
+                      (v26/*: any*/),
+                      (v11/*: any*/)
                     ],
                     "storageKey": null
                   }
                 ],
                 "storageKey": null
               },
-              (v25/*: any*/)
+              (v27/*: any*/)
             ],
             "storageKey": null
           }
@@ -402,16 +419,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1a56a80db566be318433a4e37f641341",
+    "cacheID": "f7b4ac6d999f1c97e2d3494c934aab0d",
     "id": null,
     "metadata": {},
     "name": "useJobsQuery",
     "operationKind": "query",
-    "text": "query useJobsQuery(\n  $page: Int!\n  $perPage: Int!\n) {\n  business {\n    jobs(page: $page, perPage: $perPage) {\n      jobs {\n        about\n        appliedNum\n        benefits\n        createdAt\n        droppedNum\n        experienceLevel\n        hiredNum\n        id\n        jobType\n        location\n        locationType\n        locationValue\n        managementLevel\n        minimumQualifications\n        preferredRequirement\n        responsibilities\n        salary\n        status\n        title\n        updatedAt\n        viewedNum\n        organization {\n          name\n          logoUrl\n          id\n        }\n      }\n      totalPages\n    }\n  }\n}\n"
+    "text": "query useJobsQuery(\n  $status: [String!]!\n  $page: Int!\n  $perPage: Int!\n) {\n  business {\n    jobs(status: $status, page: $page, perPage: $perPage) {\n      jobs {\n        about\n        appliedNum\n        benefits\n        createdAt\n        droppedNum\n        experienceLevel\n        hiredNum\n        id\n        jobType\n        location\n        locationType\n        locationValue\n        managementLevel\n        minimumQualifications\n        preferredRequirement\n        responsibilities\n        salary\n        status\n        title\n        updatedAt\n        viewedNum\n        organization {\n          name\n          logoUrl\n          id\n        }\n      }\n      totalPages\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "cdebb1e6bb6fc2bbf32b6f5881d4c65f";
+(node as any).hash = "ebac43b4de7169d09bb0ed431605255c";
 
 export default node;

@@ -17,7 +17,7 @@ type BusinessQuery {
   jobApply(id: String): JobApply!
 
   """Get all business jobs"""
-  jobs(status: String, page: Int, perPage: Int): JobPagination!
+  jobs(status: [String!], page: Int, perPage: Int): JobPagination!
 
   """Get a talent detail"""
   talent(id: String): Talent!
@@ -139,7 +139,7 @@ type Query {
   job(id: String): Job!
 
   """Get all jobs"""
-  jobs(creatorId: ID, status: String, page: Int, perPage: Int): JobPagination!
+  jobs(creatorId: ID, status: [String!], page: Int, perPage: Int): JobPagination!
 
   """Get all organizations"""
   organizations(page: Int, perPage: Int): [Organization!]!
