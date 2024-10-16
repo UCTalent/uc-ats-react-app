@@ -1,13 +1,14 @@
+import { FC } from "react"
+import { useNavigate } from "react-router-dom"
 import { Box, Typography } from "@mui/material"
 import Stack from "@mui/material/Stack"
 import JobCard from "components/common/JobCard"
 import NumberWithLabelVerticalTag from "components/common/tags/NumberWithLabelVerticalTag"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 import { JobsListType } from "hooks/queries/useJobsQuery"
-import { FC } from "react"
-import { useNavigate } from "react-router-dom"
 import CloseJobSuccess from "./modals/CloseJobSuccess"
 import CloseJobFailed from "./modals/CloseJobFailed"
+import EmptyData from "components/common/EmptyData"
 
 interface IProps {
   data: JobsListType
@@ -20,8 +21,10 @@ const TheJobsList: FC<IProps> = ({ data }) => {
 
   return (
     <Stack sx={{ flexGrow: 1, pt: "12px" }}>
-      {data &&
+      {jobs && Array.isArray(jobs) && jobs.length === 0 && <EmptyData sx={{ height: "100%" }} />}
+      {jobs &&
         Array.isArray(jobs) &&
+        jobs.length > 0 &&
         jobs.map((job, index) => (
           <Stack
             key={job.id}

@@ -1,3 +1,23 @@
+export enum JOBS_STATUS_PARAMS {
+  ACTIVE = "active",
+  CLOSED = "closed",
+  PENDING = "pending",
+  COMPLETING = "completing",
+}
+
+export const JOBS_STATUS_DB = {
+  CRAWLED: "crawled",
+  APPROVED: "approved",
+  REJECTED: "rejected",
+  CLOSED: "closed",
+  SUCCESS_COMPLETED: "success_completed",
+  FAIL_COMPLETED: "fail_completed",
+  PUBLISHED: "published",
+  EXPIRED: "expired",
+  ACHIEVED: "achieved",
+  PENDING_TO_REVIEW: "pending_to_review",
+}
+
 export enum JOB_TYPE {
   FULL_TIME = "full_time",
   PART_TIME = "part_time",

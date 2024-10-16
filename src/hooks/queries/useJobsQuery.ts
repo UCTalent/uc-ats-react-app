@@ -1,10 +1,12 @@
+import { useMemo } from "react"
 import { useLazyLoadQuery, graphql } from "react-relay"
 import { useJobsQuery as useJobsQueryType } from "./__generated__/useJobsQuery.graphql"
+import { JOBS_STATUS_DB, JOBS_STATUS_PARAMS } from "constants/JOB"
 
 const jobsQuery = graphql`
-  query useJobsQuery($page: Int!, $perPage: Int!) {
+  query useJobsQuery($status: [String!]!, $page: Int!, $perPage: Int!) {
     business {
-      jobs(page: $page, perPage: $perPage) {
+      jobs(status: $status, page: $page, perPage: $perPage) {
         jobs {
           about
           appliedNum
@@ -38,13 +40,46 @@ const jobsQuery = graphql`
   }
 `
 
-const useJobsQuery = (page: number, perPage: number = 10) => {
+const {
+  CRAWLED,
+  APPROVED,
+  REJECTED,
+  SUCCESS_COMPLETED,
+  FAIL_COMPLETED,
+  PUBLISHED,
+  EXPIRED,
+  PENDING_TO_REVIEW,
+} = JOBS_STATUS_DB
+
+// const ALL_STATUS = [
+//   APPROVED,
+//   PUBLISHED,
+//   REJECTED,
+//   CRAWLED,
+//   PENDING_TO_REVIEW,
+//   SUCCESS_COMPLETED,
+//   FAIL_COMPLETED,
+//   EXPIRED,
+// ]
+
+const STATUS_TO_QUERY = {
+  active: [APPROVED, PUBLISHED],
+  closed: [REJECTED, EXPIRED],
+  pending: [CRAWLED, PENDING_TO_REVIEW],
+  completing: [SUCCESS_COMPLETED, FAIL_COMPLETED, EXPIRED],
+}
+
+const useJobsQuery = (status: JOBS_STATUS_PARAMS, page: number, perPage: number = 10) => {
   const data = useLazyLoadQuery<useJobsQueryType>(jobsQuery, {
+    status: STATUS_TO_QUERY[status] || STATUS_TO_QUERY.active,
+    // status: ALL_STATUS,
     page: page || 1,
     perPage,
   })
 
-  return { data }
+  const isJobsEmpty = useMemo(() => data && data.business.jobs.jobs.length === 0, [data])
+
+  return { data, isJobsEmpty }
 }
 
 type JobsListType = useJobsQueryType["response"]
