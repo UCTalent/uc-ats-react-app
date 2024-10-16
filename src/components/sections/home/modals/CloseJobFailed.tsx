@@ -13,10 +13,15 @@ type Props = {
   jobId: string
 }
 
+type FormJobFailed = {
+  reasonCloseJob: Array<string>
+  otherReason: string
+}
+
 const CloseJobFailed = ({ jobId }: Props) => {
   console.log("jobId:", jobId)
   const [open, setOpen] = useState(false)
-  const { control } = useForm()
+  const { control, handleSubmit } = useForm<FormJobFailed>()
 
   const handleCloseModal = () => {
     setOpen(false)
@@ -24,6 +29,12 @@ const CloseJobFailed = ({ jobId }: Props) => {
 
   const handleOpenModal = () => {
     setOpen(true)
+  }
+
+  const handleSubmitForm = (value: FormJobFailed) => {
+    // TODO: Call mutation to close job with failed reason
+    console.log("handleSubmitForm called", value)
+    handleCloseModal()
   }
 
   return (
@@ -71,7 +82,9 @@ const CloseJobFailed = ({ jobId }: Props) => {
               >
                 Cancel
               </ButtonContained>
-              <ButtonContained sx={{ flex: 1 }}>Confirm</ButtonContained>
+              <ButtonContained sx={{ flex: 1 }} onClick={handleSubmit(handleSubmitForm)}>
+                Confirm
+              </ButtonContained>
             </Stack>
           </Stack>
         </ModalCommon>

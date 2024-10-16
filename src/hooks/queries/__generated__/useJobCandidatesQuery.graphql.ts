@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4d95b71ddb9e0827ac79e632e97127f9>>
+ * @generated SignedSource<<8a09f26d16bd735cfb48fe0e900b2207>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -45,6 +45,7 @@ export type useJobCandidatesQuery$data = {
         readonly speciality: string | null | undefined;
       } | null | undefined;
       readonly title: string;
+      readonly web3meta: any | null | undefined;
     };
   };
 };
@@ -211,6 +212,13 @@ v14 = {
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
+},
+v15 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "web3meta",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -268,7 +276,8 @@ return {
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/)
+              (v14/*: any*/),
+              (v15/*: any*/)
             ],
             "storageKey": null
           }
@@ -336,7 +345,8 @@ return {
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/)
+              (v14/*: any*/),
+              (v15/*: any*/)
             ],
             "storageKey": null
           }
@@ -346,16 +356,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "19873ec5a9eb057ad3bb3b3082cbd551",
+    "cacheID": "78149c0902d795b3202be47c42d028b3",
     "id": null,
     "metadata": {},
     "name": "useJobCandidatesQuery",
     "operationKind": "query",
-    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n    }\n  }\n}\n"
+    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      web3meta\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d0675ef88226afd9c6da2616520f359d";
+(node as any).hash = "7046514f7c94c1ab8f73e66db5a7e977";
 
 export default node;

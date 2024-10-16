@@ -1,13 +1,13 @@
-"""
-Requires that exactly one field must be supplied and that field must not be `null`.
-"""
-directive @oneOf on INPUT_OBJECT
-
 """Exposes a URL that specifies the behavior of this scalar."""
 directive @specifiedBy(
   """The URL that specifies the behavior of this scalar."""
   url: String!
 ) on SCALAR
+
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
 
 type BusinessQuery {
   """Get a job detail"""
@@ -17,7 +17,7 @@ type BusinessQuery {
   jobApply(id: String): JobApply!
 
   """Get all business jobs"""
-  jobs(status: [String!], page: Int, perPage: Int): JobPagination!
+  jobs(page: Int, perPage: Int, status: [String!]): JobPagination!
 
   """Get a talent detail"""
   talent(id: String): Talent!
@@ -139,7 +139,7 @@ type Query {
   job(id: String): Job!
 
   """Get all jobs"""
-  jobs(creatorId: ID, status: [String!], page: Int, perPage: Int): JobPagination!
+  jobs(creatorId: ID, page: Int, perPage: Int, status: [String!]): JobPagination!
 
   """Get all organizations"""
   organizations(page: Int, perPage: Int): [Organization!]!

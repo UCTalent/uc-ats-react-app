@@ -9,6 +9,7 @@ import { useSetRecoilState } from "recoil"
 import { showAlertState } from "store/alertAtom"
 
 type Props = {
+  closeJobStatus: "success" | "failed"
   idJob: string
   idJobApplies: string
   status: StatusJobApply
@@ -26,14 +27,16 @@ const useCloseJobSmartContract = () => {
   const [loading, setLoading] = useState(false)
   const showAlert = useSetRecoilState(showAlertState)
 
-  const mutate = async ({ idJob, idJobApplies, status, rejectedNote }: Props) => {
+  const mutate = async ({ idJob, idJobApplies, status, rejectedNote, closeJobStatus }: Props) => {
     setLoading(true)
-    await mutateUpdateJobApplies(idJobApplies, {
-      job_apply: {
-        status,
-        rejected_note: rejectedNote,
-      },
-    })
+    if (closeJobStatus === "success") {
+      await mutateUpdateJobApplies(idJobApplies, {
+        job_apply: {
+          status,
+          rejected_note: rejectedNote,
+        },
+      })
+    }
     if (errorsUpdateJobApplies) return
     await mutateCancelJob(idJob)
     if (errorsCancelJob) return

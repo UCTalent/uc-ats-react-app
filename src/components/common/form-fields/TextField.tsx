@@ -8,7 +8,6 @@ type TypeProps<T extends FieldValues> = TextFieldProps & {
 }
 
 const TextField = <T extends FieldValues>({ control, name, ...restProps }: TypeProps<T>) => {
-  console.log(restProps.minRows)
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { invalid, error },
