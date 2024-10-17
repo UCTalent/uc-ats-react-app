@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import IconJob from "assets/icons/job.svg"
-// import IconPeople from "assets/icons/people.svg"
+import IconPeople from "assets/icons/people.svg"
 // import IconStoreBox from "assets/icons/store-box.svg"
 import IconSVG from "components/common/IconSVG"
 import IconCollapseExpand from "assets/icons/back-arrow.svg"
@@ -29,17 +29,17 @@ const NavigateAsideBarCollapseExpand = () => {
   const navigateList = useMemo(
     () => [
       {
-        title: "Jobs",
+        title: "Applied Jobs",
         path: "/",
         icon: IconJob,
-        isActive: pathname.startsWith("/"),
+        isActive: pathname.startsWith("/jobs"),
       },
-      // {
-      //   title: "Candidates",
-      //   path: "/candidates",
-      //   icon: IconPeople,
-      //   isActive: pathname.startsWith("/candidates"),
-      // },
+      {
+        title: "Job Referrals",
+        path: "/referrals",
+        icon: IconPeople,
+        isActive: pathname.startsWith("/referrals"),
+      },
       // {
       //   title: "Drafts",
       //   path: "/drafts",

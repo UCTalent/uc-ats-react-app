@@ -23,7 +23,7 @@ const TopBarWithTitle = () => {
         zIndex: 10,
       }}
     >
-      <Typography sx={{ fontSize: "34px", fontWeight: 600 }}>Jobs</Typography>
+      <Typography sx={{ fontSize: "34px", fontWeight: 600 }}>Applied Jobs</Typography>
       <ButtonContained
         startIconSrc={IconPlus}
         sx={{ height: "36px", px: "16px" }}

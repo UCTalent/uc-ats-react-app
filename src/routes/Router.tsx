@@ -24,6 +24,14 @@ const Router = createBrowserRouter([
             },
           },
           {
+            path: "/referrals",
+            async lazy() {
+              const module = await import("pages/TheJobReferralsPage")
+              const Component = module.default
+              return { Component }
+            },
+          },
+          {
             path: "/jobs/:jobId",
             Component: JobDetailLayout,
             children: [

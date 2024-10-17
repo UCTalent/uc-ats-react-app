@@ -64,11 +64,11 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
         direction="row"
         sx={{ height: APP_HEADER_HEIGHT, justifyContent: "space-between", alignItems: "center" }}
       >
-        <Link to="/">
+        <Link to="/" style={{ flex: 1 }}>
           <img src={LogoUctText} alt="UCTalent" width={APP_HEADER_LOGO_WIDTH} />
         </Link>
 
-        <Stack flexDirection="row" gap="8px">
+        <Stack flexDirection="row" gap="8px" sx={{ flex: 1, justifyContent: "center" }}>
           {TAB_MENU.map((item, index) => (
             <Tooltip key={item} title={index !== 0 && "Coming soon"}>
               <Box>
@@ -92,7 +92,7 @@ const AppHeader: React.FC<IProps> = ({ sx }) => {
           <ButtonContained onClick={() => replaceModal(MODAL_ID.LOGIN)}>Login</ButtonContained>
         )} */}
         {currentUser.isLoggedIn && (
-          <Stack direction="row" sx={{ alignItems: "center" }}>
+          <Stack direction="row" sx={{ alignItems: "center", justifyContent: "end", flex: 1 }}>
             <IconButton disabled sx={{ opacity: 0.2 }}>
               <img src={IconBell} alt="Notification" width={32} height={32} />
             </IconButton>

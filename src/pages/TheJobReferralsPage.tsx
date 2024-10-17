@@ -1,16 +1,15 @@
 import { useEffect } from "react"
 import Stack from "@mui/material/Stack"
-import TheJobsList from "components/sections/home/TheJobsList"
-import TopBarWithTitle from "components/sections/home/TopBarWithTitle"
-import TabsFilter from "components/subsections/home/TabsFilter"
+import TheReferralsList from "components/sections/referrals/TheReferralsList"
+import TopBarWithTitle from "components/sections/referrals/TopBarWithTitle"
+import TabsFilter from "components/subsections/referrals/TabsFilter"
 import FooterPagination from "components/sections/home/FooterPagination"
 import useJobsSearchParams from "hooks/useJobsSearchParams"
 import useJobsQuery from "hooks/queries/useJobsQuery"
 import { JOBS_STATUS_PARAMS } from "constants/JOB"
 
-const TheHomePage = () => {
-  const { page, status, onPreviousPage, onNextPage, onStartPage, onChangeStatus } =
-    useJobsSearchParams()
+const TheJobReferralsPage = () => {
+  const { page, status, onPreviousPage, onNextPage, onStartPage } = useJobsSearchParams()
   const { data, isJobsEmpty } = useJobsQuery(status as JOBS_STATUS_PARAMS, page)
 
   useEffect(() => {
@@ -25,10 +24,10 @@ const TheHomePage = () => {
       <Stack
         sx={{ mx: "28px", pt: "24px", borderBottom: "1px solid", borderColor: "border.outlined" }}
       >
-        <TabsFilter status={status as JOBS_STATUS_PARAMS} onChangeStatus={onChangeStatus} />
+        <TabsFilter />
       </Stack>
       <Stack sx={{ flexGrow: 1, overflow: "auto" }}>
-        <TheJobsList data={data} />
+        <TheReferralsList data={data} />
         <FooterPagination
           page={page}
           totalPage={data?.business?.jobs?.totalPages || 1}
@@ -40,4 +39,4 @@ const TheHomePage = () => {
   )
 }
 
-export default TheHomePage
+export default TheJobReferralsPage
