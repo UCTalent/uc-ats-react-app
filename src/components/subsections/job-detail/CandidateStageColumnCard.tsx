@@ -1,32 +1,43 @@
+import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
+import dayjs from "dayjs"
 import { memo, useCallback, useEffect } from "react"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { useRecoilState } from "recoil"
-import dayjs from "dayjs"
-import Stack from "@mui/material/Stack"
-import Typography from "@mui/material/Typography"
 // import Chip from "@mui/material/Chip"
+import IconThunder from "assets/icons/thunder.svg"
 import IconSVG from "components/common/IconSVG"
 import UserAvatar from "components/common/user-avatar/UserAvatar"
-import IconThunder from "assets/icons/thunder.svg"
-import { talentOverviewAtom } from "store/talentOverviewAtom"
 import { PAGE_MAP } from "constants/PAGE_MAP"
 import { CANDIDATE_CARD_HEIGHT } from "constants/STYLE"
-import { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
 import useCloseJobSmartContract from "hooks/abi/useCloseJobSmartContract"
+import { JobCandidatesQueryType } from "hooks/queries/useJobCandidatesQuery"
+import { talentOverviewAtom } from "store/talentOverviewAtom"
+import { Web3metaType } from "types/smart-contract"
+import { checkJobCreatedBySmartContract } from "utils/checkJobCreatedBySmartContract"
+import { TFunction } from "types/common"
 
 interface TypeProps {
   candidate: JobCandidatesQueryType["business"]["job"]["jobApplies"][0]
   jobId: string
   status: string
+  web3meta?: Web3metaType
+  refetchJobCandidates: TFunction
 }
 
-const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, status }) => {
+const CandidateStageColumnCard: React.FC<TypeProps> = ({
+  candidate,
+  jobId,
+  status,
+  web3meta,
+  refetchJobCandidates,
+}) => {
   const { candidateId } = useParams()
   const setTalentOverview = useRecoilState(talentOverviewAtom)[1]
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const isCloseJobStatus = searchParams.get("close-job") === "success"
-  const { mutate } = useCloseJobSmartContract()
+  const { mutate, loading } = useCloseJobSmartContract()
 
   useEffect(() => {
     if (!candidateId || candidateId !== candidate.id) return
@@ -52,13 +63,16 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({ candidate, jobId, statu
         borderRadius: "8px",
       }}
       onClick={() => {
+        if (loading) return
         if (isCloseJobStatus) {
+          const isCreatedBySmartContract = checkJobCreatedBySmartContract(web3meta.events)
           mutate({
+            closeJobStatus: "success",
             idJob: jobId,
             idJobApplies: candidate.id,
-            status: "hired",
+            isCreatedBySmartContract,
+            callback: refetchJobCandidates,
           })
-          console.log("click", candidate, jobId)
         }
       }}
     >

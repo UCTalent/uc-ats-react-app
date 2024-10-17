@@ -26,13 +26,10 @@ const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
-  const {
-    data,
-    // refetch: refetchJobCandidates
-  } = useJobCandidatesQuery(jobId)
-
+  const { data, refetch: refetchJobCandidates } = useJobCandidatesQuery(jobId)
   const dndBoardRef = useRef<HTMLDivElement | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
+  const web3meta = useMemo(() => data?.business.job.web3meta, [data?.business.job.web3meta])
 
   const dndScene = useMemo(
     () =>
@@ -119,6 +116,8 @@ const TheJobCandidatePage = () => {
                         candidate={card.data}
                         jobId={jobId}
                         status={CANDIDATE_PROCESS[columnIndex].name}
+                        web3meta={web3meta}
+                        refetchJobCandidates={refetchJobCandidates}
                       />
                     </DndDraggable>
                   ))}

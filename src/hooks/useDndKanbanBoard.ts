@@ -31,10 +31,11 @@ const useDndKanbanBoard = <ICardData>(
   const { configConfirm } = useConfirmAtom()
 
   useEffect(() => {
+    setScene(cloneDeep(initialScene))
     return () => {
       setScene({})
     }
-  }, [])
+  }, [initialScene])
 
   const getCardPayload = useCallback(
     (columnId: string, index: number): { id: string; data: ICardData } => {

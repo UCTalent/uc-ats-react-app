@@ -11,7 +11,7 @@ const updateJobApplies = (
 }
 
 const cancelJob = (id: string) => {
-  const url = `/jobs/${id}/cancel_job`
+  const url = `/jobs/${id}/closed_job`
   return axiosBasic.patch(url)
 }
 

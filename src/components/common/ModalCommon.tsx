@@ -34,7 +34,7 @@ const ModalCommon: React.FC<IProps> = ({ children, wrapperSx, open, onClose, has
           border: "1px solid",
           borderColor: "border.outlined",
           pb: "16px",
-          bgcolor: "white",
+          bgcolor: "#fff",
           "&:focus": {
             outline: "none",
           },

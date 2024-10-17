@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a5158a15f950e0bc4e52e5cefd53b83c>>
+ * @generated SignedSource<<11b8f461112fbf73c3d80dcf69e4608b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -43,6 +43,7 @@ export type useJobsQuery$data = {
         readonly title: string;
         readonly updatedAt: any;
         readonly viewedNum: number | null | undefined;
+        readonly web3meta: any | null | undefined;
       }>;
       readonly totalPages: number;
     };
@@ -251,6 +252,13 @@ v27 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "web3meta",
+  "storageKey": null
+},
+v28 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "totalPages",
   "storageKey": null
 };
@@ -322,11 +330,12 @@ return {
                       (v26/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v27/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v27/*: any*/)
+              (v28/*: any*/)
             ],
             "storageKey": null
           }
@@ -405,11 +414,12 @@ return {
                       (v11/*: any*/)
                     ],
                     "storageKey": null
-                  }
+                  },
+                  (v27/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v27/*: any*/)
+              (v28/*: any*/)
             ],
             "storageKey": null
           }
@@ -419,16 +429,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f7b4ac6d999f1c97e2d3494c934aab0d",
+    "cacheID": "1906408284593fa0e7c944e65e08612c",
     "id": null,
     "metadata": {},
     "name": "useJobsQuery",
     "operationKind": "query",
-    "text": "query useJobsQuery(\n  $status: [String!]!\n  $page: Int!\n  $perPage: Int!\n) {\n  business {\n    jobs(status: $status, page: $page, perPage: $perPage) {\n      jobs {\n        about\n        appliedNum\n        benefits\n        createdAt\n        droppedNum\n        experienceLevel\n        hiredNum\n        id\n        jobType\n        location\n        locationType\n        locationValue\n        managementLevel\n        minimumQualifications\n        preferredRequirement\n        responsibilities\n        salary\n        status\n        title\n        updatedAt\n        viewedNum\n        organization {\n          name\n          logoUrl\n          id\n        }\n      }\n      totalPages\n    }\n  }\n}\n"
+    "text": "query useJobsQuery(\n  $status: [String!]!\n  $page: Int!\n  $perPage: Int!\n) {\n  business {\n    jobs(status: $status, page: $page, perPage: $perPage) {\n      jobs {\n        about\n        appliedNum\n        benefits\n        createdAt\n        droppedNum\n        experienceLevel\n        hiredNum\n        id\n        jobType\n        location\n        locationType\n        locationValue\n        managementLevel\n        minimumQualifications\n        preferredRequirement\n        responsibilities\n        salary\n        status\n        title\n        updatedAt\n        viewedNum\n        organization {\n          name\n          logoUrl\n          id\n        }\n        web3meta\n      }\n      totalPages\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ebac43b4de7169d09bb0ed431605255c";
+(node as any).hash = "5459dca368c0010b1f64679a2e301e2f";
 
 export default node;

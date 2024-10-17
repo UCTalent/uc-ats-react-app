@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0f17a3f7858aa48189d0beb625bc0693>>
+ * @generated SignedSource<<ce473dd02323634d3b83b347f16b7b30>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -38,7 +38,6 @@ export type useJobInformationQuery$data = {
         readonly speciality: string | null | undefined;
       } | null | undefined;
       readonly title: string;
-      readonly web3meta: any | null | undefined;
     };
   };
 };
@@ -177,14 +176,7 @@ v18 = {
   "name": "locationValue",
   "storageKey": null
 },
-v19 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "web3meta",
-  "storageKey": null
-},
-v20 = [
+v19 = [
   (v14/*: any*/),
   (v5/*: any*/)
 ];
@@ -256,8 +248,7 @@ return {
                 "plural": true,
                 "selections": (v15/*: any*/),
                 "storageKey": null
-              },
-              (v19/*: any*/)
+              }
             ],
             "storageKey": null
           }
@@ -317,7 +308,7 @@ return {
                     "kind": "LinkedField",
                     "name": "role",
                     "plural": false,
-                    "selections": (v20/*: any*/),
+                    "selections": (v19/*: any*/),
                     "storageKey": null
                   },
                   (v16/*: any*/),
@@ -334,10 +325,9 @@ return {
                 "kind": "LinkedField",
                 "name": "skills",
                 "plural": true,
-                "selections": (v20/*: any*/),
+                "selections": (v19/*: any*/),
                 "storageKey": null
-              },
-              (v19/*: any*/)
+              }
             ],
             "storageKey": null
           }
@@ -347,16 +337,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "dcda2d71f40d44bba73f80fdf347aaaa",
+    "cacheID": "0f0f2f54015ff8a388cea662d1896f03",
     "id": null,
     "metadata": {},
     "name": "useJobInformationQuery",
     "operationKind": "query",
-    "text": "query useJobInformationQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      about\n      benefits\n      experienceLevel\n      id\n      jobType\n      location\n      locationType\n      managementLevel\n      minimumQualifications\n      responsibilities\n      preferredRequirement\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      locationValue\n      skills {\n        name\n        id\n      }\n      web3meta\n    }\n  }\n}\n"
+    "text": "query useJobInformationQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      about\n      benefits\n      experienceLevel\n      id\n      jobType\n      location\n      locationType\n      managementLevel\n      minimumQualifications\n      responsibilities\n      preferredRequirement\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      locationValue\n      skills {\n        name\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6261842811b66a9b6696b5f2c5d44c23";
+(node as any).hash = "407ecaa5c7be2c9a758014b006839f3a";
 
 export default node;
