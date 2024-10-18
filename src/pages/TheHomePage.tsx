@@ -22,7 +22,9 @@ const TheHomePage = () => {
   return (
     <Stack sx={{ height: "100%", overflow: "hidden" }}>
       <TopBarWithTitle />
-      <Stack sx={{ mx: "28px", pt: "24px" }}>
+      <Stack
+        sx={{ mx: "28px", pt: "24px", borderBottom: "1px solid", borderColor: "border.outlined" }}
+      >
         <TabsFilter status={status as JOBS_STATUS_PARAMS} onChangeStatus={onChangeStatus} />
       </Stack>
       <Stack sx={{ flexGrow: 1, overflow: "auto" }}>
