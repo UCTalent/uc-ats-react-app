@@ -1,82 +1,98 @@
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded"
 import { Stack, Typography } from "@mui/material"
 import ButtonContained from "components/common/buttons/ButtonContained"
-import ButtonOutlined from "components/common/buttons/ButtonOutlined"
 import CheckboxGroupField from "components/common/form-fields/CheckboxGroupField"
 import TextField from "components/common/form-fields/TextField"
 import ModalCommon from "components/common/ModalCommon"
 import { MOCK_REASON_CLOSE_JOB_FAILED } from "constants/REASON_CLOSE_JOB_FAILED"
-import { useState } from "react"
+import useCloseJobSmartContract from "hooks/abi/useCloseJobSmartContract"
 import { useForm } from "react-hook-form"
+import { TFunction } from "types/common"
+import { Web3metaType } from "types/smart-contract"
+import { checkJobCreatedBySmartContract } from "utils/checkJobCreatedBySmartContract"
 
 type Props = {
   jobId: string
+  web3meta?: Web3metaType
+  closeModal: TFunction
+  refetchList: TFunction
 }
 
-const CloseJobFailed = ({ jobId }: Props) => {
-  console.log("jobId:", jobId)
-  const [open, setOpen] = useState(false)
-  const { control } = useForm()
+type FormJobFailed = {
+  reasonCloseJob: Array<string>
+  otherReason: string
+}
+
+const CloseJobFailed = ({ jobId, closeModal, refetchList, web3meta }: Props) => {
+  const { mutate, loading } = useCloseJobSmartContract()
+  const { control, handleSubmit, reset } = useForm<FormJobFailed>({
+    defaultValues: {
+      reasonCloseJob: [],
+      otherReason: "",
+    },
+  })
 
   const handleCloseModal = () => {
-    setOpen(false)
+    closeModal()
+    reset()
   }
 
-  const handleOpenModal = () => {
-    setOpen(true)
+  const handleSubmitForm = (value: FormJobFailed) => {
+    if (loading) return
+    // TODO: Call mutation to close job with failed reason
+    console.log("handleSubmitForm called", value)
+    const isCreatedBySmartContract = checkJobCreatedBySmartContract(web3meta.events)
+    mutate({
+      closeJobStatus: "failed",
+      idJob: jobId,
+      isCreatedBySmartContract,
+      callback: () => {
+        handleCloseModal()
+        refetchList()
+      },
+    })
   }
 
   return (
-    <>
-      <ButtonOutlined
-        customColor="error.main"
-        sx={{
-          color: "text.primary",
-          "&:hover svg": {
-            fill: "white",
-          },
-        }}
-        startIcon={<CloseRoundedIcon color="error" />}
-        onClick={handleOpenModal}
-      >
-        Failed
-      </ButtonOutlined>
-      {open && (
-        <ModalCommon open={open} onClose={handleCloseModal}>
-          <Stack sx={{ p: "24px", gap: "16px", maxWidth: "500px" }}>
-            <Typography variant="h5" color="error.main" textAlign="center">
-              Hnm...
-            </Typography>
-            <Typography textAlign="center">
-              Let us know the reasons for improving the quality
-            </Typography>
-            <Stack gap="12px">
-              <CheckboxGroupField
-                control={control}
-                options={MOCK_REASON_CLOSE_JOB_FAILED}
-                name="reasonCloseJob"
-              />
-              <Stack gap="4px">
-                <Typography sx={{ fontSize: "18px", fontWeight: 400 }}>Others</Typography>
-                <TextField control={control} name="otherReason" multiline minRows={4} />
-              </Stack>
-            </Stack>
-            <Stack flexDirection="row" gap="16px">
-              <ButtonContained
-                sx={{
-                  backgroundColor: "text.disabled",
-                  "&:hover": { backgroundColor: "text.disabled" },
-                  flex: 1,
-                }}
-              >
-                Cancel
-              </ButtonContained>
-              <ButtonContained sx={{ flex: 1 }}>Confirm</ButtonContained>
-            </Stack>
+    <ModalCommon open={true} onClose={handleCloseModal}>
+      <Stack sx={{ p: "24px", gap: "16px", maxWidth: "500px" }}>
+        <Typography variant="h5" color="error.main" textAlign="center">
+          Hnm...
+        </Typography>
+        <Typography textAlign="center">
+          Let us know the reasons for improving the quality
+        </Typography>
+        <Stack gap="12px">
+          <CheckboxGroupField
+            control={control}
+            options={MOCK_REASON_CLOSE_JOB_FAILED}
+            name="reasonCloseJob"
+          />
+          <Stack gap="4px">
+            <Typography sx={{ fontSize: "18px", fontWeight: 400 }}>Others</Typography>
+            <TextField control={control} name="otherReason" multiline minRows={4} />
           </Stack>
-        </ModalCommon>
-      )}
-    </>
+        </Stack>
+        <Stack flexDirection="row" gap="16px">
+          <ButtonContained
+            sx={{
+              backgroundColor: "text.disabled",
+              "&:hover": { backgroundColor: "text.disabled" },
+              flex: 1,
+            }}
+            onClick={handleCloseModal}
+          >
+            Cancel
+          </ButtonContained>
+          <ButtonContained
+            disabled={loading}
+            sx={{ flex: 1 }}
+            onClick={handleSubmit(handleSubmitForm)}
+          >
+            Confirm
+          </ButtonContained>
+        </Stack>
+      </Stack>
+    </ModalCommon>
   )
 }
 

@@ -41,6 +41,7 @@ const jobCandidatesQuery = graphql`
           speciality
         }
         title
+        web3meta
       }
     }
   }

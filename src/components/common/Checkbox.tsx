@@ -1,8 +1,8 @@
-import { Checkbox as MuiCheckbox } from "@mui/material"
+import { Checkbox as MuiCheckbox, CheckboxProps as CheckboxPropsMui } from "@mui/material"
 import CheckedCheckBox from "./icons/CheckedCheckbox"
 import UnCheckedCheckBox from "./icons/UnCheckedCheckBox"
 
-type CheckboxProps = {
+type CheckboxProps = CheckboxPropsMui & {
   value: string
   name: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void

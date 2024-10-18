@@ -1,75 +1,82 @@
 import useMutateCancelJob from "hooks/mutations/useMutateCancelJob"
 import useMutateUpdateJobApplies from "hooks/mutations/useMutateUpdateJobApplies"
-import { StatusJobApply } from "types/api/job"
-import { useWriteContract } from "./useWriteContract"
-import { toHex } from "viem"
-import { TFunctionPromise } from "types/common"
 import { useState } from "react"
 import { useSetRecoilState } from "recoil"
 import { showAlertState } from "store/alertAtom"
+import { TFunction } from "types/common"
+import { toHex } from "viem"
+import { useWriteContract } from "./useWriteContract"
 
 type Props = {
+  closeJobStatus: "success" | "failed"
   idJob: string
-  idJobApplies: string
-  status: StatusJobApply
+  idJobApplies?: string
   rejectedNote?: string
-  callback?: TFunctionPromise
+  isCreatedBySmartContract?: boolean
+  callback?: TFunction
 }
 
 const useCloseJobSmartContract = () => {
   const { mutate: mutateUpdateJobApplies, errors: errorsUpdateJobApplies } =
     useMutateUpdateJobApplies()
-  console.log("errorsUpdateJobApplies:", errorsUpdateJobApplies)
   const { mutate: mutateCancelJob, errors: errorsCancelJob } = useMutateCancelJob()
-  console.log("errorsCancelJob:", errorsCancelJob)
   const { write } = useWriteContract({})
   const [loading, setLoading] = useState(false)
   const showAlert = useSetRecoilState(showAlertState)
 
-  const mutate = async ({ idJob, idJobApplies, status, rejectedNote }: Props) => {
+  const mutate = async ({
+    idJob,
+    idJobApplies,
+    // rejectedNote,
+    closeJobStatus,
+    isCreatedBySmartContract,
+    callback,
+  }: Props) => {
     setLoading(true)
-    await mutateUpdateJobApplies(idJobApplies, {
-      job_apply: {
-        status,
-        rejected_note: rejectedNote,
-      },
-    })
+    if (closeJobStatus === "success") {
+      await mutateUpdateJobApplies(idJobApplies, {
+        job_apply: {
+          status: "hired",
+        },
+      })
+    }
     if (errorsUpdateJobApplies) return
     await mutateCancelJob(idJob)
     if (errorsCancelJob) return
-    // callback?.()
-    console.log(123)
-    write(
-      {
-        functionName: "closeJob",
-        args: [toHex(idJob, { size: 32 })],
-      },
-      {
-        onSuccess: () => {
-          write(
-            {
-              functionName: "completeJob",
-              args: [toHex(idJob, { size: 32 })],
-            },
-            {
-              onSuccess: () => {
-                showAlert({ message: "The transaction is successful." })
-              },
-              onError: () => {
-                showAlert({ message: "The transaction is failed.", type: "error" })
-              },
-              onSettled: () => {
-                setLoading(false)
-              },
-            }
-          )
+    if (callback && typeof callback === "function") callback()
+    if (isCreatedBySmartContract) {
+      write(
+        {
+          functionName: "closeJob",
+          args: [toHex(idJob, { size: 32 })],
         },
-        onError: () => {
-          setLoading(false)
-          showAlert({ message: "The transaction is failed.", type: "error" })
-        },
-      }
-    )
+        {
+          onSuccess: () => {
+            write(
+              {
+                functionName: "completeJob",
+                args: [toHex(idJob, { size: 32 })],
+              },
+              {
+                onSuccess: () => {
+                  showAlert({ message: "The transaction is successful." })
+                },
+                onError: () => {
+                  showAlert({ message: "The transaction is failed.", type: "error" })
+                },
+                onSettled: () => {
+                  setLoading(false)
+                },
+              }
+            )
+          },
+          onError: () => {
+            setLoading(false)
+            showAlert({ message: "The transaction is failed.", type: "error" })
+          },
+        }
+      )
+    }
     setLoading(false)
   }
 

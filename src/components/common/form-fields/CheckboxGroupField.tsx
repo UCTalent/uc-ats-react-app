@@ -1,5 +1,6 @@
 /* eslint-disable prefer-const */
 import {
+  CheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -8,24 +9,20 @@ import {
   SxProps,
   Theme,
 } from "@mui/material"
-import { Control, FieldValues, useController, UseControllerProps } from "react-hook-form"
+import { Control, FieldValues, useController, type Path } from "react-hook-form"
 import { OptionSelect } from "src/types/common"
 import Checkbox from "../Checkbox"
 
-type CreateFieldProps = {
-  name: string
-}
-
-type PropType = {
-  control: Control<FieldValues, CreateFieldProps>
+type PropType<T extends FieldValues> = CheckboxProps & {
+  control: Control<T>
   label?: string
-  name?: string
+  name?: Path<T>
   options: Array<OptionSelect>
   sx?: SxProps<Theme>
   maxSelectOption?: number
 }
 
-const CheckboxGroupField = ({
+const CheckboxGroupField = <T extends FieldValues>({
   options,
   control,
   name,
@@ -33,7 +30,7 @@ const CheckboxGroupField = ({
   sx,
   maxSelectOption,
   ...props
-}: PropType & UseControllerProps) => {
+}: PropType<T>) => {
   let {
     field: { value: values = [], onChange },
     fieldState: { invalid, error },
@@ -55,7 +52,7 @@ const CheckboxGroupField = ({
   }
 
   return (
-    <FormControl sx={{ position: "relative", ...sx }} error={invalid} {...props}>
+    <FormControl sx={{ position: "relative", ...sx }} error={invalid}>
       {label && (
         <FormLabel
           sx={{
@@ -70,12 +67,13 @@ const CheckboxGroupField = ({
           {label}
         </FormLabel>
       )}
-      <FormGroup sx={{ flexDirection: "row", gap: "16px 26px" }} aria-labelledby={name}>
+      <FormGroup sx={{ flexDirection: "row", gap: "16px 26px", ...sx }} aria-labelledby={name}>
         {options.map((o) => (
           <FormControlLabel
             key={o?.value}
             control={
               <Checkbox
+                {...props}
                 value={o?.value}
                 name={name}
                 onChange={handleChange}

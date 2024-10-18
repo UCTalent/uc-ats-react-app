@@ -11,7 +11,7 @@ import { JOBS_STATUS_PARAMS } from "constants/JOB"
 const TheHomePage = () => {
   const { page, status, onPreviousPage, onNextPage, onStartPage, onChangeStatus } =
     useJobsSearchParams()
-  const { data, isJobsEmpty } = useJobsQuery(status as JOBS_STATUS_PARAMS, page)
+  const { data, isJobsEmpty, refetch } = useJobsQuery(status as JOBS_STATUS_PARAMS, page)
 
   useEffect(() => {
     if (data && page > 1 && isJobsEmpty) {
@@ -26,7 +26,7 @@ const TheHomePage = () => {
         <TabsFilter status={status as JOBS_STATUS_PARAMS} onChangeStatus={onChangeStatus} />
       </Stack>
       <Stack sx={{ flexGrow: 1, overflow: "auto" }}>
-        <TheJobsList data={data} />
+        <TheJobsList data={data} refetchList={refetch} />
         <FooterPagination
           page={page}
           totalPage={data?.business?.jobs?.totalPages || 1}

@@ -26,13 +26,10 @@ const cx = bindClass(styles)
 
 const TheJobCandidatePage = () => {
   const { jobId } = useParams()
-  const {
-    data,
-    // refetch: refetchJobCandidates
-  } = useJobCandidatesQuery(jobId)
-
+  const { data, refetch: refetchJobCandidates } = useJobCandidatesQuery(jobId)
   const dndBoardRef = useRef<HTMLDivElement | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
+  const web3meta = useMemo(() => data?.business.job.web3meta, [data?.business.job.web3meta])
 
   const dndScene = useMemo(
     () =>
@@ -59,12 +56,12 @@ const TheJobCandidatePage = () => {
       }
       try {
         await JobApplyAPI.updateJobApplyStatus(payload.id, body)
-        // refetchJobCandidates()
+        refetchJobCandidates()
       } catch (error) {
         console.log(error)
       }
     },
-    []
+    [refetchJobCandidates]
   )
 
   const {
@@ -118,7 +115,10 @@ const TheJobCandidatePage = () => {
                       <CandidateStageColumnCard
                         candidate={card.data}
                         jobId={jobId}
+                        jobTitle={data.business.job.title}
                         status={CANDIDATE_PROCESS[columnIndex].name}
+                        web3meta={web3meta}
+                        refetchJobCandidates={refetchJobCandidates}
                       />
                     </DndDraggable>
                   ))}

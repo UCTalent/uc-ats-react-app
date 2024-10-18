@@ -1,7 +1,7 @@
-import { useMemo } from "react"
-import { useLazyLoadQuery, graphql } from "react-relay"
-import { useJobsQuery as useJobsQueryType } from "./__generated__/useJobsQuery.graphql"
 import { JOBS_STATUS_DB, JOBS_STATUS_PARAMS } from "constants/JOB"
+import { useMemo, useState } from "react"
+import { graphql, useLazyLoadQuery } from "react-relay"
+import { useJobsQuery as useJobsQueryType } from "./__generated__/useJobsQuery.graphql"
 
 const jobsQuery = graphql`
   query useJobsQuery($status: [String!]!, $page: Int!, $perPage: Int!) {
@@ -33,6 +33,7 @@ const jobsQuery = graphql`
             name
             logoUrl
           }
+          web3meta
         }
         totalPages
       }
@@ -70,16 +71,28 @@ const STATUS_TO_QUERY = {
 }
 
 const useJobsQuery = (status: JOBS_STATUS_PARAMS, page: number, perPage: number = 10) => {
-  const data = useLazyLoadQuery<useJobsQueryType>(jobsQuery, {
-    status: STATUS_TO_QUERY[status] || STATUS_TO_QUERY.active,
-    // status: ALL_STATUS,
-    page: page || 1,
-    perPage,
-  })
+  const [fetchKey, setFetchKey] = useState(1)
+  const data = useLazyLoadQuery<useJobsQueryType>(
+    jobsQuery,
+    {
+      status: STATUS_TO_QUERY[status] || STATUS_TO_QUERY.active,
+      // status: ALL_STATUS,
+      page: page || 1,
+      perPage,
+    },
+    {
+      fetchKey,
+      fetchPolicy: "network-only",
+    }
+  )
 
   const isJobsEmpty = useMemo(() => data && data.business.jobs.jobs.length === 0, [data])
 
-  return { data, isJobsEmpty }
+  const refetch = () => {
+    setFetchKey((pre) => pre + 1)
+  }
+
+  return { data, isJobsEmpty, refetch }
 }
 
 type JobsListType = useJobsQueryType["response"]
