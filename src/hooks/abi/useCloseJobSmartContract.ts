@@ -52,7 +52,6 @@ const useCloseJobSmartContract = () => {
         },
         {
           onSuccess: () => {
-            console.log(1234)
             write(
               {
                 functionName: "completeJob",

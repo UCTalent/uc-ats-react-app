@@ -56,12 +56,12 @@ const TheJobCandidatePage = () => {
       }
       try {
         await JobApplyAPI.updateJobApplyStatus(payload.id, body)
-        // refetchJobCandidates()
+        refetchJobCandidates()
       } catch (error) {
         console.log(error)
       }
     },
-    []
+    [refetchJobCandidates]
   )
 
   const {
@@ -115,6 +115,7 @@ const TheJobCandidatePage = () => {
                       <CandidateStageColumnCard
                         candidate={card.data}
                         jobId={jobId}
+                        jobTitle={data.business.job.title}
                         status={CANDIDATE_PROCESS[columnIndex].name}
                         web3meta={web3meta}
                         refetchJobCandidates={refetchJobCandidates}
