@@ -1,5 +1,5 @@
 import { Suspense, useMemo } from "react"
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet, useParams } from "react-router-dom"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import PrivateRoute from "components/common/PrivateRoute"
@@ -10,9 +10,9 @@ import LoadingSuspense from "components/common/LoadingSuspense"
 import { APP_HEADER_HEIGHT } from "constants/STYLE"
 
 const AppHeaderWithAsideBarLayout = () => {
-  const { pathname } = useLocation()
+  const params = useParams()
 
-  const isHomePath = useMemo(() => pathname === "/", [pathname])
+  const shouldCollapseExpand = useMemo(() => Object.keys(params).length > 0, [params])
 
   return (
     <PrivateRoute>
@@ -28,7 +28,7 @@ const AppHeaderWithAsideBarLayout = () => {
               borderColor: "border.outlined",
             }}
           >
-            {isHomePath ? <NavigateAsideBar /> : <NavigateAsideBarCollapseExpand />}
+            {shouldCollapseExpand ? <NavigateAsideBarCollapseExpand /> : <NavigateAsideBar />}
             <Stack
               sx={{
                 flexGrow: 1,
