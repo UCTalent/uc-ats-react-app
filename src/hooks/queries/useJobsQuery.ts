@@ -33,6 +33,18 @@ const jobsQuery = graphql`
             name
             logoUrl
           }
+          jobApplies {
+            candidateTimestamp
+            candidateWalletAddress {
+              address
+            }
+            jobReferral {
+              referrerWalletAddress {
+                address
+              }
+              referrerTimestamp
+            }
+          }
           web3meta
         }
         totalPages

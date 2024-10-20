@@ -21,6 +21,7 @@ import { IUpdateJobApplyStatusRequest } from "types/api/job-apply"
 import { IDndResult } from "types/dnd"
 import JobApplyAPI from "services/api/job-apply"
 import styles from "assets/css/dnd.module.css"
+import { NONE_ADDRESS } from "constants/COMMON"
 
 const cx = bindClass(styles)
 
@@ -119,6 +120,15 @@ const TheJobCandidatePage = () => {
                         status={CANDIDATE_PROCESS[columnIndex].name}
                         web3meta={web3meta}
                         refetchJobCandidates={refetchJobCandidates}
+                        talentAddress={
+                          (card.data.candidateWalletAddress?.address ?? NONE_ADDRESS) as string
+                        }
+                        referrerAddress={
+                          (card.data?.jobReferral?.referrerWalletAddress?.address ??
+                            NONE_ADDRESS) as string
+                        }
+                        applyTimestamp={card.data?.candidateTimestamp?.senconds ?? 0}
+                        referraTimestamp={card.data?.jobReferral?.referrerTimestamp?.senconds ?? 0}
                       />
                     </DndDraggable>
                   ))}

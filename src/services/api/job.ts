@@ -1,6 +1,12 @@
 import axiosBasic from "services/axios/axiosBasic"
+import axiosGateWay from "services/axios/axiosGateWay"
 import { APIRes } from "types/api"
-import { JobAppliesRequest } from "types/api/job"
+import {
+  CloseJobRequest,
+  CreateSmartContractSignatureRequest,
+  CreateSmartContractSignatureResponse,
+  JobAppliesRequest,
+} from "types/api/job"
 
 const updateJobApplies = (
   idJobApplies: string,
@@ -10,9 +16,16 @@ const updateJobApplies = (
   return axiosBasic.patch(url, body)
 }
 
-const cancelJob = (id: string) => {
+const cancelJob = (id: string, body: CloseJobRequest) => {
   const url = `/jobs/${id}/closed_job`
-  return axiosBasic.patch(url)
+  return axiosBasic.patch(url, body)
 }
 
-export const JobAPI = { updateJobApplies, cancelJob }
+const createSmartContractSignature = (
+  request: CreateSmartContractSignatureRequest
+): Promise<APIRes<CreateSmartContractSignatureResponse>> => {
+  const url = "web3/smartcontracts/base-sepolia/ucreferral/signatures/close-job"
+  return axiosGateWay.post(url, request)
+}
+
+export const JobAPI = { updateJobApplies, cancelJob, createSmartContractSignature }

@@ -14,6 +14,7 @@ import { OnchainKitProvider } from "@coinbase/onchainkit"
 import { base } from "wagmi/chains"
 import { ENV_ONCHAINKIT_API_KEY } from "constants/ENV_CONFIG"
 import { Alert } from "components/common/Alert"
+import { Loading } from "components/common/Loading"
 
 const App = () => {
   const { mutate: mutateGetProfileMe, isFetched } = useMutateGetProfileMe()
@@ -47,6 +48,7 @@ const App = () => {
               <ModalProvider />
               <PopConfirmProvider />
               <Alert />
+              <Loading />
             </Suspense>
           </RelayEnvironmentProvider>
         </OnchainKitProvider>
