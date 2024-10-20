@@ -14,6 +14,7 @@ import CloseJobFailed from "./modals/CloseJobFailed"
 import CloseJobSuccess from "./modals/CloseJobSuccess"
 import { TFunction } from "types/common"
 import { Web3metaType } from "types/smart-contract"
+import { NONE_ADDRESS } from "constants/COMMON"
 
 interface IProps {
   data: JobsListType
@@ -25,10 +26,18 @@ const TheJobsList: FC<IProps> = ({ data, refetchList }) => {
   const [modalInfo, setModalInfo] = useState<{
     type: "success" | "failed" | null
     idJob: string
+    talentAddress: string
+    referrerAddress: string
+    applyTimestamp: number
+    referraTimestamp: number
     web3meta: Web3metaType
   }>({
     type: null,
     idJob: "",
+    talentAddress: "0x0",
+    referrerAddress: "0x0",
+    applyTimestamp: 0,
+    referraTimestamp: 0,
     web3meta: null,
   })
   const jobs = data?.business.jobs.jobs
@@ -37,6 +46,10 @@ const TheJobsList: FC<IProps> = ({ data, refetchList }) => {
     setModalInfo({
       type: null,
       idJob: "",
+      talentAddress: "0x0",
+      referrerAddress: "0x0",
+      applyTimestamp: 0,
+      referraTimestamp: 0,
       web3meta: null,
     })
   }
@@ -93,6 +106,11 @@ const TheJobsList: FC<IProps> = ({ data, refetchList }) => {
                         setModalInfo({
                           type: "success",
                           idJob: job.id,
+                          talentAddress: job?.candidateWalletAddress?.address ?? NONE_ADDRESS,
+                          referrerAddress:
+                            job.jobReferral?.referrerWalletAddress?.address ?? NONE_ADDRESS,
+                          applyTimestamp: job?.candidateTimestamp?.senconds ?? 0,
+                          referraTimestamp: job?.jobReferral?.referrerTimestamp?.senconds ?? 0,
                           web3meta: job.web3meta,
                         })
                       }
@@ -112,6 +130,11 @@ const TheJobsList: FC<IProps> = ({ data, refetchList }) => {
                         setModalInfo({
                           type: "failed",
                           idJob: job.id,
+                          talentAddress: job?.candidateWalletAddress?.address ?? NONE_ADDRESS,
+                          referrerAddress:
+                            job.jobReferral?.referrerWalletAddress?.address ?? NONE_ADDRESS,
+                          applyTimestamp: job?.candidateTimestamp?.senconds ?? 0,
+                          referraTimestamp: job?.jobReferral?.referrerTimestamp?.senconds ?? 0,
                           web3meta: job.web3meta,
                         })
                       }
@@ -132,6 +155,10 @@ const TheJobsList: FC<IProps> = ({ data, refetchList }) => {
           jobId={modalInfo.idJob}
           closeModal={closeModal}
           refetchList={refetchList}
+          talentAddress={modalInfo.talentAddress}
+          referrerAddress={modalInfo.referrerAddress}
+          applyTimestamp={modalInfo.applyTimestamp}
+          referraTimestamp={modalInfo.referraTimestamp}
           web3meta={modalInfo.web3meta}
         />
       )}

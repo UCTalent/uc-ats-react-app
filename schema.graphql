@@ -67,6 +67,7 @@ type Job {
   hiredNum: Int
   id: ID!
   jobApplies: [JobApply!]
+  jobClosureReasons: [JobClosureReason!]
   jobType: String
   location: String
   locationType: String
@@ -89,17 +90,30 @@ type Job {
 }
 
 type JobApply {
+  candidateTimestamp: JSON
+  candidateWalletAddress: WalletAddress
   createdAt: ISO8601DateTime!
   email: String
   headline: String
   id: ID!
   jobId: ID!
+  jobReferral: JobReferral
   organization: Organization
   phoneNumber: String
   status: String
   talent: Talent
   updatedAt: ISO8601DateTime!
   uploadedResume: UploadedResume
+  web3ChainName: String
+  web3Signature: String
+}
+
+type JobClosureReason {
+  createdAt: ISO8601DateTime!
+  id: ID!
+  jobId: String!
+  reason: JSON
+  updatedAt: ISO8601DateTime!
 }
 
 type JobPagination {
@@ -109,6 +123,24 @@ type JobPagination {
   jobs: [Job!]!
   perPage: Int!
   totalPages: Int!
+}
+
+type JobReferral {
+  candidateEmail: String
+  candidateIntroduction: String
+  candidateName: String
+  candidatePhonenumber: String
+  createdAt: ISO8601DateTime!
+  id: ID!
+  jobApply: JobApply
+  jobId: String
+  recommendation: String
+  referrerId: String
+  referrerTimestamp: JSON
+  referrerWalletAddress: WalletAddress
+  updatedAt: ISO8601DateTime!
+  web3ChainName: String
+  web3Signature: String
 }
 
 """Represents untyped JSON"""
@@ -217,6 +249,16 @@ type User {
   phoneNumber: String
   phoneNumberCountry: String
   refCode: String
+  updatedAt: ISO8601DateTime!
+}
+
+type WalletAddress {
+  address: String
+  chainName: String
+  createdAt: ISO8601DateTime!
+  id: ID!
+  ownerId: String!
+  ownerType: String!
   updatedAt: ISO8601DateTime!
 }
 

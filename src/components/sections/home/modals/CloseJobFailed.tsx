@@ -12,6 +12,10 @@ import { checkJobCreatedBySmartContract } from "utils/checkJobCreatedBySmartCont
 
 type Props = {
   jobId: string
+  talentAddress: string
+  referrerAddress: string
+  applyTimestamp: number
+  referraTimestamp: number
   web3meta?: Web3metaType
   closeModal: TFunction
   refetchList: TFunction
@@ -22,8 +26,18 @@ type FormJobFailed = {
   otherReason: string
 }
 
-const CloseJobFailed = ({ jobId, closeModal, refetchList, web3meta }: Props) => {
-  const { mutate, loading } = useCloseJobSmartContract()
+const CloseJobFailed = ({
+  jobId,
+  closeModal,
+  refetchList,
+  talentAddress,
+  referrerAddress,
+  applyTimestamp,
+  referraTimestamp,
+  web3meta,
+}: Props) => {
+  const isCreatedBySmartContract = checkJobCreatedBySmartContract(web3meta.events)
+  const { mutate, loading } = useCloseJobSmartContract({ isCreatedBySmartContract })
   const { control, handleSubmit, reset } = useForm<FormJobFailed>({
     defaultValues: {
       reasonCloseJob: [],
@@ -40,11 +54,13 @@ const CloseJobFailed = ({ jobId, closeModal, refetchList, web3meta }: Props) => 
     if (loading) return
     // TODO: Call mutation to close job with failed reason
     console.log("handleSubmitForm called", value)
-    const isCreatedBySmartContract = checkJobCreatedBySmartContract(web3meta.events)
     mutate({
       closeJobStatus: "failed",
       idJob: jobId,
-      isCreatedBySmartContract,
+      talentAddress,
+      referrerAddress,
+      applyTimestamp,
+      referraTimestamp,
       callback: () => {
         handleCloseModal()
         refetchList()

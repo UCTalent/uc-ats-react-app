@@ -25,6 +25,10 @@ interface TypeProps {
   status: string
   web3meta?: Web3metaType
   jobTitle: string
+  talentAddress?: string
+  referrerAddress?: string
+  applyTimestamp?: number
+  referraTimestamp?: number
   refetchJobCandidates: TFunction
 }
 
@@ -34,6 +38,10 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({
   status,
   web3meta,
   jobTitle,
+  talentAddress,
+  referrerAddress,
+  applyTimestamp,
+  referraTimestamp,
   refetchJobCandidates,
 }) => {
   const { candidateId } = useParams()
@@ -41,7 +49,8 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const isCloseJobStatus = searchParams.get("close-job") === "success"
-  const { mutate, loading } = useCloseJobSmartContract()
+  const isCreatedBySmartContract = checkJobCreatedBySmartContract(web3meta.events)
+  const { mutate, loading } = useCloseJobSmartContract({ isCreatedBySmartContract })
   const [modalConfirm, setModalConfirm] = useState(false)
 
   useEffect(() => {
@@ -56,14 +65,17 @@ const CandidateStageColumnCard: React.FC<TypeProps> = ({
   }, [candidate.id, jobId, navigate, setTalentOverview, status, isCloseJobStatus])
 
   const handleCloseJob = () => {
-    const isCreatedBySmartContract = checkJobCreatedBySmartContract(web3meta.events)
     mutate({
       closeJobStatus: "success",
       idJob: jobId,
       idJobApplies: candidate.id,
-      isCreatedBySmartContract,
+      talentAddress,
+      referrerAddress,
+      applyTimestamp,
+      referraTimestamp,
       callback: refetchJobCandidates,
     })
+    setModalConfirm(false)
   }
 
   return (

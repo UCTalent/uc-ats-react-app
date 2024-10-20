@@ -1,16 +1,16 @@
 import { useCallback, useState } from "react"
 import { JobAPI } from "services/api/job"
-import { CloseJobRequest } from "types/api/job"
+import { CreateSmartContractSignatureRequest } from "types/api/job"
 
-const useMutateCancelJob = () => {
+const useCreateSmartContractSignature = () => {
   const [isFetched, setIsFetched] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<unknown>(null)
 
-  const mutate = useCallback(async (idJob: string, request: CloseJobRequest) => {
+  const mutate = useCallback(async (request: CreateSmartContractSignatureRequest) => {
     setLoading(true)
     try {
-      const response = await JobAPI.cancelJob(idJob, request)
+      const response = await JobAPI.createSmartContractSignature(request)
       if (!response) return
       return response
     } catch (error) {
@@ -24,4 +24,4 @@ const useMutateCancelJob = () => {
   return { mutate, loading, errors, isFetched }
 }
 
-export default useMutateCancelJob
+export default useCreateSmartContractSignature

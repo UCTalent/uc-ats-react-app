@@ -1,4 +1,4 @@
-export const ADDRESS_CORE_SMART_CONTRACT = "0xF62Ca2263042aC0C43b252feaA04cA6DAF8DBD87"
+export const ADDRESS_CORE_SMART_CONTRACT = "0x4Cb3D85c7dE6AA8185720955BE89356980FD8b1B"
 
 export const coreABI = [
   {
@@ -10,6 +10,7 @@ export const coreABI = [
       { indexed: false, internalType: "uint256", name: "baseReferalPercentage", type: "uint256" },
       { indexed: false, internalType: "uint256", name: "freezePeriod", type: "uint256" },
       { indexed: false, internalType: "address", name: "treasury", type: "address" },
+      { indexed: false, internalType: "address", name: "serverSigner", type: "address" },
     ],
     name: "ConfigUpdated",
     type: "event",
@@ -81,14 +82,23 @@ export const coreABI = [
     type: "event",
   },
   {
-    inputs: [{ internalType: "bytes32", name: "_jobId", type: "bytes32" }],
+    inputs: [
+      { internalType: "bytes32", name: "_jobId", type: "bytes32" },
+      { internalType: "bool", name: "_success", type: "bool" },
+      { internalType: "address", name: "_talent", type: "address" },
+      { internalType: "address", name: "_referrer", type: "address" },
+      { internalType: "uint256", name: "_refPercentage", type: "uint256" },
+      { internalType: "uint256", name: "_applyTimestamp", type: "uint256" },
+      { internalType: "uint256", name: "_refTimestamp", type: "uint256" },
+      { internalType: "bytes", name: "_signature", type: "bytes" },
+    ],
     name: "closeJob",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [{ internalType: "bytes32", name: "_jobIb", type: "bytes32" }],
+    inputs: [{ internalType: "bytes32", name: "_jobId", type: "bytes32" }],
     name: "completeJob",
     outputs: [],
     stateMutability: "nonpayable",
@@ -104,6 +114,7 @@ export const coreABI = [
       { internalType: "uint256", name: "baseReferalPercentage", type: "uint256" },
       { internalType: "uint256", name: "freezePeriod", type: "uint256" },
       { internalType: "address", name: "treasury", type: "address" },
+      { internalType: "address", name: "serverSigner", type: "address" },
     ],
     stateMutability: "view",
     type: "function",
@@ -128,8 +139,11 @@ export const coreABI = [
   },
   {
     inputs: [
+      { internalType: "string", name: "_name", type: "string" },
+      { internalType: "string", name: "_version", type: "string" },
       { internalType: "address", name: "_usdt", type: "address" },
       { internalType: "address", name: "_jobNFT", type: "address" },
+      { internalType: "address", name: "_owner", type: "address" },
     ],
     name: "initialize",
     outputs: [],
@@ -157,7 +171,15 @@ export const coreABI = [
       { internalType: "uint256", name: "disputeTimestamp", type: "uint256" },
       { internalType: "uint256", name: "nftId", type: "uint256" },
       { internalType: "enum UCReferral.Status", name: "status", type: "uint8" },
+      { internalType: "enum UCReferral.Result", name: "result", type: "uint8" },
     ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "nonce",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -186,6 +208,7 @@ export const coreABI = [
       { internalType: "uint256", name: "_baseReferalPercentage", type: "uint256" },
       { internalType: "uint256", name: "_freezePeriod", type: "uint256" },
       { internalType: "address", name: "_treasury", type: "address" },
+      { internalType: "address", name: "_serverSinger", type: "address" },
     ],
     name: "setConfig",
     outputs: [],

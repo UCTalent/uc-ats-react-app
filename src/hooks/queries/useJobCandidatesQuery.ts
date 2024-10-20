@@ -27,6 +27,16 @@ const jobCandidatesQuery = graphql`
           }
           createdAt
           id
+          candidateTimestamp
+          candidateWalletAddress {
+            address
+          }
+          jobReferral {
+            referrerWalletAddress {
+              address
+            }
+            referrerTimestamp
+          }
         }
         jobType
         location

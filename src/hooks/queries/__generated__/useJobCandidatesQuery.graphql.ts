@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8a09f26d16bd735cfb48fe0e900b2207>>
+ * @generated SignedSource<<dafb1b4200c858d0ad92100542a11533>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,8 +18,18 @@ export type useJobCandidatesQuery$data = {
       readonly experienceLevel: string | null | undefined;
       readonly id: string;
       readonly jobApplies: ReadonlyArray<{
+        readonly candidateTimestamp: any | null | undefined;
+        readonly candidateWalletAddress: {
+          readonly address: string | null | undefined;
+        } | null | undefined;
         readonly createdAt: any;
         readonly id: string;
+        readonly jobReferral: {
+          readonly referrerTimestamp: any | null | undefined;
+          readonly referrerWalletAddress: {
+            readonly address: string | null | undefined;
+          } | null | undefined;
+        } | null | undefined;
         readonly status: string | null | undefined;
         readonly talent: {
           readonly id: string;
@@ -100,60 +110,40 @@ v5 = {
 v6 = {
   "alias": null,
   "args": null,
-  "concreteType": "JobApply",
+  "concreteType": "Talent",
   "kind": "LinkedField",
-  "name": "jobApplies",
-  "plural": true,
+  "name": "talent",
+  "plural": false,
   "selections": [
     (v3/*: any*/),
-    (v4/*: any*/),
     {
       "alias": null,
       "args": null,
-      "concreteType": "Talent",
+      "concreteType": "User",
       "kind": "LinkedField",
-      "name": "talent",
+      "name": "user",
       "plural": false,
       "selections": [
-        (v3/*: any*/),
         {
           "alias": null,
           "args": null,
-          "concreteType": "User",
-          "kind": "LinkedField",
-          "name": "user",
-          "plural": false,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "avatar",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "email",
-              "storageKey": null
-            },
-            (v3/*: any*/),
-            (v5/*: any*/)
-          ],
+          "kind": "ScalarField",
+          "name": "avatar",
           "storageKey": null
         },
-        (v4/*: any*/)
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "email",
+          "storageKey": null
+        },
+        (v3/*: any*/),
+        (v5/*: any*/)
       ],
       "storageKey": null
     },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "createdAt",
-      "storageKey": null
-    }
+    (v4/*: any*/)
   ],
   "storageKey": null
 },
@@ -161,65 +151,100 @@ v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "jobType",
+  "name": "createdAt",
   "storageKey": null
 },
 v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "location",
+  "name": "candidateTimestamp",
   "storageKey": null
 },
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "locationType",
+  "name": "address",
   "storageKey": null
 },
-v10 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "locationValue",
-  "storageKey": null
-},
+v10 = [
+  (v9/*: any*/)
+],
 v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "managementLevel",
+  "name": "referrerTimestamp",
   "storageKey": null
 },
 v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "salary",
+  "name": "jobType",
   "storageKey": null
 },
 v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "speciality",
+  "name": "location",
   "storageKey": null
 },
 v14 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "title",
+  "name": "locationType",
   "storageKey": null
 },
 v15 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "locationValue",
+  "storageKey": null
+},
+v16 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "managementLevel",
+  "storageKey": null
+},
+v17 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "salary",
+  "storageKey": null
+},
+v18 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "speciality",
+  "storageKey": null
+},
+v19 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "title",
+  "storageKey": null
+},
+v20 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "web3meta",
   "storageKey": null
-};
+},
+v21 = [
+  (v9/*: any*/),
+  (v3/*: any*/)
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -245,13 +270,60 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v6/*: any*/),
-              (v7/*: any*/),
-              (v8/*: any*/),
-              (v9/*: any*/),
-              (v10/*: any*/),
-              (v11/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "JobApply",
+                "kind": "LinkedField",
+                "name": "jobApplies",
+                "plural": true,
+                "selections": [
+                  (v3/*: any*/),
+                  (v4/*: any*/),
+                  (v6/*: any*/),
+                  (v7/*: any*/),
+                  (v8/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "WalletAddress",
+                    "kind": "LinkedField",
+                    "name": "candidateWalletAddress",
+                    "plural": false,
+                    "selections": (v10/*: any*/),
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "JobReferral",
+                    "kind": "LinkedField",
+                    "name": "jobReferral",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "WalletAddress",
+                        "kind": "LinkedField",
+                        "name": "referrerWalletAddress",
+                        "plural": false,
+                        "selections": (v10/*: any*/),
+                        "storageKey": null
+                      },
+                      (v11/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
               (v12/*: any*/),
+              (v13/*: any*/),
+              (v14/*: any*/),
+              (v15/*: any*/),
+              (v16/*: any*/),
+              (v17/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -272,12 +344,12 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v13/*: any*/)
+                  (v18/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/),
-              (v15/*: any*/)
+              (v19/*: any*/),
+              (v20/*: any*/)
             ],
             "storageKey": null
           }
@@ -312,13 +384,61 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v6/*: any*/),
-              (v7/*: any*/),
-              (v8/*: any*/),
-              (v9/*: any*/),
-              (v10/*: any*/),
-              (v11/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "JobApply",
+                "kind": "LinkedField",
+                "name": "jobApplies",
+                "plural": true,
+                "selections": [
+                  (v3/*: any*/),
+                  (v4/*: any*/),
+                  (v6/*: any*/),
+                  (v7/*: any*/),
+                  (v8/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "WalletAddress",
+                    "kind": "LinkedField",
+                    "name": "candidateWalletAddress",
+                    "plural": false,
+                    "selections": (v21/*: any*/),
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "JobReferral",
+                    "kind": "LinkedField",
+                    "name": "jobReferral",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "WalletAddress",
+                        "kind": "LinkedField",
+                        "name": "referrerWalletAddress",
+                        "plural": false,
+                        "selections": (v21/*: any*/),
+                        "storageKey": null
+                      },
+                      (v11/*: any*/),
+                      (v3/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
               (v12/*: any*/),
+              (v13/*: any*/),
+              (v14/*: any*/),
+              (v15/*: any*/),
+              (v16/*: any*/),
+              (v17/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -340,13 +460,13 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v13/*: any*/),
+                  (v18/*: any*/),
                   (v3/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/),
-              (v15/*: any*/)
+              (v19/*: any*/),
+              (v20/*: any*/)
             ],
             "storageKey": null
           }
@@ -356,16 +476,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "78149c0902d795b3202be47c42d028b3",
+    "cacheID": "f4b9dedacaa81dc41bce9a985b8766a7",
     "id": null,
     "metadata": {},
     "name": "useJobCandidatesQuery",
     "operationKind": "query",
-    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      web3meta\n    }\n  }\n}\n"
+    "text": "query useJobCandidatesQuery(\n  $id: String!\n) {\n  business {\n    job(id: $id) {\n      experienceLevel\n      id\n      jobApplies {\n        id\n        status\n        talent {\n          id\n          user {\n            avatar\n            email\n            id\n            name\n          }\n          status\n        }\n        createdAt\n        candidateTimestamp\n        candidateWalletAddress {\n          address\n          id\n        }\n        jobReferral {\n          referrerWalletAddress {\n            address\n            id\n          }\n          referrerTimestamp\n          id\n        }\n      }\n      jobType\n      location\n      locationType\n      locationValue\n      managementLevel\n      salary\n      speciality {\n        role {\n          name\n          id\n        }\n        speciality\n        id\n      }\n      title\n      web3meta\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7046514f7c94c1ab8f73e66db5a7e977";
+(node as any).hash = "c11dc4745f93355f780eb48ae22427e4";
 
 export default node;
